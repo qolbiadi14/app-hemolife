@@ -2,19 +2,51 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Restaurant Apps</title>
+    <title>Hemo Life</title>
   </head>
   <body>
-    <h1>Restaurant Apps Starter Project</h1>
-    <p>Hallo coders! Anda berhasil menjalankan starter project.</p>
+    <div class="container">
+      <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary" id="menuDrawer">
+            <div class="container-fluid">
+                <a href="/" class="navbar-brand d-flex align-items-center link-body-emphasis text-decoration-none">
+                    <img src="/images/heros/logo.png" alt="Logo" width="60" height="54"
+                        class="d-inline-block align-text-top">
+                    Bootstrap Logo
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" id="hamburgerButton"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto"> 
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#/dashboard-user">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#/jadwal">Jadwal</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#/profile"><i class="bi bi-person-circle"></i> Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+      <main id="mainContent"> 
+       
+      </main>
+    
+      <footer>
+        <p>All data obtained from <a href="https://themoviedb.org" target="_blank" rel="noreferrer">TheMovieDB</a></p>
+    </footer>
 
-    <p>
-      Jangan lupa untuk menggunakan salah satu gambar yang berada pada
-      ./images/heros sebagai background hero elemen.
-    </p>
-    <img src="./images/heros/hero-image_1.jpg" width="450" alt="" />
-    <img src="./images/heros/hero-image_2.jpg" width="450" alt="" />
-    <img src="./images/heros/hero-image_3.jpg" width="450" alt="" />
-    <img src="./images/heros/hero-image_4.jpg" width="450" alt="" />
+    </div>
+
+ 
   </body>
 </html>

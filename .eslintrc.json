@@ -10,6 +10,10 @@
     "sourceType": "module"
   },
   "rules": {
-    "import/no-extraneous-dependencies": "off"
+    "import/no-extraneous-dependencies": "off",
+    "linebreak-style":"off",
+    "on-underscore-dangle": "off",
+    "no-underscore-dangle": "off",
+    "no-console":"off",
   }
 }
