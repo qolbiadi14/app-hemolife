@@ -6,37 +6,49 @@
   </head>
   <body>
     <div class="container">
-      <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary" id="menuDrawer">
-            <div class="container-fluid">
-                <a href="/" class="navbar-brand d-flex align-items-center link-body-emphasis text-decoration-none">
-                    <img src="/images/heros/logo.png" alt="Logo" width="60" height="54"
-                        class="d-inline-block align-text-top">
-                    Bootstrap Logo
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" id="hamburgerButton"
+    <header class="navbar-container">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light id="menuDrawer"">
+		<div class="container">
+		  <!-- Logo -->
+		  <a class="navbar-brand" href="#">
+			<img src="../images/heros/HEMOLIFE 3.png" alt="Logo" height="30" class="d-inline-block align-top">
+		  </a>
+	  
+		  <!-- Navbar Toggler -->
+		  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" id="hamburgerButton"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto"> 
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#/dashboard-user">Dashboard</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#/jadwal">Jadwal</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#/profile"><i class="bi bi-person-circle"></i> Profile</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+	  
+		  <!-- Navbar Items -->
+		  <div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav ms-auto">
+			  <li class="nav-item">
+				<a class="nav-link" href="#/dashboard-user">Beranda</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="#/jadwal">Jadwal</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="#/Cari-Sukarelawan">Cari Sukarelawan</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="#/profile">Profile</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="#/Faq">FAQ</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="#/Profile">
+				  <!-- Ganti 'path/to/your/profile-image.jpg' dengan path gambar profil Anda -->
+				  <img src="path/to/your/profile-image.jpg" alt="Profile" height="30" class="rounded-circle">
+				</a>
+			  </li>
+			</ul>
+		  </div>
+		</div>
+	  </nav>
+		</header>
       <main id="mainContent"> 
        
       </main>

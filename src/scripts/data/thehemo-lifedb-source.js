@@ -85,6 +85,22 @@ class TheHemoLifeDbSource {
       throw error;
     }
   }
+  static async CariSukarelawan() {
+  try {
+    const response = await fetch(API_ENDPOINT.CARI_SUKARELAWAN);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const responseJson = await response.json();
+    console.log('API Response GET Cari Sukarelawan:', responseJson);
+    return responseJson; // Sesuaikan dengan format respons API Anda
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
+}
 
   static async profileUser(idUser) {
     try {

@@ -133,7 +133,52 @@ const createUpdateProfileTemplate = (userProfile) => /* html */ `
     </div>
 `;
 
+const createCariSukarelawanTemplate = (userProfile) => /* html */`
+      <div class="container mt-5">
+      <div class="row">
+        <!-- Box Pertama: Form Pencarian -->
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Form Pencarian</h5>
+              <form>
+                <div class="mb-3">
+                  <label for="golonganDarah" class="form-label">Golongan Darah</label>
+                  <select class="form-select" id="golonganDarah">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="AB">AB</option>
+                    <option value="O">O</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="lokasi" class="form-label">Lokasi</label>
+                  <select class="form-select" id="lokasi">
+                    <option value="Jakarta">Jakarta</option>
+                    <option value="Bandung">Bandung</option>
+                    <option value="Jogja">Jogja</option>
+                  </select>
+                </div>
+                <button type="button" id="buttonCari" class="btn btn-primary">Cari</button>
+              </form>
+            </div>
+          </div>
+        </div>
 
+        <!-- Box Kedua: Hasil Pencarian -->
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Hasil Pencarian</h5>
+              <div id="hasilPencarian">
+                <!-- Hasil pencarian akan ditampilkan di sini -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+`;
 export {
   createSukarelawanTemplate,
   createPemohonTemplate,
@@ -142,4 +187,5 @@ export {
   createJadwalDetailPMITemplate,
   createProfileUserTemplate,
   createUpdateProfileTemplate,
+  createCariSukarelawanTemplate,
 };
