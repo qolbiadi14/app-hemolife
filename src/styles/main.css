@@ -1,6 +1,66 @@
 @import 'bootstrap/dist/css/bootstrap.css';
+
 /* @import '' */
 
 img {
   display: block;
 }
+
+/* Your existing CSS styles */
+
+/* Media query for screens with a maximum width of 597px */
+@media (min-width: 597px) {
+  .logo {
+    /* Adjust the size for smaller screens */
+    width: 180px;
+    height: auto;
+    /* Auto-adjust height to maintain aspect ratio */
+  }
+}
+
+/* Media query for screens with a maximum width of 803px */
+@media (max-width: 803px) {
+  .logo {
+    /* Adjust the size for medium-sized screens */
+    width: 100px;
+    height: auto;
+    /* Auto-adjust height to maintain aspect ratio */
+  }
+}
+
+@media (min-width: 768px) {
+  .border-md-end {
+    border-right: 2px solid #F05941;
+    /* You can adjust the color as needed */
+  }
+}
+
+.border-md-end {
+  margin-bottom: 20px;
+  border-bottom: 2px solid #F05941;
+  /* You can adjust the color as needed */
+}
+
+@media (min-width: 768px) {
+  .border-md-end {
+    border-bottom: none;
+    /* Remove the border bottom for screens larger than 768px */
+  }
+}
+  /* Gaya untuk efek hover dan klik pada tombol */
+  .navbar-nav .nav-item {
+    transition: color 0.3s, transform 0.5s; /* Efek transisi lembut dan perlahan */
+  }
+
+  .navbar-nav .nav-link {
+    transition: color 0.3s, transform 0.5s; /* Efek transisi lembut dan perlahan */
+  }
+
+  .navbar-nav .nav-link:hover {
+    transform: scale(1.1); /* Efek perlahan ukuran saat tombol dihover */
+  }
+
+  .navbar-nav .nav-link:active {
+    transform: scale(0.9); /* Efek perlahan ukuran saat tombol ditekan */
+    background-position: 0 100%; /* Geser warna latar belakang ke atas saat tombol ditekan */
+  }

@@ -2,17 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hemo Life</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/dist/css/bootstrap-icons.min.css">
   </head>
   <body>
     <div class="container">
       <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary" id="menuDrawer">
+        <nav class="navbar navbar-expand-lg" id="menuDrawer">
             <div class="container-fluid">
                 <a href="/" class="navbar-brand d-flex align-items-center link-body-emphasis text-decoration-none">
-                    <img src="/images/heros/logo.png" alt="Logo" width="60" height="54"
-                        class="d-inline-block align-text-top">
-                    Bootstrap Logo
+                    <img src="/images/heros/logo.png" alt="Logo"
+                        class="d-inline-block align-text-top logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" id="hamburgerButton"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,16 +23,16 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto"> 
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#/dashboard-user">Dashboard</a>
+                            <a class="nav-link active fw-bolder" aria-current="page" href="#/dashboard-user"><i class="bi bi-home"></i>Dashboard</a>
+                        </li>                        
+                        <li class="nav-item">
+                            <a class="nav-link fw-bolder" href="#/jadwal">Jadwal</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#/jadwal">Jadwal</a>
+                            <a class="nav-link" href="#/profile" title="Profile"><i class="fa-solid fa-circle-user fa-xl" style="color: #e02424;"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#/profile"><i class="bi bi-person-circle"></i> Profile</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                            <a class="nav-link" href="#/profile" title="Notifikasi"><i class="fa-solid fa-bell"></i></a>
                         </li>
                     </ul>
                 </div>

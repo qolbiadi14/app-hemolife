@@ -4,10 +4,9 @@ import { createJadwalTemplate } from '../templates/template-creator';
 const JadwalDaftarDonorPMI = {
   async render() {
     return `
-      <div class="content">
-        <h2 class="content__heading">Jadwal Daftar Donor PMI</h2>
-        <div id="jadwals" class="jadwals">
-        </div>
+      <div class="content pt-sm-5">
+        <h2 class="display-6 text-center mb-4 mt-5 fw-bold">Jadwal Daftar Donor PMI</h2>
+        <div id="jadwals" class="jadwals row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 m-3"></div>
       </div>
     `;
   },
