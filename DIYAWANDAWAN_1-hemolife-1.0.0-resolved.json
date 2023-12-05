@@ -616,46 +616,7 @@
         }
       }
     },
-    "/v1/auth/admin/login": {
-      "post": {
-        "tags": ["admin"],
-        "summary": "Login Admin",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/admin_login_body"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "example": {
-                  "message": "Login Berhasil",
-                  "token": "tokenxxxxxx"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "example": {
-                    "message": "Unauthorized"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
+
     "/v1/admin/dashboardAdmin": {
       "get": {
         "tags": ["admin"],
@@ -669,36 +630,40 @@
                   "message": "Success",
                   "data": [
                     {
-                      "jumlah_kantong_darah": 100,
-                      "gol_darah": "A+"
-                    },
-                    {
-                      "jumlah_kantong_darah": 50,
-                      "gol_darah": "B+"
-                    },
-                    {
+                      "id_bank_darah": "Bohdf",
+                      "id_lokasi_pmi": "-gfMn",
+                      "id_gol_darah": "47SZe",
                       "jumlah_kantong_darah": 75,
-                      "gol_darah": "AB+"
+                      "LokasiPmi": {
+                        "nama": "PMI Jawa Barat"
+                      },
+                      "GolDarah": {
+                        "gol_darah": "A-"
+                      }
                     },
                     {
+                      "id_bank_darah": "gke31",
+                      "id_lokasi_pmi": "OsQ6J",
+                      "id_gol_darah": "47SZe",
                       "jumlah_kantong_darah": 40,
-                      "gol_darah": "O+"
+                      "LokasiPmi": {
+                        "nama": "PMI Jakarta Utara"
+                      },
+                      "GolDarah": {
+                        "gol_darah": "A-"
+                      }
                     },
                     {
-                      "jumlah_kantong_darah": 85,
-                      "gol_darah": "A-"
-                    },
-                    {
-                      "jumlah_kantong_darah": 20,
-                      "gol_darah": "B-"
-                    },
-                    {
-                      "jumlah_kantong_darah": 60,
-                      "gol_darah": "AB-"
-                    },
-                    {
-                      "jumlah_kantong_darah": 30,
-                      "gol_darah": "O-"
+                      "id_bank_darah": "hbjll",
+                      "id_lokasi_pmi": "OsQ6J",
+                      "id_gol_darah": "eJgku",
+                      "jumlah_kantong_darah": 81,
+                      "LokasiPmi": {
+                        "nama": "PMI Jakarta Utara"
+                      },
+                      "GolDarah": {
+                        "gol_darah": "AB+"
+                      }
                     }
                   ]
                 }
@@ -720,13 +685,13 @@
         }
       }
     },
-    "/v1/admin/bankDarah/{idBankDarah}": {
+    "/v1/admin/bankDarah/{idLokasiPmi}": {
       "get": {
         "tags": ["admin"],
         "summary": "Kelola Bank Darah",
         "parameters": [
           {
-            "name": "idBankDarah",
+            "name": "id_lokasi_pmi",
             "in": "path",
             "required": true,
             "style": "simple",
@@ -742,41 +707,47 @@
             "content": {
               "application/json": {
                 "example": {
-                  "message": "Stok darah dari setiap pmi berhasil didapatkan",
-                  "id_bank_darah": "1",
-                  "nama_pmi": "PMI Jawa Barat",
+                  "message": "Bank darah dengan id lokasi pmi -gfMn berhasil ditampilkan",
                   "stok_bank_darah": [
                     {
-                      "jumlah_kantong_darah": 100,
-                      "gol_darah": "A+"
-                    },
-                    {
-                      "jumlah_kantong_darah": 50,
-                      "gol_darah": "B+"
-                    },
-                    {
+                      "id_bank_darah": "Bohdf",
+                      "id_lokasi_pmi": "-gfMn",
+                      "id_gol_darah": "47SZe",
                       "jumlah_kantong_darah": 75,
-                      "gol_darah": "AB+"
+                      "LokasiPmi": {
+                        "id_lokasi_pmi": "-gfMn",
+                        "nama": "PMI Jawa Barat",
+                        "email": "pmi.jawa.barat@gmail.com",
+                        "no_telpon": "08437395734",
+                        "alamat": "Jawa Barat",
+                        "latitude": "-6.870538423420674",
+                        "longitude": "107.62042308129263",
+                        "logo": "logo_pmi_jawa_barat.png"
+                      },
+                      "GolDarah": {
+                        "id_gol_darah": "47SZe",
+                        "gol_darah": "A-"
+                      }
                     },
                     {
-                      "jumlah_kantong_darah": 40,
-                      "gol_darah": "O+"
-                    },
-                    {
-                      "jumlah_kantong_darah": 85,
-                      "gol_darah": "A-"
-                    },
-                    {
-                      "jumlah_kantong_darah": 20,
-                      "gol_darah": "B-"
-                    },
-                    {
+                      "id_bank_darah": "ow2IR",
+                      "id_lokasi_pmi": "-gfMn",
+                      "id_gol_darah": "i4vRI",
                       "jumlah_kantong_darah": 60,
-                      "gol_darah": "AB-"
-                    },
-                    {
-                      "jumlah_kantong_darah": 30,
-                      "gol_darah": "O-"
+                      "LokasiPmi": {
+                        "id_lokasi_pmi": "-gfMn",
+                        "nama": "PMI Jawa Barat",
+                        "email": "pmi.jawa.barat@gmail.com",
+                        "no_telpon": "08437395734",
+                        "alamat": "Jawa Barat",
+                        "latitude": "-6.870538423420674",
+                        "longitude": "107.62042308129263",
+                        "logo": "logo_pmi_jawa_barat.png"
+                      },
+                      "GolDarah": {
+                        "id_gol_darah": "i4vRI",
+                        "gol_darah": "A+"
+                      }
                     }
                   ]
                 }
@@ -798,13 +769,13 @@
         }
       }
     },
-    "/v1/admin/bankDarah/update/{idBankDarah}": {
+    "/v1/admin/bankDarah/update/{idLokasiPmi}": {
       "put": {
         "tags": ["admin"],
         "summary": "Update Bank Darah",
         "parameters": [
           {
-            "name": "idBankDarah",
+            "name": "id_lokasi_pmi",
             "in": "path",
             "required": true,
             "style": "simple",
@@ -829,41 +800,17 @@
             "content": {
               "application/json": {
                 "example": {
-                  "message": "Jumlah kantong darah berhasil diedit",
-                  "stok_bank_darah": [
-                    {
-                      "jumlah_kantong_darah": 100,
-                      "gol_darah": "A+"
-                    },
-                    {
-                      "jumlah_kantong_darah": 50,
-                      "gol_darah": "B+"
-                    },
-                    {
-                      "jumlah_kantong_darah": 75,
-                      "gol_darah": "AB+"
-                    },
-                    {
-                      "jumlah_kantong_darah": 40,
-                      "gol_darah": "O+"
-                    },
-                    {
-                      "jumlah_kantong_darah": 85,
+                  "message": "Jumlah kantong darah berhasil diubah",
+                  "stok_bank_darah": {
+                    "id_bank_darah": "Bohdf",
+                    "id_lokasi_pmi": "-gfMn",
+                    "id_gol_darah": "47SZe",
+                    "jumlah_kantong_darah": 77,
+                    "GolDarah": {
+                      "id_gol_darah": "47SZe",
                       "gol_darah": "A-"
-                    },
-                    {
-                      "jumlah_kantong_darah": 20,
-                      "gol_darah": "B-"
-                    },
-                    {
-                      "jumlah_kantong_darah": 60,
-                      "gol_darah": "AB-"
-                    },
-                    {
-                      "jumlah_kantong_darah": 30,
-                      "gol_darah": "O-"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -884,7 +831,7 @@
         }
       }
     },
-    "/v1/admin/donorDarah": {
+    "/v1/admin/pendonorDarah": {
       "get": {
         "tags": ["admin"],
         "summary": "Daftar pendonor darah",
@@ -894,14 +841,55 @@
             "content": {
               "application/json": {
                 "example": {
-                  "message": "Success",
+                  "message": "Berhasil menampilkan seluruh pendonor darah",
                   "pendonor": [
                     {
-                      "id_pendonor": "1",
-                      "nama_pendonor": "Diyawan",
-                      "gol_darah": "A+",
-                      "lokasi_pmi": "PMI Jawa Barat",
-                      "tanggal_donor": "11-10-2023"
+                      "id_tra_donor": 42,
+                      "id_user": "GWyUz",
+                      "id_gol_darah": "47SZe",
+                      "id_lokasi_pmi": "-gfMn",
+                      "tgl_donor": "2023-12-02",
+                      "status": 1,
+                      "User": {
+                        "id_user": "GWyUz",
+                        "nama": "Fiora",
+                        "email": "fiora@gmail.com",
+                        "no_hp": "08777395815",
+                        "jenis_kelamin": "Perempuan",
+                        "tanggal_lahir": "2002-09-14",
+                        "alamat": "Bandung"
+                      },
+                      "GolDarah": {
+                        "gol_darah": "A-"
+                      },
+                      "LokasiPmi": {
+                        "nama": "PMI Jawa Barat",
+                        "alamat": "Jawa Barat"
+                      }
+                    },
+                    {
+                      "id_tra_donor": 43,
+                      "id_user": "R01Ov",
+                      "id_gol_darah": "eJgku",
+                      "id_lokasi_pmi": "OsQ6J",
+                      "tgl_donor": "2023-12-02",
+                      "status": 1,
+                      "User": {
+                        "id_user": "R01Ov",
+                        "nama": "John Doe",
+                        "email": "john.doe@gmail.com",
+                        "no_hp": "0825373815931",
+                        "jenis_kelamin": "Laki-Laki",
+                        "tanggal_lahir": "2001-03-25",
+                        "alamat": "Jakarta Barat"
+                      },
+                      "GolDarah": {
+                        "gol_darah": "AB+"
+                      },
+                      "LokasiPmi": {
+                        "nama": "PMI Jakarta Utara",
+                        "alamat": "Jakarta Utara"
+                      }
                     }
                   ]
                 }
@@ -921,36 +909,24 @@
         }
       }
     },
-    "/v1/admin/adminProfile/token": {
+    "/v1/admin/adminProfile": {
       "get": {
         "tags": ["admin"],
         "summary": "Profile admin",
-        "parameters": [
-          {
-            "name": "idAdmin",
-            "in": "path",
-            "description": "ID Admin",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "example": {
-                  "message": "Admin Ditemukan",
-                  "admin": [
-                    {
-                      "id_admin": "1",
-                      "nama_lengkap": "Ariel"
-                    }
-                  ]
+                  "message": "Admin profile retrieved successfully",
+                  "admin": {
+                    "id_admin": "yi8d",
+                    "nama": "Admin 1",
+                    "email": "admin1@gmail.com",
+                    "password": "password1"
+                  }
                 }
               }
             }
@@ -968,23 +944,10 @@
         }
       }
     },
-    "/v1/admin/adminUpdateProfile/token": {
+    "/v1/admin/adminProfile/update": {
       "put": {
         "tags": ["admin"],
         "summary": "Update Profile Admin",
-        "parameters": [
-          {
-            "name": "idAdmin",
-            "in": "path",
-            "description": "ID Admin",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1000,13 +963,13 @@
             "content": {
               "application/json": {
                 "example": {
-                  "message": "Data profil admin berhasil diperbarui",
-                  "data": [
-                    {
-                      "id_admin": "1",
-                      "nama_lengkap": "Ariel"
-                    }
-                  ]
+                  "message": "Admin profile updated successfully",
+                  "admin": {
+                    "id_admin": "test2",
+                    "nama": "Admin 2",
+                    "email": "admin2@gmail.com",
+                    "password": "password2"
+                  }
                 }
               }
             }
@@ -1561,26 +1524,26 @@
       "update_idBankDarah_body": {
         "type": "object",
         "properties": {
+          "id_gol_darah": {
+            "type": "string",
+            "description": "Id golongan darah yang mau diedit"
+          },
           "jumlah_kantong_darah": {
             "type": "number",
             "description": "Jumlah kantong darah yang mau diedit"
-          },
-          "gol_darah": {
-            "type": "string",
-            "description": "Golongan darah yang mau diedit"
           }
         }
       },
       "adminUpdateProfile_idAdmin_body": {
         "type": "object",
         "properties": {
-          "id_user": {
+          "nama": {
             "type": "string",
-            "description": "Id admin"
+            "description": "Nama admin"
           },
-          "nama_lengkap": {
+          "email": {
             "type": "string",
-            "description": "Nama lengkap admin"
+            "description": "Email admin"
           }
         }
       }
