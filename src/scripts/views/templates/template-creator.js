@@ -250,4 +250,6 @@ export {
   createJadwalDetailPMITemplate,
   createProfileUserTemplate,
   createUpdateProfileTemplate,
+  createPendonoremplate,
+  createCariSukarelawanTemplate,
 };
