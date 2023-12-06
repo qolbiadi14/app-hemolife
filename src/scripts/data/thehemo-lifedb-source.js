@@ -1,11 +1,6 @@
 import API_ENDPOINT from '../globals/api-endpoint';
 
 class TheHemoLifeDbSource {
-  // static async dasboardUserHemoLife() {
-  //   const response = await fetch(API_ENDPOINT.NOW_PLAYING);
-  //   const responseJson = await response.json();
-  //   return responseJson.results;
-  // }
 
   static async dasboardUser() {
     const response = await fetch(API_ENDPOINT.DASHBOARD_USER);
@@ -13,22 +8,11 @@ class TheHemoLifeDbSource {
     console.log('GET dashboard User Rensponse:', responseJson);
     return responseJson;
   }
-
-  static async jadwalDonorHemoLife() {
-    const response = await fetch(API_ENDPOINT.JADWAL);
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    const responseJson = await response.json();
-    console.log('API GET Response Jadwal Donor Darah:', responseJson);
-    return responseJson.jadwal;
-  }
-
   static async acceptRequest(idUserVolunteer) {
     const requestBody = {
       id_user_volunteer: idUserVolunteer,
     };
-
+  
     try {
       const response = await fetch(API_ENDPOINT.ACCEPT_REQUEST, {
         method: 'POST',
@@ -38,20 +22,20 @@ class TheHemoLifeDbSource {
         },
         body: JSON.stringify(requestBody),
       });
-
+  
       const responseJson = await response.json();
       console.log('API Response POST acceptRequest Vlonter:', responseJson);
-      return responseJson;
+      return responseJson.volunteer;
     } catch (error) {
       console.error('Error:', error);
     }
   }
-
+  
   static async rejectRequest(idUserVolunteer) {
     const requestBody = {
       id_user_volunteer: idUserVolunteer,
     };
-
+  
     try {
       const response = await fetch(API_ENDPOINT.REJECT_REQUEST, {
         method: 'POST',
@@ -61,15 +45,25 @@ class TheHemoLifeDbSource {
         },
         body: JSON.stringify(requestBody),
       });
-
+  
       const responseJson = await response.json();
       console.log('API Response POST RejcttReques Fluntet:', responseJson);
-      return responseJson;
+      return responseJson.volunteer;
     } catch (error) {
       console.error('Error POST Data:', error);
     }
   }
-
+  
+  
+  static async jadwalDonorHemoLife() {
+    const response = await fetch(API_ENDPOINT.JADWAL);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const responseJson = await response.json();
+    console.log('API GET Response Jadwal Donor Darah:', responseJson);
+    return responseJson.jadwal;
+  }
   static async jadwalDetailDonorDarah(idPmi) {
     try {
       const response = await fetch(API_ENDPOINT.JADWAL_DETAIL(idPmi));

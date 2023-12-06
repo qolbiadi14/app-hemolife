@@ -2,53 +2,43 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hemo Life</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/dist/css/bootstrap-icons.min.css">
   </head>
   <body>
     <div class="container">
-    <header class="navbar-container">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light id="menuDrawer"">
-		<div class="container">
-		  <!-- Logo -->
-		  <a class="navbar-brand" href="#">
-			<img src="../images/heros/HEMOLIFE 3.png" alt="Logo" height="30" class="d-inline-block align-top">
-		  </a>
-	  
-		  <!-- Navbar Toggler -->
-		  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" id="hamburgerButton"
+      <header>
+        <nav class="navbar navbar-expand-lg" id="menuDrawer">
+            <div class="container-fluid">
+                <a href="/" class="navbar-brand d-flex align-items-center link-body-emphasis text-decoration-none">
+                    <img src="/images/heros/logo.png" alt="Logo"
+                        class="d-inline-block align-text-top logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" id="hamburgerButton"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-	  
-		  <!-- Navbar Items -->
-		  <div class="collapse navbar-collapse" id="navbarNav">
-			<ul class="navbar-nav ms-auto">
-			  <li class="nav-item">
-				<a class="nav-link" href="#/dashboard-user">Beranda</a>
-			  </li>
-			  <li class="nav-item">
-				<a class="nav-link" href="#/jadwal">Jadwal</a>
-			  </li>
-			  <li class="nav-item">
-				<a class="nav-link" href="#/Cari-Sukarelawan">Cari Sukarelawan</a>
-			  </li>
-			  <li class="nav-item">
-				<a class="nav-link" href="#/profile">Profile</a>
-			  </li>
-			  <li class="nav-item">
-				<a class="nav-link" href="#/Faq">FAQ</a>
-			  </li>
-			  <li class="nav-item">
-				<a class="nav-link" href="#/Profile">
-				  <!-- Ganti 'path/to/your/profile-image.jpg' dengan path gambar profil Anda -->
-				  <img src="path/to/your/profile-image.jpg" alt="Profile" height="30" class="rounded-circle">
-				</a>
-			  </li>
-			</ul>
-		  </div>
-		</div>
-	  </nav>
-		</header>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto"> 
+                        <li class="nav-item">
+                            <a class="nav-link active fw-bolder" aria-current="page" href="#/dashboard-user"><i class="bi bi-home"></i>Dashboard</a>
+                        </li>                        
+                        <li class="nav-item">
+                            <a class="nav-link fw-bolder" href="#/jadwal">Jadwal</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#/profile" title="Profile"><i class="fa-solid fa-circle-user fa-xl" style="color: #e02424;"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#/profile" title="Notifikasi"><i class="fa-solid fa-bell"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
       <main id="mainContent"> 
        
       </main>

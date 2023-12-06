@@ -5,7 +5,6 @@ import { createJadwalDetailPMITemplate } from '../templates/template-creator';
 const JadwalDaftarDetail = {
   async render() {
     return `
-      <h1>Detail Jadawal Daftar PMI</h1>
       <div id="pmi" class="pmi"></div>
     `;
   },
