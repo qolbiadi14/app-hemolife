@@ -1,7 +1,7 @@
 import CONFIG from './config';
 
 const API_ENDPOINT = {
- DETAIL: (id) => `${CONFIG.BASE_URL}movie/${id}?api_key=${CONFIG.KEY}`,
+//  DETAIL: (id) => `${CONFIG.BASE_URL}movie/${id}?api_key=${CONFIG.KEY}`,
 
   // GET
   DASHBOARD_USER: `${CONFIG.HEMO_LIFE_URL}/v1/user/dashboardUser`,
@@ -24,9 +24,20 @@ const API_ENDPOINT = {
   USER_PROFILE: (idUser) => `${CONFIG.HEMO_LIFE_URL}/v1/user/userProfile/${idUser}`,
   // PUT
   UPDATE_PROFILE: (idUser) => `${CONFIG.HEMO_LIFE_URL}/v1/user/userUpdateProfile/${idUser}`,
+  ADMIN_PROFILE: (idAdmin) => `${CONFIG.HEMO_LIFE_URL}/v1/admin/adminProfile/${idAdmin}`,
+  // PUT
+  UPDATE_PROFILE_ADMIN: (idAdmin) => `${CONFIG.HEMO_LIFE_URL}/v1/admin/adminUpdateProfile/${idAdmin}`,
 };
 
 export default API_ENDPOINT;
+// GET
+// /v1/admin/adminProfile/{idAdmin}
+// Profile admin
+
+
+// PUT
+// /v1/admin/adminUpdateProfile/{idAdmin}
+
 // TODO end point
 // GET
 // /v1/user/dashboardUser
