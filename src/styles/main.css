@@ -2,6 +2,10 @@
 
 /* @import '' */
 
+*{
+  font-family: 'Poppins', sans-serif;
+}
+
 img {
   display: block;
 }
@@ -36,6 +40,7 @@ img {
 }
 
 .border-md-end {
+  padding-top: 10px;
   margin-bottom: 20px;
   border-bottom: 2px solid #F05941;
   /* You can adjust the color as needed */
@@ -53,14 +58,42 @@ img {
   }
 
   .navbar-nav .nav-link {
-    transition: color 0.3s, transform 0.5s; /* Efek transisi lembut dan perlahan */
+    transition: color 0.3s, transform 0.5s; 
   }
 
   .navbar-nav .nav-link:hover {
-    transform: scale(1.1); /* Efek perlahan ukuran saat tombol dihover */
+    transform: scale(1.0); 
   }
 
   .navbar-nav .nav-link:active {
-    transform: scale(0.9); /* Efek perlahan ukuran saat tombol ditekan */
-    background-position: 0 100%; /* Geser warna latar belakang ke atas saat tombol ditekan */
+    transform: scale(0.9); 
   }
+
+  .switch-lg .form-check {
+    display: flex;
+    align-items: center;
+    border: 2px solid #F00;
+    border-radius: 5px; 
+    padding: 5px; 
+    background-color: #FFC0CB;
+  }
+  
+  .switch-lg .form-check-input {
+    width: 3rem;
+    height: 1.5rem;
+    margin-right: 5px; /* Memberikan ruang di antara switch dan label */
+  }
+  
+  .switch-lg .form-check-label {
+    font-size: 1.2rem;
+  }
+  
+  /* Style khusus untuk switch ketika dihover dan diactive */
+  .switch-lg .form-check-input:hover {
+    transform: scale(1.2);
+  }
+  
+  .switch-lg .form-check-input:active {
+    transform: scale(0.8);
+  }
+  
