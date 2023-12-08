@@ -57,7 +57,8 @@
                     {
                       "id_user": "1",
                       "email": "diyawan@gmail.com",
-                      "password": "12345678"
+                      "password": "12345678",
+                      "status_volunteer": 0
                     }
                   ]
                 }
@@ -415,22 +416,10 @@
         }
       }
     },
-    "/v1/user/userProfile/token": {
+    "/v1/user/userProfile": {
       "get": {
         "tags": ["user"],
         "summary": "Profile User",
-        "parameters": [
-          {
-            "name": "idUser",
-            "in": "path",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -467,23 +456,10 @@
         }
       }
     },
-    "/v1/user/userUpdateProfile/token": {
+    "/v1/user/userProfile/Update": {
       "put": {
         "tags": ["user"],
         "summary": "Update Profile User",
-        "parameters": [
-          {
-            "name": "idUser",
-            "in": "path",
-            "description": "ID User",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -506,7 +482,8 @@
                       "nama_lengkap": "Diyawan",
                       "alamat": "Bandung",
                       "jenis_kelamin": "Laki-Laki",
-                      "tanggal_lahir": "17-08-2001"
+                      "tanggal_lahir": "17-08-2001",
+                      "status_volunteer": 1
                     }
                   ]
                 }
@@ -1496,6 +1473,10 @@
           "tanggal_lahir": {
             "type": "string",
             "description": "Tangal, bulan, tahun lahir user"
+          },
+          "status_volunteer": {
+            "type": "integer",
+            "description": "Status volunteer 0/1"
           }
         }
       },
