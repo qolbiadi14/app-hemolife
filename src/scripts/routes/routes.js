@@ -1,3 +1,4 @@
+import ProfileAdmin from '../views/admin/ProfileAdmin';
 import DashboarUser from '../views/pages/DashboarUser';
 import JadwalDaftarDonorPMI from '../views/pages/JadawalDonorPMI';
 import JadwalDaftarDetail from '../views/pages/JadwalDaftarDetail';
@@ -12,7 +13,7 @@ const routes = {
   '/detail-jadwal-daftar/:id': JadwalDaftarDetail,
   '/cari-sukarelawan': CariSukarelawan,
   '/edit-profile/:id': UpdateProfileUser, 
-
+  '/adminprofile': ProfileAdmin,
 };
 
 export default routes;

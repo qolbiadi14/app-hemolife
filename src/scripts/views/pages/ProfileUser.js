@@ -19,7 +19,7 @@ const ProfileUser = {
            <div class="col-md-6 border-md-end">
              <div id="profile-container"></div>
            </div>
-           <div class="col-md-6 d-flex align-items-center">
+           <div class="col-md-6">
              <div class="col-sm-12 personal-info" id="edit-profile-container"></div>
            </div>
          </div>

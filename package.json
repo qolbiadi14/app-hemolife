@@ -38,6 +38,9 @@
     "aos": "^2.3.4",
     "bootstrap": "^5.3.2",
     "bootstrap-icons": "^1.11.2",
+    "html2pdf.js": "^0.10.1",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.8.0",
     "regenerator-runtime": "^0.14.0",
     "sweetalert2": "^11.9.0"
   }
