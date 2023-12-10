@@ -5,6 +5,9 @@
 img {
   display: block;
 }
+body{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
 /* Your existing CSS styles */
 
@@ -44,23 +47,23 @@ img {
 @media (min-width: 768px) {
   .border-md-end {
     border-bottom: none;
-    /* Remove the border bottom for screens larger than 768px */
+    
   }
 }
-  /* Gaya untuk efek hover dan klik pada tombol */
+  
   .navbar-nav .nav-item {
-    transition: color 0.3s, transform 0.5s; /* Efek transisi lembut dan perlahan */
+    transition: color 0.3s, transform 0.5s; 
   }
 
   .navbar-nav .nav-link {
-    transition: color 0.3s, transform 0.5s; /* Efek transisi lembut dan perlahan */
+    transition: color 0.3s, transform 0.5s; 
   }
 
   .navbar-nav .nav-link:hover {
-    transform: scale(1.1); /* Efek perlahan ukuran saat tombol dihover */
+    transform: scale(1.1); 
   }
 
   .navbar-nav .nav-link:active {
-    transform: scale(0.9); /* Efek perlahan ukuran saat tombol ditekan */
-    background-position: 0 100%; /* Geser warna latar belakang ke atas saat tombol ditekan */
+    transform: scale(0.9); 
+    background-position: 0 100%; 
   }

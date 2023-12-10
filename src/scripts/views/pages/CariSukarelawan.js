@@ -5,7 +5,7 @@ const CariSukarelawan = {
   async render() {
     return `
       <div class="content">
-        <h2 class="text-center mb-4">Cari Sukarelawan</h2>
+        <h2 class="text-center fw-bolder mb-4">Cari Sukarelawan</h2>
         ${createCariSukarelawanTemplate()}
       </div>
     `;
