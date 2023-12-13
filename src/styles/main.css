@@ -5,7 +5,9 @@
 *{
   font-family: 'Poppins', sans-serif;
 }
-
+.card-text {
+  margin-bottom: 7px; 
+}
 img {
   display: block;
 }
