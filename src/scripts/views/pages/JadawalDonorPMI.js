@@ -1,7 +1,13 @@
+
+import 'leaflet.control.layers.tree';
+import 'leaflet.awesome-markers';
+
 import TheHemoLifeDbSource from '../../data/thehemo-lifedb-source';
-import { createJadwalTemplate } from '../templates/template-creator';
+import { createJadwalTemplate, initializeLeafletMaps } from '../templates/template-creator';
 
 const JadwalDaftarDonorPMI = {
+  jadwals: [], 
+
   async render() {
     return `
       <div class="content pt-sm-5">
@@ -12,13 +18,60 @@ const JadwalDaftarDonorPMI = {
   },
 
   async afterRender() {
-    const jadwals = await TheHemoLifeDbSource.jadwalDonorHemoLife();
+    this.jadwals = await TheHemoLifeDbSource.jadwalDonorHemoLife();
+    console.log('Jadwal Data:', this.jadwals);  
     const jadwalsContainer = document.querySelector('#jadwals');
-
-    jadwals.forEach((jadwal) => {
+  
+    jadwalsContainer.innerHTML = '';  
+    this.jadwals.forEach((jadwal) => {
+      console.log('Current Jadwal:', jadwal);
       jadwalsContainer.innerHTML += createJadwalTemplate(jadwal);
     });
+    initializeLeafletMaps(this.jadwals);
+    jadwalsContainer.removeEventListener('click', this.handleButtonClick);  
+    jadwalsContainer.addEventListener('click', this.handleButtonClick.bind(this));
   },
+  
+  async handleButtonClick(event) {
+    if (event.target.dataset.processed) {
+      return;
+    }
+  
+    const targetButton = event.target.closest('.btn-success');  
+    if (targetButton) {
+      const idLokPmi = targetButton.dataset.id;    
+      console.log('Clicked Button ID:', idLokPmi);    
+      const selectedJadwal = this.jadwals.find((jadwal) => jadwal.id_lok_pmi === idLokPmi);    
+      console.log('Selected Jadwal:', selectedJadwal);
+    
+      if (selectedJadwal) {
+        const userIdOrOtherIdentifier = selectedJadwal.id_lok_pmi;
+    
+        const postData = {
+          id_user: userIdOrOtherIdentifier,
+          gol_darah: 'A+',
+          nama_lok_pmi: selectedJadwal.nama_lok_pmi,
+          jadwal_jam_selesai: selectedJadwal.jadwal_jam_selesai,
+          jadwal_jam_mulai: selectedJadwal.jadwal_jam_mulai,
+          tanggal_donor: '2023-12-10',
+          alamat_pmi: selectedJadwal.alamat_pmi,
+          no_telpon_pmi: selectedJadwal.no_telpon_pmi,
+          email: selectedJadwal.email,
+          latitude: selectedJadwal.latitude,
+          longitude: selectedJadwal.longitude,
+        };
+    
+        event.target.dataset.processed = true;
+    
+        const response = await TheHemoLifeDbSource.daftarJadwalDonorHemoLife(postData);
+    
+        console.log('Data berhasil dikirim:', response);
+      }
+    }
+    
+  },
+  
+  
 };
 
 export default JadwalDaftarDonorPMI;

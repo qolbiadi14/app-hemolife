@@ -1,6 +1,6 @@
 import UrlParser from '../../routes/url-parser';
 import TheHemoLifeDbSource from '../../data/thehemo-lifedb-source';
-import { createJadwalDetailPMITemplate } from '../templates/template-creator';
+import { createJadwalDetailPMITemplate, initializeLeafletMaps } from '../templates/template-creator';
 
 const JadwalDaftarDetail = {
   async render() {
@@ -9,27 +9,25 @@ const JadwalDaftarDetail = {
     `;
   },
 
-
-    async afterRender() {
-      const url = UrlParser.parseActiveUrlWithoutCombiner();
-      try {
-        const pmi = await TheHemoLifeDbSource.jadwalDetailDonorDarah(url.id);
-        const pmiContainer = document.querySelector('#pmi');
+  async afterRender() {
+    const url = UrlParser.parseActiveUrlWithoutCombiner();
+    const pmiContainer = document.querySelector('#pmi');
   
-        // Cek Data Response Render
-        console.log('Render Response:', pmi);
+    const pmi = await TheHemoLifeDbSource.jadwalDetailDonorDarah(url.id);
   
-        if (pmi && pmi.length > 0) {
-          pmi.forEach((jadwal) => {
-            pmiContainer.innerHTML += createJadwalDetailPMITemplate(jadwal);
-          });
-        } else {
-          console.log('Tidak ada data atau data kosong.');
-        }
-      } catch (err) {
-        console.error(`Error saat mengambil data ${err}`);
-      }
-    },
+    // Cek Data Response Render
+    console.log('Render Response:', pmi);
+  
+    pmi.forEach((jadwal) => {
+      pmiContainer.innerHTML += createJadwalDetailPMITemplate(jadwal);
+      initializeLeafletMaps([jadwal]); 
+    });
+    // Initialize Leaflet maps
+  
+    // Note: If pmi is an empty array or undefined, the forEach loop will simply do nothing.
+    console.log('Tidak ada data atau data kosong.');
+  },
+  
 };
 
 
