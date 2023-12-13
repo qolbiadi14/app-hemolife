@@ -325,6 +325,37 @@ const Sidebar = (adminProfile) => /* html */ `
     </div>
 </div>
 `;
+const KelolaDonorDarah = (adminProfile) => /* html */ `
+<div class="col py-3">
+            <div class="container py-3">
+				<h2>Kelola Donor Darah</h2>
+				<form class="form-inline mb-4">
+					<label class="sr-only" for="searchInput">Cari Pendonor:</label>
+					<input type="text" class="form-control mb-2 mr-sm-2" id="searchInput"
+						   placeholder="Masukkan Nama Pendonor">
+					<button type="submit" class="btn btn-primary mb-2">Cari</button>
+				</form>
+				<div class="table-responsive">
+					<table class="table table-striped table-sm">
+						<thead>
+						<tr>
+							<th class="col">No</th>
+							<th class="col-6">Nama Pendonor</th>
+							<th class="col">Jadwal</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td class="col">1</td>
+							<td class="col-6">ARIEL</td>
+							<td class="col">SELASA - 12/10/2021</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+</div>
+`;
 
 export {
   createProfileAdminTemplate,
@@ -340,4 +371,5 @@ export {
   createCariSukarelawanTemplate,
   notifikasiTamplateMerima,
   Sidebar,
+  KelolaDonorDarah,
 };
