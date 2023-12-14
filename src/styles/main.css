@@ -11,6 +11,11 @@
 img {
   display: block;
 }
+/* Tambahkan atau perbarui sesuai kebutuhan Anda */
+.download-pdf-btn {
+  display: flex;
+  align-items: center;
+}
 
 /* Your existing CSS styles */
 

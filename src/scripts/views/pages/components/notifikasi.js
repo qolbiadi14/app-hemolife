@@ -6,17 +6,16 @@ class NotifikasiModal extends HTMLElement {
     }
 
     async fetchDataAndDisplay() {
-        try {
-            const response = await fetch(API_ENDPOINT.DASHBOARD_USER);
-            const data = await response.json();
-
-            const modalContent = this.generateModalContent(data);
-
-            this.querySelector('.modal-body').innerHTML = modalContent;
-        } catch (error) {
-            console.error('Error fetching data:', error);
-            alert('Error fetching data');
-        }
+        const response = await fetch(API_ENDPOINT.DASHBOARD_USER);
+        const data = await response.json()
+        // .catch(error => {
+        //     console.error('Error fetching data:', error);
+        //     alert('Error fetching data');
+        // });
+        
+        const modalContent = this.generateModalContent(data);
+        this.querySelector('.modal-body').innerHTML = modalContent;
+        
     }
 
     generateModalContent(data) {

@@ -1,5 +1,4 @@
 import API_ENDPOINT from '../globals/api-endpoint';
-// const DUMMY_TOKEN = 'your_dummy_token_here';
 let globalUserToken = localStorage.getItem('userToken');
 let globalAdminToken = localStorage.getItem('adminToken');
 
@@ -14,7 +13,6 @@ class TheHemoLifeDbSource {
     globalAdminToken = token || 'ururururjrjrj';
     localStorage.setItem('adminToken', token || 'ururururjrjrj');
   }
-  
 
   static async updateProfileUser(updatedData) {
     const response = await fetch(API_ENDPOINT.UPDATE_PROFILE, {
@@ -25,10 +23,9 @@ class TheHemoLifeDbSource {
       },
       body: JSON.stringify(updatedData),
     });
-  
+
     return response.ok ? await response.json() : {};
   }
-  
 
   static async profileUser(idUser) {
     const response = await fetch(API_ENDPOINT.USER_PROFILE(idUser), {
@@ -40,6 +37,33 @@ class TheHemoLifeDbSource {
     return response.ok ? (await response.json()).user : [];
   }
 
+  static async profilAdmin() {
+    try {
+      const response = await fetch(API_ENDPOINT.ADMIN_PROFILE, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${globalAdminToken}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch admin profile');
+      }
+
+      const responseData = await response.json();
+
+      if (responseData.message === 'Admin profile retrieved successfully') {
+        return [responseData.admin]; // Wrap admin data in an array
+      } else {
+        throw new Error('Admin not found');
+      }
+    } catch (error) {
+      console.error('Error fetching admin profile:', error);
+      throw error;
+    }
+  }
+
   static async updateProfileAdmin(updatedData) {
     const response = await fetch(API_ENDPOINT.UPDATE_PROFILE_ADMIN, {
       method: 'PUT',
@@ -49,22 +73,22 @@ class TheHemoLifeDbSource {
       },
       body: JSON.stringify(updatedData),
     });
-  
+
     return response.ok ? await response.json() : {};
   }
-  
+
   static async acceptOrRejectRequest(idUserVolunteer, isAccept) {
     const endpoint = isAccept ? API_ENDPOINT.ACCEPT_REQUEST : API_ENDPOINT.REJECT_REQUEST;
     const userToken = globalUserToken || globalAdminToken;
-  
+
     if (!userToken) {
       throw new Error('User/Admin token not available');
     }
-  
+
     const requestBody = {
       id_user_volunteer: idUserVolunteer,
     };
-  
+
     const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
@@ -74,13 +98,13 @@ class TheHemoLifeDbSource {
       },
       body: JSON.stringify(requestBody),
     });
-  
+
     if (!response.ok) {
       throw new Error(`Failed to process request: ${response.status}`);
     }
-  
+
     const responseJson = await response.json();
-  
+
     return responseJson.volunteer;
   }
 
@@ -119,14 +143,14 @@ class TheHemoLifeDbSource {
     return responseData;
   }
 
- 
+
   static async jadwalDetailDonorDarah(idPmi) {
-  const userToken = globalUserToken || globalAdminToken;
+    const userToken = globalUserToken || globalAdminToken;
     const response = await fetch(API_ENDPOINT.JADWAL_DETAIL(idPmi), {
       headers: {
-    'Authorization': `Bearer ${userToken}`,
-    'Content-Type': 'application/json',
-  },
+        'Authorization': `Bearer ${userToken}`,
+        'Content-Type': 'application/json',
+      },
     });
     return response.ok ? (await response.json()).pmi : [];
   }

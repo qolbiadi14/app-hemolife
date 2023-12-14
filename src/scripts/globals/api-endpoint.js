@@ -24,7 +24,7 @@ const API_ENDPOINT = {
   USER_PROFILE: (idUser) => `${CONFIG.HEMO_LIFE_URL}/v1/user/userProfile/${idUser}`,
   // PUT
   UPDATE_PROFILE: `${CONFIG.HEMO_LIFE_URL}/v1/user/userUpdateProfile/Update`,
-  ADMIN_PROFILE: (idAdmin) => `${CONFIG.HEMO_LIFE_URL}/v1/admin/adminProfile/${idAdmin}`,
+  ADMIN_PROFILE: `${CONFIG.HEMO_LIFE_URL}/v1/admin/adminProfile`,
   // PUT
   UPDATE_PROFILE_ADMIN: `${CONFIG.HEMO_LIFE_URL}/v1/admin/adminProfile/update`,
 };
