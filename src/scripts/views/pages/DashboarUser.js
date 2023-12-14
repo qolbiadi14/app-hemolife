@@ -47,15 +47,21 @@ const DashboardUser = {
       data.pendonor && createCardContainer(data.pendonor, createPendonoremplate);
 
       mainContainer.addEventListener('click', async (event) => {
-        if (event.target.classList.contains('btn-primary')) {
-          const donorId = event.target.dataset.donorId; // Updated to use the dataset
-    
-          const pmiDetails = await TheHemoLifeDbSource.jadwalDetailDonorDarah(donorId);
-    
-          // Check if pmiDetails is available
-          if (pmiDetails && pmiDetails.length > 0) {
-            generatePDF({ pendonor: data.pendonor, pmi: pmiDetails });
-          }        
+        const targetButton = event.target.closest('.download-pdf-btn');
+
+        if (targetButton) {
+          const donorId = targetButton.dataset.donorId;
+
+          try {
+            const pmiDetails = await TheHemoLifeDbSource.jadwalDetailDonorDarah(donorId);
+
+            // Check if pmiDetails is available
+            if (pmiDetails && pmiDetails.length > 0) {
+              generatePDF({ pendonor: data.pendonor, pmi: pmiDetails });
+            }
+          } catch (error) {
+            console.error('Error generating PDF:', error);
+          }
         }
         if (event.target.id === 'acceptBtn' || event.target.id === 'rejectBtn') {
           // Periksa apakah event.target.dataset.id_user_volunteer atau event.target.dataset.id_user

@@ -1,5 +1,4 @@
 import L from 'leaflet';
-
 import 'leaflet.control.layers.tree';
 import 'leaflet.awesome-markers';
 
@@ -24,7 +23,6 @@ const createPemohonTemplate = (pemohon) => /* html */
    </div>
   </div>
 `;
-;
 
 const createSukarelawanTemplate = (sukarelawan_menerima) => /* html */ `
   <div class="card shadow">
@@ -49,7 +47,7 @@ function getFormattedWhatsAppNumber(number) {
 }
 
 const createPendonoremplate = (pendonor) => /* html */ `
-  <div class="card shadow">
+  <div class="card shadow" style="position: relative;">
       <!-- <img src="..." class="card-img-top" alt="..."> -->
       <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect></svg>
       <div class="card-body">
@@ -57,7 +55,9 @@ const createPendonoremplate = (pendonor) => /* html */ `
         <p class="card-text" id="golDarah_${pendonor.id_donor}">${pendonor.gol_darah && `Gol Darah: ${pendonor.gol_darah}`}</p>
         <p class="card-text" id="lokasiPmi_${pendonor.id_donor}">${pendonor.lokasi_pmi && `Lokasi PMI: ${pendonor.lokasi_pmi}`}</p>
         <p class="card-text" id="tanggalDonor_${pendonor.id_donor}">${pendonor.tanggal_donor && `Tanggal Donor: ${pendonor.tanggal_donor}`}</p>
-        <button type="button" title="Cetak Bukti Pendaftaran" class="btn btn-primary w-100 download-pdf-btn" data-donor-id="${pendonor.id_donor}"><i class="fa-solid fa-file-pdf fa-xl" style="color: #e02424;"></i> Unduh PDF</button>
+        <button type="button" title="Cetak Bukti Pendaftaran" class="download-pdf-btn btn mb-3 p-3 me-2" data-donor-id="${pendonor.id_donor}" style="position: absolute; bottom: 0; right: 0;">
+        <i class="fa-solid fa-circle-arrow-down fa-2xl" style="color: #db3939;"></i>
+      </button>
       </div>
   </div>
 `;
@@ -78,7 +78,7 @@ const createJadwalTemplate = (jadwal) => /* html */ `
     <p class="card-text">${jadwal.jadwal_jam_mulai && jadwal.jadwal_jam_selesai && `Waktu : ${jadwal.jadwal_jam_mulai} - ${jadwal.jadwal_jam_selesai}`}</p>
     <p class="card-text">${jadwal.no_telpon_pmi && `Kontak : ${jadwal.no_telpon_pmi}`}</p>
     <p class="card-text">${jadwal.email && `Email : ${jadwal.email}`}</p>
-      <button type="button" class="btn btn-success w-100" data-id="${jadwal.id_lok_pmi}">Daftar</button>
+      <button type="button" title="Daftar Donor" class="btn btn-outline-danger btn-lg" data-id="${jadwal.id_lok_pmi}">Daftar</button>
     </div>
   </div>
 </div>
@@ -165,12 +165,7 @@ const createProfileUserTemplate = (userProfile) => /* html */ `
       <li class="list-group-item">Alamat: ${userProfile.alamat}</li>
       <li class="list-group-item">Jenis Kelamin: ${userProfile.jenis_kelamin}</li>
       <li class="list-group-item pb-5">Tanggal Lahir: ${userProfile.tanggal_lahir}</li>
-      <!-- <a href="#/edit-profile/${userProfile.id_user}">Update Profile</a> -->
     </ul>
-    <div class="form-check form-switch switch-lg pb-5 pt-3 ">
-    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-    <label class="form-check-label" for="flexSwitchCheckDefault">Sukarelawan</label>
-  </div>
   </div>
 `;
 
@@ -211,10 +206,12 @@ const createUpdateProfileTemplate = (userProfile) => /* html */ `
             <div class="form-group">
                 <label class="col-lg-12 control-label">Tanggal Lahir:</label>
                 <div class="col-lg-8">
-                    <input id="tanggal-lahir-input" class="form-control" type="date" value="${
-                      userProfile.tanggal_lahir
-                    }">
+                <input id="tanggal-lahir-input" class="form-control" type="date" value="${formatDate(userProfile.tanggal_lahir)}">
                 </div>
+            </div>
+            <div class="form-check form-switch switch-lg pt-3 ">
+              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+              <label class="form-check-label" for="flexSwitchCheckDefault">Sukarelawan</label>
             </div>
             <!-- Email and Jenis Kelamin sections are commented out -->
             <!-- Uncomment them if needed -->
@@ -253,33 +250,44 @@ const createUpdateProfileTemplate = (userProfile) => /* html */ `
             <div class="form-group">
                 <label class="col-md-3 control-label"></label>
                 <div class="col-md-8">
-                    <button id="save-changes-btn" type="submit" class="btn btn-primary">Save Change</button>
+                    <button id="save-changes-btn" type="button" class="btn btn-primary">Save Change</button>
                 </div>
             </div>
         </form>
 `;
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  return isNaN(date) ? '' : date.toISOString().split('T')[0];
+}
 
-// Template rendering yang diperbarui
+
+
 const createProfileAdminTemplate = (adminProfile) => /* html */ `
   <div class="d-flex flex-column align-items-center text-center">
     <img class="rounded-circle" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" />
     <ul class="list-group list-group-flush">
+      <li class="list-group-item">${adminProfile.nama}</li>
+      <li class="list-group-item">${adminProfile.email}</li>
       <li class="list-group-item"></li>
-      <li class="list-group-item">Nama Lengkap ${adminProfile.nama_lengkap}</li>
     </ul>
   </div>
 `;
 
 const createUpdateProfileAdminTemplate = (adminProfile) => /* html */ `
   <form class="form-horizontal ps-md-5" role="form">
-    <div class="form-group">
-      <label class="col-lg-12 control-label">Nama Lengkap:</label>
+    <div class="form-group mb-3">
+      <label class="col-lg-12 control-label">Nama :</label>
       <div class="col-lg-8">
-        <input id="nama-lengkap-input-admin" class="form-control" type="text" value="${adminProfile.nama_lengkap}">
+        <input id="input-nama-admin" class="form-control" type="text" value="${adminProfile.nama}">
+      </div>
+    </div>
+    <div class="form-group mb-3">
+      <label class="col-lg-12 control-label">Email :</label>
+      <div class="col-lg-8">
+        <input id="input-email-admin" class="form-control" type="email" value="${adminProfile.email}">
       </div>
     </div>
     <div class="form-group">
-      <label class="col-md-3 control-label"></label>
       <div class="col-md-8">
         <button id="save-changes-admin-btn" type="submit" class="btn btn-primary">Save Change</button>
       </div>
@@ -287,19 +295,6 @@ const createUpdateProfileAdminTemplate = (adminProfile) => /* html */ `
   </form>
 `;
 
-// TODO Add tamplaet update notifikasi
-const notifikasiTamplateMerima = (notifikasi) => /* html */ `
-  <div class="modal-body">
-    <h2 class="fs-5">"${Stasus && notifikasi.name} "</h2>
-    <p><a href="#" data-bs-toggle="tooltip" title="Tooltip">This link</a></p>
-  </div>
-`;
-const notifikasiTamplateMenolak = (notifikasi) => /* html */ `
-  <div class="modal-body">
-    <h2 class="fs-5">"${Stasus && notifikasi.name} "</h2>
-    <p><a href="#" data-bs-toggle="tooltip" title="Tooltip">This link</a></p>
-  </div>
-`;
 
 
 export {
@@ -313,7 +308,6 @@ export {
   createProfileUserTemplate,
   createUpdateProfileTemplate,
   createPendonoremplate,
-  createCariSukarelawanTemplate,
-  notifikasiTamplateMerima,
+  createCariSukarelawanTemplate
   initializeLeafletMaps,
 };
