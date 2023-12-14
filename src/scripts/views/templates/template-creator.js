@@ -308,6 +308,6 @@ export {
   createProfileUserTemplate,
   createUpdateProfileTemplate,
   createPendonoremplate,
-  createCariSukarelawanTemplate
+  createCariSukarelawanTemplate,
   initializeLeafletMaps,
 };
