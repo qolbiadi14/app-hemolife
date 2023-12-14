@@ -1,0 +1,1533 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "HomeLife API",
+    "description": "This is a simple API",
+    "contact": {
+      "email": "you@your-company.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://virtserver.swaggerhub.com/DIYAWANDAWAN_1/hemolife/1.0.0",
+      "description": "SwaggerHub API Auto Mocking"
+    }
+  ],
+  "tags": [
+    {
+      "name": "user",
+      "description": "Operations for regular users"
+    },
+    {
+      "name": "volunteer",
+      "description": "Operations for volunteer"
+    },
+    {
+      "name": "admin",
+      "description": "Operations for administrators"
+    }
+  ],
+  "paths": {
+    "/v1/auth/register": {
+      "post": {
+        "tags": ["user"],
+        "summary": "Register User",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterUser"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Registrasi Berhasil",
+                  "user": [
+                    {
+                      "id_user": "1",
+                      "email": "diyawan@gmail.com",
+                      "password": "12345678",
+                      "status_volunteer": 0
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Email Sudah Ada"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/auth/login": {
+      "post": {
+        "tags": ["user"],
+        "summary": "Login User",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginUserRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Login Berhasil",
+                  "user": [
+                    {
+                      "id_user": "1",
+                      "nama": "diyawan",
+                      "email": "diyawan@gmail.com"
+                    }
+                  ],
+                  "access_token": "tokenxxxxxx"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "message": "Unauthorized"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/user/dashboardUser": {
+      "get": {
+        "tags": ["user"],
+        "summary": "Dashboard User",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Success",
+                  "user": {
+                    "id_user": "1",
+                    "nama": "diyawan"
+                  },
+                  "sukarelawan_menerima": {
+                    "id_user_volunteer": "1",
+                    "nama_volunteer": "Ariel",
+                    "status": "Diterima",
+                    "alamat_volunteer": "Serang",
+                    "gol_darah": "A+",
+                    "no_hp": "0812345678"
+                  },
+                  "sukarelawan_menolak": {
+                    "id_user_volunteer": "1",
+                    "nama_volunteer": "Ariel",
+                    "status": "Ditolak",
+                    "alamat_volunteer": "Serang",
+                    "gol_darah": "A+",
+                    "no_hp": "0812345678"
+                  },
+                  "pemohon": {
+                    "id_user": "1",
+                    "nama_pemohon": "Diyawan",
+                    "gol_darah": "A+",
+                    "alamat": "Lombok"
+                  },
+                  "pendonor": {
+                    "id_donor": "1",
+                    "gol_darah": "A+",
+                    "lokasi_pmi": "PMI Jawa Barat",
+                    "tanggal_donor": "17-9-2023"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Success"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/user/dashboardUser/acceptRequest": {
+      "post": {
+        "tags": ["user"],
+        "summary": "Ketika tombol terima di dashboard diklik",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dashboardUser_acceptRequest_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Permintaan berhasil diterima",
+                  "volunteer": [
+                    {
+                      "id_user_volunteer": "1",
+                      "nama_volunteer": "Ariel",
+                      "status": "diterima",
+                      "alamat_volunteer": "Serang",
+                      "gol_darah": "A+",
+                      "no_hp": "0812345678"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Failed"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/user/dashboardUser/rejectRequest": {
+      "post": {
+        "tags": ["user"],
+        "summary": "Ketika tombol tolak di dashboard diklik",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dashboardUser_rejectRequest_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Permintaan ditolak",
+                  "volunteer": [
+                    {
+                      "id_user_volunteer": "1",
+                      "status": "ditolak"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Failed"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/user/jadwal": {
+      "get": {
+        "tags": ["user"],
+        "summary": "Jadwal Donor Darah",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Success",
+                  "jadwal": [
+                    {
+                      "id_lok_pmi": "1",
+                      "nama_lok_pmi": "PMI Jawa Timur",
+                      "alamat_pmi": "Jln. Andara Kr. Bina Griya Indah Jawa Barat",
+                      "jadwal_jam_mulai": "08:00",
+                      "jadwal_jam_selesai": "17:00",
+                      "latitude": "123.456",
+                      "longitude": "789.012"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Data Tidak Ditemukan"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/user/jadwal/detail/{idPmi}": {
+      "get": {
+        "tags": ["user"],
+        "summary": "Detail Jadwal Donor Darah",
+        "parameters": [
+          {
+            "name": "idPmi",
+            "in": "path",
+            "description": "ID Lokasi PMI",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Registrasi Berhasil",
+                  "pmi": [
+                    {
+                      "id_lok_pmi": "1",
+                      "jumlah_kantong_darah": 30,
+                      "nama_lok_pmi": "PMI Jawa Barat",
+                      "alamat_pmi": "Jln. Andara Kr. Bina Griya Indah Jawa Barat",
+                      "no_telpon_pmi": "081234567",
+                      "email": "pmi.jawabarat@gmail.com",
+                      "latitude": "123.456",
+                      "longitude": "789.012"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Data Tidak Ditemukan"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/user/jadwal/daftar": {
+      "post": {
+        "tags": ["user"],
+        "summary": "Daftar Jadwal Donor",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/jadwal_daftar_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "message": "Daftar Berhasil",
+                    "pendonor": [
+                      {
+                        "id_donor": "1",
+                        "gol_darah": "A+",
+                        "lokasi_pmi": "PMI Jawa Barat",
+                        "tanggal_donor": "17-9-2023"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "message": "Daftar Gagal"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/user/userProfile": {
+      "get": {
+        "tags": ["user"],
+        "summary": "Profile User",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "User Ditemukan",
+                  "user": [
+                    {
+                      "id_user": "1",
+                      "nama_lengkap": "Diyawan",
+                      "alamat": "Lombok",
+                      "jenis_kelamin": "Laki-Laki",
+                      "tanggal_lahir": "17-08-2001",
+                      "gol_darah": "A+",
+                      "total_donor": 10,
+                      "donor_terakhir": "11-10-2023"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "User Tidak Ditemukan"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/user/userProfile/Update": {
+      "put": {
+        "tags": ["user"],
+        "summary": "Update Profile User",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/userUpdateProfile_idUser_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Data profil berhasil diperbarui",
+                  "data": [
+                    {
+                      "id_user": "1",
+                      "nama_lengkap": "Diyawan",
+                      "alamat": "Bandung",
+                      "jenis_kelamin": "Laki-Laki",
+                      "tanggal_lahir": "17-08-2001",
+                      "status_volunteer": 1
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Tolong masukkan data yang sesuai"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/user/volunteer/search": {
+      "post": {
+        "tags": ["volunteer"],
+        "summary": "Cari Volunteer Donor Darah",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/volunteer_search_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Volunteer berhasil ditemukan",
+                  "volunteer": [
+                    {
+                      "id_user_volunteer": "1",
+                      "nama_volunteer": "Ariel",
+                      "gol_darah": "A",
+                      "alamat": "Serang"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Volunteer tidak ditemukan"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/user/volunteer/request": {
+      "post": {
+        "tags": ["volunteer"],
+        "summary": "Request Volunteer Donor Darah",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/volunteer_request_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Request berhasil",
+                  "pemohon": [
+                    {
+                      "id_user": "1",
+                      "nama_pemohon": "Diyawan",
+                      "gol_darah": "A+",
+                      "alamat": "Lombok"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Tolong masukkan inputan yang sesuai"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/v1/admin/dashboardAdmin": {
+      "get": {
+        "tags": ["admin"],
+        "summary": "Dashboard Admin",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Success",
+                  "data": [
+                    {
+                      "id_bank_darah": "Bohdf",
+                      "id_lokasi_pmi": "-gfMn",
+                      "id_gol_darah": "47SZe",
+                      "jumlah_kantong_darah": 75,
+                      "LokasiPmi": {
+                        "nama": "PMI Jawa Barat"
+                      },
+                      "GolDarah": {
+                        "gol_darah": "A-"
+                      }
+                    },
+                    {
+                      "id_bank_darah": "gke31",
+                      "id_lokasi_pmi": "OsQ6J",
+                      "id_gol_darah": "47SZe",
+                      "jumlah_kantong_darah": 40,
+                      "LokasiPmi": {
+                        "nama": "PMI Jakarta Utara"
+                      },
+                      "GolDarah": {
+                        "gol_darah": "A-"
+                      }
+                    },
+                    {
+                      "id_bank_darah": "hbjll",
+                      "id_lokasi_pmi": "OsQ6J",
+                      "id_gol_darah": "eJgku",
+                      "jumlah_kantong_darah": 81,
+                      "LokasiPmi": {
+                        "nama": "PMI Jakarta Utara"
+                      },
+                      "GolDarah": {
+                        "gol_darah": "AB+"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "message": "Data tidak ditemukan"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/admin/bankDarah/{idLokasiPmi}": {
+      "get": {
+        "tags": ["admin"],
+        "summary": "Kelola Bank Darah",
+        "parameters": [
+          {
+            "name": "id_lokasi_pmi",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Bank darah dengan id lokasi pmi -gfMn berhasil ditampilkan",
+                  "stok_bank_darah": [
+                    {
+                      "id_bank_darah": "Bohdf",
+                      "id_lokasi_pmi": "-gfMn",
+                      "id_gol_darah": "47SZe",
+                      "jumlah_kantong_darah": 75,
+                      "LokasiPmi": {
+                        "id_lokasi_pmi": "-gfMn",
+                        "nama": "PMI Jawa Barat",
+                        "email": "pmi.jawa.barat@gmail.com",
+                        "no_telpon": "08437395734",
+                        "alamat": "Jawa Barat",
+                        "latitude": "-6.870538423420674",
+                        "longitude": "107.62042308129263",
+                        "logo": "logo_pmi_jawa_barat.png"
+                      },
+                      "GolDarah": {
+                        "id_gol_darah": "47SZe",
+                        "gol_darah": "A-"
+                      }
+                    },
+                    {
+                      "id_bank_darah": "ow2IR",
+                      "id_lokasi_pmi": "-gfMn",
+                      "id_gol_darah": "i4vRI",
+                      "jumlah_kantong_darah": 60,
+                      "LokasiPmi": {
+                        "id_lokasi_pmi": "-gfMn",
+                        "nama": "PMI Jawa Barat",
+                        "email": "pmi.jawa.barat@gmail.com",
+                        "no_telpon": "08437395734",
+                        "alamat": "Jawa Barat",
+                        "latitude": "-6.870538423420674",
+                        "longitude": "107.62042308129263",
+                        "logo": "logo_pmi_jawa_barat.png"
+                      },
+                      "GolDarah": {
+                        "id_gol_darah": "i4vRI",
+                        "gol_darah": "A+"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "message": "Data tidak ditemukan"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/admin/bankDarah/update/{idLokasiPmi}": {
+      "put": {
+        "tags": ["admin"],
+        "summary": "Update Bank Darah",
+        "parameters": [
+          {
+            "name": "id_lokasi_pmi",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/update_idBankDarah_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Jumlah kantong darah berhasil diubah",
+                  "stok_bank_darah": {
+                    "id_bank_darah": "Bohdf",
+                    "id_lokasi_pmi": "-gfMn",
+                    "id_gol_darah": "47SZe",
+                    "jumlah_kantong_darah": 77,
+                    "GolDarah": {
+                      "id_gol_darah": "47SZe",
+                      "gol_darah": "A-"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "message": "Jumlah kantong darah gagal diedit",
+                    "stok_bank_darah": [{}]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/admin/pendonorDarah": {
+      "get": {
+        "tags": ["admin"],
+        "summary": "Daftar pendonor darah",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Berhasil menampilkan seluruh pendonor darah",
+                  "pendonor": [
+                    {
+                      "id_tra_donor": 42,
+                      "id_user": "GWyUz",
+                      "id_gol_darah": "47SZe",
+                      "id_lokasi_pmi": "-gfMn",
+                      "tgl_donor": "2023-12-02",
+                      "status": 1,
+                      "User": {
+                        "id_user": "GWyUz",
+                        "nama": "Fiora",
+                        "email": "fiora@gmail.com",
+                        "no_hp": "08777395815",
+                        "jenis_kelamin": "Perempuan",
+                        "tanggal_lahir": "2002-09-14",
+                        "alamat": "Bandung"
+                      },
+                      "GolDarah": {
+                        "gol_darah": "A-"
+                      },
+                      "LokasiPmi": {
+                        "nama": "PMI Jawa Barat",
+                        "alamat": "Jawa Barat"
+                      }
+                    },
+                    {
+                      "id_tra_donor": 43,
+                      "id_user": "R01Ov",
+                      "id_gol_darah": "eJgku",
+                      "id_lokasi_pmi": "OsQ6J",
+                      "tgl_donor": "2023-12-02",
+                      "status": 1,
+                      "User": {
+                        "id_user": "R01Ov",
+                        "nama": "John Doe",
+                        "email": "john.doe@gmail.com",
+                        "no_hp": "0825373815931",
+                        "jenis_kelamin": "Laki-Laki",
+                        "tanggal_lahir": "2001-03-25",
+                        "alamat": "Jakarta Barat"
+                      },
+                      "GolDarah": {
+                        "gol_darah": "AB+"
+                      },
+                      "LokasiPmi": {
+                        "nama": "PMI Jakarta Utara",
+                        "alamat": "Jakarta Utara"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Data pendonor tidak ditemukan"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/admin/adminProfile": {
+      "get": {
+        "tags": ["admin"],
+        "summary": "Profile admin",
+
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Admin profile retrieved successfully",
+                  "admin": {
+                    "id_admin": "yi8d",
+                    "nama": "Admin 1",
+                    "email": "admin1@gmail.com",
+                    "password": "password1"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Admin Tidak Ditemukan"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/admin/adminProfile/update": {
+      "put": {
+        "tags": ["admin"],
+        "summary": "Update Profile Admin",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/adminUpdateProfile_idAdmin_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Admin profile updated successfully",
+                  "admin": {
+                    "id_admin": "test2",
+                    "nama": "Admin 2",
+                    "email": "admin2@gmail.com",
+                    "password": "password2"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Tolong masukkan data yang sesuai"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "RegisterUser": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "diyawan@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "12345678"
+          }
+        }
+      },
+      "RegisterUserResponseFieldOk": {
+        "type": "object",
+        "properties": {
+          "id_user": {
+            "type": "number",
+            "example": 1
+          },
+          "email": {
+            "type": "string",
+            "example": "diyawan@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "12345678"
+          },
+          "message": {
+            "type": "string",
+            "example": "Registrasi Sucesfully"
+          }
+        }
+      },
+      "RegisterUserResponseFieldBan": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Email Alredy Exit"
+          },
+          "code_status": {
+            "type": "number"
+          }
+        }
+      },
+      "LoginUserRequestBody": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "diyawan@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "12345678"
+          }
+        }
+      },
+      "LoginUserResponseOk": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "code_status": {
+            "type": "number"
+          }
+        }
+      },
+      "LoginUserResponseBad": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code_status": {
+            "type": "number"
+          }
+        }
+      },
+      "DashboardUserResponseOk": {
+        "type": "object",
+        "properties": {
+          "id_user": {
+            "type": "string"
+          },
+          "nama_lengkap": {
+            "type": "string"
+          },
+          "gol_darah": {
+            "type": "string"
+          },
+          "nama_lok_pmi": {
+            "type": "string"
+          },
+          "tanggal_request": {
+            "type": "string"
+          },
+          "tanggal_pendonor": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "DashboardUserResponseBad": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code_status": {
+            "type": "number"
+          }
+        }
+      },
+      "JadwalDonorDarahOK": {
+        "type": "object",
+        "properties": {
+          "id_lok_pmi": {
+            "type": "string"
+          },
+          "nama_lok_pmi": {
+            "type": "string"
+          },
+          "alamat_pmi": {
+            "type": "string"
+          },
+          "jadwal_jam_mulai": {
+            "type": "string"
+          },
+          "jadwal_jam_selesai": {
+            "type": "string"
+          },
+          "latitude": {
+            "type": "string"
+          },
+          "longitude": {
+            "type": "string"
+          }
+        }
+      },
+      "JadwalDonorDarahBad": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code_status": {
+            "type": "number"
+          }
+        }
+      },
+      "UserDetailJadwalDonorDarahOK": {
+        "type": "object",
+        "properties": {
+          "id_lok_pmi": {
+            "type": "string"
+          },
+          "jumlah_kantong_darah": {
+            "type": "integer"
+          },
+          "nama_lok_pmi": {
+            "type": "string"
+          },
+          "alamat_pmi": {
+            "type": "string"
+          },
+          "no_telpon_pmi": {
+            "type": "string"
+          },
+          "email_pmi": {
+            "type": "string"
+          },
+          "latitude": {
+            "type": "string"
+          },
+          "longitude": {
+            "type": "string"
+          }
+        }
+      },
+      "UserDetailJadwalDonorDarahBad": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code_status": {
+            "type": "number"
+          }
+        }
+      },
+      "UserJadawalDaftar": {
+        "type": "object",
+        "properties": {
+          "id_user": {
+            "type": "number"
+          },
+          "id_golongan_darah": {
+            "type": "number"
+          },
+          "id_lok_pmi": {
+            "type": "number"
+          },
+          "tgl_donor": {
+            "type": "string"
+          }
+        }
+      },
+      "UserJadawalDaftarResposeCreated": {
+        "type": "object",
+        "properties": {
+          "id_pendonor": {
+            "type": "number"
+          },
+          "message": {
+            "type": "string"
+          },
+          "code_status": {
+            "type": "number"
+          }
+        }
+      },
+      "UserJadawalDaftarResposeBad": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code_status": {
+            "type": "number"
+          }
+        }
+      },
+      "UserProfileResponseOK": {
+        "type": "object",
+        "properties": {
+          "id_user": {
+            "type": "string"
+          },
+          "nama_lengkap": {
+            "type": "string"
+          },
+          "alamat": {
+            "type": "string"
+          },
+          "jenis_kelamin": {
+            "type": "string"
+          },
+          "tanggal_lahir": {
+            "type": "string"
+          },
+          "golongan_darah": {
+            "type": "string"
+          },
+          "total_donor": {
+            "type": "integer"
+          },
+          "donor_terakhir": {
+            "type": "string"
+          }
+        }
+      },
+      "UserProfileResponseBad": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code_status": {
+            "type": "number"
+          }
+        }
+      },
+      "UpdateProfileUserRequestBody": {
+        "type": "object",
+        "properties": {
+          "nama_lengkap": {
+            "type": "string"
+          },
+          "no_telpon": {
+            "type": "string"
+          },
+          "alamat": {
+            "type": "string"
+          },
+          "tanggal_lahir": {
+            "type": "string"
+          },
+          "golongan_darah": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateProfileResponsesOK": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code_status": {
+            "type": "number"
+          }
+        }
+      },
+      "inline_response_400": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code_status": {
+            "type": "number"
+          }
+        }
+      },
+      "inline_response_200": {
+        "type": "object",
+        "properties": {
+          "nama_volunteer": {
+            "type": "string"
+          },
+          "gol_darah": {
+            "type": "string"
+          },
+          "alamat": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "code_status": {
+            "type": "number"
+          }
+        }
+      },
+      "volunteer_idVolunteer_body": {
+        "type": "object",
+        "properties": {
+          "id_user": {
+            "type": "number"
+          },
+          "nama": {
+            "type": "string"
+          },
+          "gol_darah": {
+            "type": "string"
+          },
+          "alamat": {
+            "type": "string"
+          }
+        }
+      },
+      "inline_response_200_1": {
+        "type": "object",
+        "properties": {
+          "nama": {
+            "type": "string"
+          },
+          "gol_darah": {
+            "type": "string"
+          },
+          "alamat": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "code_status": {
+            "type": "number"
+          }
+        }
+      },
+      "admin_login_body": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "admin@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "admin"
+          }
+        }
+      },
+      "inline_response_200_2": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+      "inline_response_200_3": {
+        "type": "object",
+        "properties": {
+          "id_admin": {
+            "type": "string"
+          },
+          "jumlah_kantong_darah": {
+            "type": "integer"
+          }
+        }
+      },
+      "inline_response_200_4": {
+        "type": "object",
+        "properties": {
+          "id_lok_pmi": {
+            "type": "string"
+          },
+          "nama_lok_pmi": {
+            "type": "string"
+          },
+          "jumlah_kantong_darah": {
+            "type": "integer"
+          }
+        }
+      },
+      "update_idLokPmi_body": {
+        "type": "object",
+        "properties": {
+          "id_bank_darah": {
+            "type": "number"
+          },
+          "id_golongan_darah": {
+            "type": "number"
+          },
+          "id_lok_pmi": {
+            "type": "number"
+          },
+          "jml_kantong": {
+            "type": "number"
+          }
+        }
+      },
+      "inline_response_200_5": {
+        "type": "object",
+        "properties": {
+          "jml_kantong": {
+            "type": "number"
+          },
+          "message": {
+            "type": "string"
+          },
+          "status_code": {
+            "type": "number"
+          }
+        }
+      },
+      "dashboardUser_acceptRequest_body": {
+        "type": "object",
+        "properties": {
+          "id_user_volunteer": {
+            "type": "string",
+            "description": "Id user volunteer"
+          }
+        }
+      },
+      "dashboardUser_rejectRequest_body": {
+        "type": "object",
+        "properties": {
+          "id_user_volunteer": {
+            "type": "string",
+            "description": "Id user volunteer"
+          }
+        }
+      },
+      "jadwal_daftar_body": {
+        "type": "object",
+        "properties": {
+          "pendonor": {
+            "type": "string",
+            "description": "Id user",
+            "example": "{\"id_user\":\"1\",\"gol_darah\":\"A+\",\"lokasi_pmi\":\"PMI Jawa Barat\",\"tanggal_donor\":\"17-9-2023\"}"
+          }
+        }
+      },
+      "userUpdateProfile_idUser_body": {
+        "type": "object",
+        "properties": {
+          "id_user": {
+            "type": "string",
+            "description": "Id user"
+          },
+          "nama_lengkap": {
+            "type": "string",
+            "description": "Nama lengkap user"
+          },
+          "alamat": {
+            "type": "string",
+            "description": "Alamat user"
+          },
+          "jenis_kelamin": {
+            "type": "string",
+            "description": "Jenis kelamin user"
+          },
+          "tanggal_lahir": {
+            "type": "string",
+            "description": "Tangal, bulan, tahun lahir user"
+          },
+          "status_volunteer": {
+            "type": "integer",
+            "description": "Status volunteer 0/1"
+          }
+        }
+      },
+      "volunteer_search_body": {
+        "type": "object",
+        "properties": {
+          "gol_darah": {
+            "type": "string",
+            "description": "Pencarian golongan darah yang dibutuhkan"
+          },
+          "lokasi": {
+            "type": "string",
+            "description": "Pencarian lokasi volunteer"
+          }
+        }
+      },
+      "volunteer_request_body": {
+        "type": "object",
+        "properties": {
+          "id_user": {
+            "type": "string",
+            "description": "Id user yang merequest"
+          }
+        }
+      },
+      "update_idBankDarah_body": {
+        "type": "object",
+        "properties": {
+          "id_gol_darah": {
+            "type": "string",
+            "description": "Id golongan darah yang mau diedit"
+          },
+          "jumlah_kantong_darah": {
+            "type": "number",
+            "description": "Jumlah kantong darah yang mau diedit"
+          }
+        }
+      },
+      "adminUpdateProfile_idAdmin_body": {
+        "type": "object",
+        "properties": {
+          "nama": {
+            "type": "string",
+            "description": "Nama admin"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email admin"
+          }
+        }
+      }
+    }
+  }
+}
