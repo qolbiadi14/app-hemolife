@@ -1,20 +1,10 @@
 @import 'bootstrap/dist/css/bootstrap.css';
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css");
 
 /* @import '' */
 
-*{
-  font-family: 'Poppins', sans-serif;
-}
-.card-text {
-  margin-bottom: 7px; 
-}
 img {
   display: block;
-}
-/* Tambahkan atau perbarui sesuai kebutuhan Anda */
-.download-pdf-btn {
-  display: flex;
-  align-items: center;
 }
 
 /* Your existing CSS styles */
@@ -47,7 +37,6 @@ img {
 }
 
 .border-md-end {
-  padding-top: 10px;
   margin-bottom: 20px;
   border-bottom: 2px solid #F05941;
   /* You can adjust the color as needed */
@@ -59,48 +48,26 @@ img {
     /* Remove the border bottom for screens larger than 768px */
   }
 }
-  /* Gaya untuk efek hover dan klik pada tombol */
-  .navbar-nav .nav-item {
-    transition: color 0.3s, transform 0.5s; /* Efek transisi lembut dan perlahan */
-  }
 
-  .navbar-nav .nav-link {
-    transition: color 0.3s, transform 0.5s; 
-  }
+/* Gaya untuk efek hover dan klik pada tombol */
+.navbar-nav .nav-item {
+  transition: color 0.3s, transform 0.5s;
+  /* Efek transisi lembut dan perlahan */
+}
 
-  .navbar-nav .nav-link:hover {
-    transform: scale(1.0); 
-  }
+.navbar-nav .nav-link {
+  transition: color 0.3s, transform 0.5s;
+  /* Efek transisi lembut dan perlahan */
+}
 
-  .navbar-nav .nav-link:active {
-    transform: scale(0.9); 
-  }
+.navbar-nav .nav-link:hover {
+  transform: scale(1.1);
+  /* Efek perlahan ukuran saat tombol dihover */
+}
 
-  .switch-lg .form-check {
-    display: flex;
-    align-items: center;
-    border: 2px solid #F00;
-    border-radius: 5px; 
-    padding: 5px; 
-    background-color: #FFC0CB;
-  }
-  
-  .switch-lg .form-check-input {
-    width: 3rem;
-    height: 1.5rem;
-    margin-right: 5px; /* Memberikan ruang di antara switch dan label */
-  }
-  
-  .switch-lg .form-check-label {
-    font-size: 1.2rem;
-  }
-  
-  /* Style khusus untuk switch ketika dihover dan diactive */
-  .switch-lg .form-check-input:hover {
-    transform: scale(1.2);
-  }
-  
-  .switch-lg .form-check-input:active {
-    transform: scale(0.8);
-  }
-  
+.navbar-nav .nav-link:active {
+  transform: scale(0.9);
+  /* Efek perlahan ukuran saat tombol ditekan */
+  background-position: 0 100%;
+  /* Geser warna latar belakang ke atas saat tombol ditekan */
+}
