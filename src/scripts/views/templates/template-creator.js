@@ -166,6 +166,11 @@ const createProfileUserTemplate = (userProfile) => /* html */ `
       <li class="list-group-item">Jenis Kelamin: ${userProfile.jenis_kelamin}</li>
       <li class="list-group-item pb-5">Tanggal Lahir: ${userProfile.tanggal_lahir}</li>
     </ul>
+    <div class="logout">
+    <button type="button" id="logout-btn" title="LogOut" class="btn mb-3 p-3 me-2" data-donor-id="">
+    <i class="fa-solid fa-right-from-bracket fa-2xl" style="color: #db3939;"></i>
+      </button>
+    </div>
   </div>
 `;
 

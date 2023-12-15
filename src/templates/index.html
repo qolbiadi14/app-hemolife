@@ -16,65 +16,24 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400;1,500&display=swap"
         rel="stylesheet">
-        <!-- Leaflet CSS -->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
         <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
 </head>
 
 <body>
     <div class="container">
-        <header>
-            <nav class="navbar navbar-expand-lg" id="menuDrawer">
-                <div class="container-fluid">
-                    <!-- hamburgerButton -->
-                    <a href="/" class="navbar-brand d-flex align-items-center link-body-emphasis text-decoration-none">
-                        <img src="/images/heros/logo.png" alt="Logo" class="d-inline-block align-text-top logo">
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
-                        id="hamburgerButton">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item">
-                                <a class="nav-link active fw-bolder" aria-current="page" href="#/dashboard-user"><i
-                                        class="bi bi-home"></i>Dashboard</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link fw-bolder" href="#/jadwal">Jadwal</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link fw-bolder" href="#/cari-sukarelawan">Cari Sukarelawan</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#/profile" title="Profile"><i
-                                        class="fa-solid fa-circle-user fa-xl" style="color: #e02424;"></i></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" title="Notifikasi" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                                    data-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa-solid fa-bell"></i>
-                                </a>
-                            </li>
-                            
-                            <notifikasi-modal></notifikasi-modal>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </header>
-        <main id="mainContent">
-            <!-- Your existing content -->
-        </main>
+
+        <navbar-component></navbar-component>
+        <main-content-component></main-content-component>
+
     </div>
 
     <!-- Menggunakan module leaflet dari node_modules -->
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-
-    <!-- Menggunakan module leaflet-control-layers-tree dari node_modules -->
-    <!-- <script src="https://unpkg.com/leaflet.control.layers.tree@1.0.4/L.Control.Layers.Tree.js"></script> -->
-
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 
 </html>

@@ -148,10 +148,10 @@ const DashboardUser = {
 // ...
 
 function generatePDF(data) {
-  console.log('Data for PDF generation:', data);
+  // console.log('Data for PDF generation:', data);
 
   if (!data || !data.pendonor || !data.pmi) {
-    console.error('Invalid data for PDF generation.');
+    // console.error('Invalid data for PDF generation.');
     return;
   }
   console.log('Creating PDF...');

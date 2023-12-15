@@ -48,6 +48,10 @@ const ProfileUser = {
         document.getElementById('save-changes-btn').addEventListener('click', async () => {
           await this.saveChanges(url.id);
         });
+        document.getElementById('logout-btn').addEventListener('click', () => {
+        // Perform logout action, e.g., redirect to "/leading"
+        window.location.href = "/landing";
+        });
       } else {
         console.log('User tidak ditemukan atau terjadi kesalahan saat mengambil data profil.');
         profileContainer.innerHTML = 'Terjadi kesalahan saat mengambil data profil.';
