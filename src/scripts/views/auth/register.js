@@ -6,15 +6,7 @@ const register = {
       <div class="container pt-5 mt-5">
         <div class="row">
           <div class="col-md-6 pt-3">
-            <div
-              class="gambar-1"
-              style="
-                background-image: url('/images/login_regis/undraw-1.svg');
-                background-size: cover;
-                background-position: center;
-                height: 500px;
-              "
-            ></div>
+            <img src="/images/login_regis/undraw-1.svg" class="card-img-bottom" style:"height: 500px; background-size: cover; background-position: center;">
           </div>
           <div class="col-md-6">
             <h1 class="fw-bold">Sign Up</h1>

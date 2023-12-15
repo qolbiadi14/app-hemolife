@@ -13,50 +13,19 @@
 
 <body>
     <div class="container">
+        <!-- Use the custom navbar element -->
         <header>
-            <nav class="navbar navbar-expand-lg" id="menuDrawer">
-                <div class="container-fluid">
-                    <a href="/" class="navbar-brand d-flex align-items-center link-body-emphasis text-decoration-none">
-                        <img src="/images/heros/logo.png" alt="Logo" class="d-inline-block align-text-top logo" />
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                        id="hamburgerButton" aria-controls="navbarNav" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="d-lg-flex col-lg-6 justify-content-lg-end ms-auto">
-                        <a class="btn btn-danger m-2" href="/#/login">Login</a>
-                        <a class="btn btn-danger m-2" href="/#/register">Register</a>
-                    </div>
-                </div>
-            </nav>
+            <custom-navbar></custom-navbar>
+
         </header>
-        <main id="mainContent"></main>
+        <main id="mainContent">
+            <!-- Your main content goes here -->
+        </main>
+
+        <!-- Use the custom footer element -->
+        <custom-footer></custom-footer>
     </div>
-    <footer class="text-light p-4 mt-4" style="background-color: #D9D9D9;">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 text-center d-flex align-items-center justify-content-center">
-                    <img src="/images/heros/logo.png" alt="Website" class="mt-1 img-fluid" style="max-width: 150px;">
-                </div>
-                <div class="col-md-4 text-center d-flex align-items-center justify-content-center">
-                    <!-- Logo sosial media -->
-                    <a href="#" class="text-dark"><i class="bi bi-facebook"
-                            style="font-size: 2em; margin-right: 2rem;"></i></a>
-                    <a href="#" class="text-dark"><i class="bi bi-instagram"
-                            style="font-size: 2em; margin-right: 2rem;"></i></a>
-                    <a href="#" class="text-dark"><i class="bi bi-twitter"
-                            style="font-size: 2em; margin-right: 2rem;"></i></a>
-                </div>
-                <div class="col-md-4 text-md-end text-center text-md-middle text-dark">
-                    <!-- Alamat -->
-                    <p>Alamat Donor Darah:</p>
-                    <p>Jalan Donor No. 123, Kota Sehat</p>
-                    <p>Telepon: (012) 345-6789</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();
