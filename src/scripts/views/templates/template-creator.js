@@ -97,7 +97,6 @@ const createJadwalDetailPMITemplate = (pmi) => /* html */ `
     </div>
   </div>
 `;
-
  const initializeLeafletMaps = (jadwals) => {
   jadwals.forEach(({ id_lok_pmi, latitude, longitude, nama_lok_pmi }) => {
     const mapContainer = document.getElementById(`map-${id_lok_pmi}-container`);    
@@ -112,8 +111,52 @@ const createJadwalDetailPMITemplate = (pmi) => /* html */ `
   });
 };
 
-
-
+const createCariSukarelawanTemplate = (userProfile) => /* html */`
+      <div class="container mt-5">
+      <div class="row">
+        <!-- Box Pertama: Form Pencarian -->
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Form Pencarian</h5>
+              <form>
+                <div class="mb-3">
+                  <label for="golonganDarah" class="form-label">Golongan Darah</label>
+                  <select class="form-select" id="golonganDarah">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="AB">AB</option>
+                    <option value="O">O</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="lokasi" class="form-label">Lokasi</label>
+                  <select class="form-select" id="lokasi">
+                    <option value="Jakarta">Jakarta</option>
+                    <option value="Bandung">Bandung</option>
+                    <option value="Jogja">Jogja</option>
+                  </select>
+                </div>
+                <button type="button" id="buttonCari" class="btn btn-primary">Cari</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- Box Kedua: Hasil Pencarian -->
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Hasil Pencarian</h5>
+              <div id="hasilPencarian">
+                <!-- Hasil pencarian akan ditampilkan di sini -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+`;
+// Template rendering yang diperbarui
 const createProfileUserTemplate = (userProfile) => /* html */ `
   <div class="d-flex flex-column align-items-center text-center">
     <img class="rounded-circle" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" />
@@ -270,5 +313,6 @@ export {
   createProfileUserTemplate,
   createUpdateProfileTemplate,
   createPendonoremplate,
+  createCariSukarelawanTemplate,
   initializeLeafletMaps,
 };
