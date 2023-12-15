@@ -7,6 +7,7 @@ import UpdateProfileUser from '../views/pages/UpdateProfileUser';
 import CariSukarelawan from '../views/pages/CariSukarelawan';
 import KelolaDonorDarah from '../views/admin/KelolaDonorDarah';
 import Sidebar from '../views/pages/components/sidebar';
+import KelolaBankDarah from '../views/admin/KelolaBankDarah';
 
 const routes = {
   '/': DashboarUser,
@@ -19,6 +20,7 @@ const routes = {
   '/adminprofile': ProfileAdmin,
   '/kelola-donor-darah': KelolaDonorDarah,
   '/sidebar': Sidebar,
+  '/kelola-bank-darah': KelolaBankDarah,
 };
 
 export default routes;

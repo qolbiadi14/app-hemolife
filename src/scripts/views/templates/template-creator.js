@@ -356,6 +356,89 @@ const KelolaDonorDarah = (adminProfile) => /* html */ `
 			</div>
 </div>
 `;
+const KelolaBankDarah = (adminProfile) => /* html */ `
+<div class="col py-3">
+				<div class="container py-3">
+					<h2>Kelola Donor Darah</h2>
+					<div class="col-md-6">
+						<div class="card h-100">
+							<div class="card-body">
+								<div class="row g-3">
+									<div class="col-md-6">
+										<div
+											class="bg-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+											<p class="mb-0">A (+)</p>
+											<p class="mb-0">50</p>
+											<button type="button" class="btn btn-secondary ms-2">Edit</button>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="bg-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+											<p class="mb-0">A (-)</p>
+											<p class="mb-0">50</p>
+											<button type="button" class="btn btn-secondary ms-2">Edit</button>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="bg-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+											<p class="mb-0">B (+)</p>
+											<p class="mb-0">50</p>
+											<button type="button" class="btn btn-secondary ms-2">Edit</button>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="bg-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+											<p class="mb-0">B (+)</p>
+											<p class="mb-0">50</p>
+											<button type="button" class="btn btn-secondary ms-2">Edit</button>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="bg-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+											<p class="mb-0">AB (-)</p>
+											<p class="mb-0">50</p>
+											<button type="button" class="btn btn-secondary ms-2">Edit</button>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="bg-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+											<p class="mb-0">AB (+)</p>
+											<p class="mb-0">50</p>
+											<button type="button" class="btn btn-secondary ms-2">Edit</button>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="bg-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+											<p class="mb-0">0 (-)</p>
+											<p class="mb-0">50</p>
+											<button type="button" class="btn btn-secondary ms-2">Edit</button>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="bg-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+											<p class="mb-0">0 (+)</p>
+											<p class="mb-0">50</p>
+											<button type="button" class="btn btn-secondary ms-2">Edit</button>
+										</div>
+									</div>
+									<div class="mt-auto p-3 d-flex justify-content-end">
+										<button type="button" class="btn btn-secondary">Edit</button>
+										<button type="button" class="btn btn-primary ms-2">Simpan</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+`;
 
 export {
   createProfileAdminTemplate,
@@ -372,4 +455,5 @@ export {
   notifikasiTamplateMerima,
   Sidebar,
   KelolaDonorDarah,
+  KelolaBankDarah,
 };
