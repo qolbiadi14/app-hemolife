@@ -7,6 +7,8 @@ const DrawerInitiator = {
     content.addEventListener('click', (event) => {
       this._closeDrawer(event, drawer);
     });
+
+    this._adjustNavbarBasedOnLoginStatus(drawer);
   },
 
   _toggleDrawer(event, drawer) {
@@ -17,6 +19,27 @@ const DrawerInitiator = {
   _closeDrawer(event, drawer) {
     event.stopPropagation();
     drawer.classList.remove('open');
+  },
+
+  async _adjustNavbarBasedOnLoginStatus(drawer) {
+    const userToken = localStorage.getItem('userToken');
+    const adminToken = localStorage.getItem('adminToken');
+
+    if (userToken) {
+      drawer.innerHTML += `
+        <navbar-component></navbar-component>
+      `;
+    } else if (adminToken) {
+      drawer.innerHTML += `
+       <custom-navadmin></custom-navadmin>
+      ;
+      `;
+    } else {
+      // Jika user belum login, tambahkan link ke halaman login dan register
+      drawer.innerHTML += `       
+      <custom-navbar></custom-navbar>
+      `;
+    }
   },
 };
 

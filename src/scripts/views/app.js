@@ -2,7 +2,9 @@ import '../views/pages/components/NotifikasiModal';
 import '../views/pages/components/Navbar';
 import '../views/pages/components/MainContent';
 import '../views/pages/components/notifikasi'
-// import '../views/pages/components/Footer'
+import '../views/pages/components/CustomFooter'
+import '../views/pages/components/NavBarLending'
+import '../views/pages/components/NavAdmin'
 import NotFoundPage from '../views/pages/NotFoundPage';
 
 import DrawerInitiator from '../utils/drawer-initiator';

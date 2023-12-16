@@ -51,6 +51,7 @@ img {
     width: 100px;
     height: auto;
   }
+  
 }
 
 @media (min-width: 768px) {
@@ -73,6 +74,10 @@ img {
     color: #e02424;
     font-size: 3em;
     margin-bottom: 10px;
+  }
+  .ledig-titel {
+    /* background-color: red; */
+    font-size: 3rm;
   }
 }
   .navbar-nav .nav-item {

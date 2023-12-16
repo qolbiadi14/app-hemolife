@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2'
 import TheHemoLifeDbSource from '../../data/thehemo-lifedb-source';
 import UrlParser from '../../routes/url-parser';
 import { createProfileUserTemplate, createUpdateProfileTemplate } from '../templates/template-creator';
@@ -40,26 +41,50 @@ const ProfileUser = {
       if (userProfile && userProfile.length > 0) {
         console.log('After Render User Profile:', userProfile);
         profileContainer.innerHTML = createProfileUserTemplate(userProfile[0]);
-
-        // Display the edit profile form
-        editProfileContainer.innerHTML = createUpdateProfileTemplate(userProfile[0]);
+        editProfileContainer.innerHTML = createUpdateProfileTemplate(
+          userProfile[0],
+        );
 
         // Add event listener for saving changes
-        document.getElementById('save-changes-btn').addEventListener('click', async () => {
-          await this.saveChanges(url.id);
-        });
+        document
+          .getElementById('save-changes-btn')
+          .addEventListener('click', async () => {
+            await this.saveChanges(url.id);
+          });
         document.getElementById('logout-btn').addEventListener('click', () => {
-        // Perform logout action, e.g., redirect to "/leading"
-        window.location.href = "/landing";
+          // Tampilkan alert konfirmasi
+          Swal.fire({
+            title: 'Apakah Anda yakin ingin logout?',
+            showDenyButton: true,
+            confirmButtonText: 'Ya',
+            denyButtonText: 'Tidak',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              // Jika pengguna yakin, lakukan logout dan redirect ke halaman "/landing"
+              this.logout();
+              window.location.href = '#/landing';
+              location.reload();
+            }
+          });
         });
       } else {
-        console.log('User tidak ditemukan atau terjadi kesalahan saat mengambil data profil.');
-        profileContainer.innerHTML = 'Terjadi kesalahan saat mengambil data profil.';
-      }
+        console.log(
+          'User tidak ditemukan atau terjadi kesalahan saat mengambil data profil.',
+        );
+        profileContainer.innerHTML =
+          'Terjadi kesalahan saat mengambil data profil.';
+      }
     } catch (error) {
       console.error('Error rendering profile:', error);
     }
   },
+  async logout() {
+    console.log('Logging out...');
+    // Hapus token dari localStorage atau lakukan operasi logout sesuai kebutuhan
+    localStorage.removeItem('userToken');
+    console.log('Token removed.');
+  },
+  
 
   async saveChanges(id) {
     const updatedData = {
@@ -89,15 +114,13 @@ const ProfileUser = {
     }
   },
   showBootstrapAlert(alertId) {
-    // Tampilkan alert dengan menghapus kelas 'd-none'
     const alertElement = document.getElementById(alertId);
     alertElement.classList.remove('d-none');
-  
-    // Sembunyikan alert setelah beberapa detik (contoh: 3000 milidetik atau 3 detik)
     setTimeout(() => {
       alertElement.classList.add('d-none');
     }, 3000);
   },
 };
+
 
 export default ProfileUser;
