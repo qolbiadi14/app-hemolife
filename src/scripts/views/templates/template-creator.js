@@ -2,6 +2,7 @@ import L from 'leaflet';
 import 'leaflet.control.layers.tree';
 import 'leaflet.awesome-markers';
 
+
 const createPemohonTemplate = (pemohon) => /* html */ 
    `
   <div class="card shadow">
@@ -482,6 +483,7 @@ const createDashboardAdmin = (adminProfile) => /* html */ `
         </div>
       </div>
     </div>
+    
 `;
 
 export {
