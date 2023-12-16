@@ -55,16 +55,24 @@ const login = {
       const email = formData.get('email');
       const password = formData.get('password');
 
+      // Jika username dan password adalah "admin", arahkan ke halaman profil admin
+      // if (email === 'admin@gmail.com' && password === 'admin') {
+      //   TheHemoLifeDbSource.setGlobalAdminToken();
+      //   window.location.hash = '/adminProfile';
+      //   window.location.reload();
+      //   return;
+      // }
+
       try {
         const loginResponse = await TheHemoLifeDbSource.login(email, password);
 
-        // Handle successful login, e.g., store the token in localStorage
-        console.log('Login successful:', loginResponse);
-
-        // Redirect to the landing page
-        window.location.hash = '#/landing';
+        if (loginResponse && loginResponse.access_token) {
+          localStorage.setItem('userToken', loginResponse.access_token);
+          await renderDashboardPage();
+        } else {
+          console.error('Login failed:', loginResponse);
+        }
       } catch (error) {
-        // Handle unsuccessful login or error
         console.error('Login failed:', error);
       }
     });

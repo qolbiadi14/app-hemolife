@@ -4,6 +4,7 @@ import {
   createProfileUserTemplate,
   createUpdateProfileTemplate,
 } from '../templates/template-creator';
+import Swal from 'sweetalert2';
 
 const ProfileUser = {
   async render() {
@@ -57,12 +58,19 @@ const ProfileUser = {
           });
         document.getElementById('logout-btn').addEventListener('click', () => {
           // Tampilkan alert konfirmasi
-          if (confirm('Apakah Anda yakin ingin logout?')) {
-            // Jika pengguna yakin, lakukan logout dan redirect ke halaman "/landing"
-            this.logout();
-            window.location.href = '#/landing';
-            location.reload();
-          }
+          Swal.fire({
+            title: 'Apakah Anda yakin ingin logout?',
+            showDenyButton: true,
+            confirmButtonText: 'Ya',
+            denyButtonText: 'Tidak',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              // Jika pengguna yakin, lakukan logout dan redirect ke halaman "/landing"
+              this.logout();
+              window.location.href = '#/landing';
+              location.reload();
+            }
+          });
         });
         document.getElementById('logout-btn').addEventListener('click', () => {
         // Perform logout action, e.g., redirect to "/leading"

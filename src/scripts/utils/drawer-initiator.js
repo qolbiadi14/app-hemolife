@@ -28,12 +28,11 @@ const DrawerInitiator = {
      <navbar-component></navbar-component>
       `;
     } else if (localStorage.getItem('adminToken')) {
-      // sidebarrrrrnyaaaaaaaa
+      // menu navbar admin
     } else {
       // Jika user belum login, tambahkan link ke halaman login dan register
       drawer.innerHTML += `
-      <div class="collapse navbar-collapse" id="navbarNav">
-      </div>
+      <custom-navbar></custom-navbar>
     `;
     }
   },
