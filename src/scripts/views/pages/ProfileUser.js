@@ -1,6 +1,9 @@
 import TheHemoLifeDbSource from '../../data/thehemo-lifedb-source';
 import UrlParser from '../../routes/url-parser';
-import { createProfileUserTemplate, createUpdateProfileTemplate } from '../templates/template-creator';
+import {
+  createProfileUserTemplate,
+  createUpdateProfileTemplate,
+} from '../templates/template-creator';
 
 const ProfileUser = {
   async render() {
@@ -34,31 +37,53 @@ const ProfileUser = {
     console.log('Parsed URL:', url);
     try {
       const userProfile = await TheHemoLifeDbSource.profileUser(url.id);
-       const profileContainer = document.getElementById('profile-container');
-      const editProfileContainer = document.getElementById('edit-profile-container');
+      const profileContainer = document.getElementById('profile-container');
+      const editProfileContainer = document.getElementById(
+        'edit-profile-container',
+      );
 
       if (userProfile && userProfile.length > 0) {
         console.log('After Render User Profile:', userProfile);
         profileContainer.innerHTML = createProfileUserTemplate(userProfile[0]);
-
-        // Display the edit profile form
-        editProfileContainer.innerHTML = createUpdateProfileTemplate(userProfile[0]);
+        editProfileContainer.innerHTML = createUpdateProfileTemplate(
+          userProfile[0],
+        );
 
         // Add event listener for saving changes
-        document.getElementById('save-changes-btn').addEventListener('click', async () => {
-          await this.saveChanges(url.id);
+        document
+          .getElementById('save-changes-btn')
+          .addEventListener('click', async () => {
+            await this.saveChanges(url.id);
+          });
+        document.getElementById('logout-btn').addEventListener('click', () => {
+          // Tampilkan alert konfirmasi
+          if (confirm('Apakah Anda yakin ingin logout?')) {
+            // Jika pengguna yakin, lakukan logout dan redirect ke halaman "/landing"
+            this.logout();
+            window.location.href = '#/landing';
+            location.reload();
+          }
         });
         document.getElementById('logout-btn').addEventListener('click', () => {
         // Perform logout action, e.g., redirect to "/leading"
         window.location.href = "/landing";
         });
       } else {
-        console.log('User tidak ditemukan atau terjadi kesalahan saat mengambil data profil.');
-        profileContainer.innerHTML = 'Terjadi kesalahan saat mengambil data profil.';
+        console.log(
+          'User tidak ditemukan atau terjadi kesalahan saat mengambil data profil.',
+        );
+        profileContainer.innerHTML =
+          'Terjadi kesalahan saat mengambil data profil.';
       }
     } catch (error) {
       console.error('Error rendering profile:', error);
     }
+  },
+  async logout() {
+    console.log('Logging out...');
+    // Hapus token dari localStorage atau lakukan operasi logout sesuai kebutuhan
+    localStorage.removeItem('userToken');
+    console.log('Token removed.');
   },
 
   async saveChanges(id) {
@@ -68,17 +93,23 @@ const ProfileUser = {
       alamat: document.getElementById('alamat-input').value,
       jenis_kelamin: document.getElementById('jenis-kelamin-input').value,
       tanggal_lahir: document.getElementById('tanggal-lahir-input').value,
-      status_volunteer: document.getElementById('flexSwitchCheckDefault').checked ? 1 : 0,
-  
+      status_volunteer: document.getElementById('flexSwitchCheckDefault')
+        .checked
+        ? 1
+        : 0,
     };
 
     try {
-      const updateResult = await TheHemoLifeDbSource.updateProfileUser(updatedData);
+      const updateResult =
+        await TheHemoLifeDbSource.updateProfileUser(updatedData);
       console.log('Update Response:', updateResult);
 
-      if (updateResult && updateResult.message === "Data profil berhasil diperbarui") {
+      if (
+        updateResult &&
+        updateResult.message === 'Data profil berhasil diperbarui'
+      ) {
         console.log('Profil berhasil diperbarui:', updateResult.user[0]);
-        this.showBootstrapAlert('success-alert')
+        this.showBootstrapAlert('success-alert');
       } else {
         console.log('Gagal memperbarui profil:', updateResult);
         this.showBootstrapAlert('error-alert');
@@ -89,11 +120,8 @@ const ProfileUser = {
     }
   },
   showBootstrapAlert(alertId) {
-    // Tampilkan alert dengan menghapus kelas 'd-none'
     const alertElement = document.getElementById(alertId);
     alertElement.classList.remove('d-none');
-  
-    // Sembunyikan alert setelah beberapa detik (contoh: 3000 milidetik atau 3 detik)
     setTimeout(() => {
       alertElement.classList.add('d-none');
     }, 3000);

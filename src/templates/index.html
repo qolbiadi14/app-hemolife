@@ -1,10 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Hemo Life</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/dist/css/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
     <!-- Icon Font Awsome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link rel="manifest" href="./manifest.webmanifest">
@@ -18,16 +23,26 @@
         rel="stylesheet">
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
         <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+
 </head>
 
 <body>
     <div class="container">
+        <!-- Use the custom navbar element -->
+        <header>
+            <custom-navbar></custom-navbar>
 
-        <navbar-component></navbar-component>
-        <main-content-component></main-content-component>
+        </header>
+        <main id="mainContent">
+            <!-- Your main content goes here -->
+        </main>
+        <!--<main-content-component></main-content-component>-->
 
     </div>
 
+        <!-- Use the custom footer element -->
+        <custom-footer></custom-footer>
+    </div>
     <!-- Menggunakan module leaflet dari node_modules -->
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>

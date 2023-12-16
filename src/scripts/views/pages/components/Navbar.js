@@ -33,6 +33,7 @@ class NavbarComponent extends HTMLElement {
             </nav>
     </header>
         `;
+
     }
 }
 

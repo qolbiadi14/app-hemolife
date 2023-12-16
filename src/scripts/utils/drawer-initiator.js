@@ -7,6 +7,8 @@ const DrawerInitiator = {
     content.addEventListener('click', (event) => {
       this._closeDrawer(event, drawer);
     });
+
+    this._adjustNavbarBasedOnLoginStatus(drawer);
   },
 
   _toggleDrawer(event, drawer) {
@@ -17,6 +19,23 @@ const DrawerInitiator = {
   _closeDrawer(event, drawer) {
     event.stopPropagation();
     drawer.classList.remove('open');
+  },
+
+  _adjustNavbarBasedOnLoginStatus(drawer) {
+    if (localStorage.getItem('userToken')) {
+      // Jika user sudah login, tambahkan link ke profil user
+      drawer.innerHTML += `
+     <navbar-component></navbar-component>
+      `;
+    } else if (localStorage.getItem('adminToken')) {
+      // sidebarrrrrnyaaaaaaaa
+    } else {
+      // Jika user belum login, tambahkan link ke halaman login dan register
+      drawer.innerHTML += `
+      <div class="collapse navbar-collapse" id="navbarNav">
+      </div>
+    `;
+    }
   },
 };
 

@@ -8,6 +8,9 @@ import NotFoundPage from '../views/pages/NotFoundPage';
 import DrawerInitiator from '../utils/drawer-initiator';
 import UrlParser from '../routes/url-parser';
 import routes from '../routes/routes';
+import '../views/pages/components/CustomNavbar';
+import '../views/pages/components/CustomFooter';
+
 class App {
   constructor({ button, drawer, content }) {
     this._button = button;

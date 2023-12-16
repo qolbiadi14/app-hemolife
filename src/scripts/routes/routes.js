@@ -4,16 +4,23 @@ import JadwalDaftarDonorPMI from '../views/pages/JadawalDonorPMI';
 import JadwalDaftarDetail from '../views/pages/JadwalDaftarDetail';
 import NotFoundPage from '../views/pages/NotFoundPage';
 import ProfileUser from '../views/pages/ProfileUser';
-
 import CariSukarelawan from '../views/pages/CariSukarelawan';
+import landing from '../views/pages/landingpage';
+import login from '../views/pages/auth/login';
+import register from '../views/pages/auth/register';
+import faq from '../views/pages/faq';
 
 const routes = {
-  '/': DashboarUser,
+  '/': landing,
   '/dashboard-user': DashboarUser,
   '/profile': ProfileUser,
   '/jadwal': JadwalDaftarDonorPMI,
   '/detail-jadwal-daftar/:id': JadwalDaftarDetail,
   '/cari-sukarelawan': CariSukarelawan,
+  '/login': login,
+  '/register': register,
+  '/landing': landing,
+  '/faq': faq,
   '/adminprofile': ProfileAdmin,
   '404': NotFoundPage,
 };

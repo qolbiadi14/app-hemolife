@@ -1,5 +1,6 @@
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
+import Swal from 'sweetalert2'
 
 import TheHemoLifeDbSource from '../../data/thehemo-lifedb-source';
 import {
@@ -11,18 +12,12 @@ import {
 
 const DashboardUser = {
 
-  globalUserToken: localStorage.getItem('userToken') || 'ururururjrjrj', // Include this line
+  globalUserToken: localStorage.getItem('userToken'), // Include this line
   async render() {
     return `
-        <div  class="dashboards pt-sm-5">
+        <div class="dashboards pt-sm-5">
         <h2 class="display-6 text-center mb-4 mt-5 fw-bold" id="dashboards"></h2>
         </div>
-        <div class="alert alert-warning" role="alert" id="pending-alert" style="display: none;">
-      </div>
-        <div class="alert alert-danger" role="alert" id="error-alert" style="display: none;">
-      </div>
-      <div class="alert alert-success" role="alert" id="success-alert" style="display: none;">
-      </div>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3" id="main-container"></div>
     `;
   },
@@ -68,9 +63,6 @@ const DashboardUser = {
           const id =
             event.target.dataset.id_user_volunteer ||
             event.target.dataset.id_user;
-          const errorAlert = document.querySelector('#error-alert');
-          const successAlert = document.querySelector('#success-alert');
-          const pendingAlert = document.querySelector('#pending-alert');
           try {
             if (event.target.id === 'acceptBtn') {
               const response = await TheHemoLifeDbSource.acceptOrRejectRequest(
@@ -78,32 +70,31 @@ const DashboardUser = {
                 true
               );
               handleResponse(response);
-              successAlert.textContent = 'Berhasil menerima permintaan.';
-              successAlert.style.display = 'block';
-              errorAlert.style.display = 'none';
-              setTimeout(() => {
-                successAlert.style.display = 'none';
-              }, 3000);
+              Swal.fire({
+                title: 'Berhasil menerima permintaan.',
+                icon: 'success',
+                showConfirmButton: 'Cool',
+              });
+              
             } else if (event.target.id === 'rejectBtn') {
               const response = await TheHemoLifeDbSource.acceptOrRejectRequest(
                 id,
                 false
               );
               handleResponse(response);
-              pendingAlert.textContent = 'Berhasil menolak permintaan ';
-              pendingAlert.style.display = 'block';
-              successAlert.style.display = 'none';
-              setTimeout(() => {
-                pendingAlert.style.display = 'none';
-              }, 3000);
-              errorAlert.style.display = 'none';
+              Swal.fire({
+                title: 'Berhasil menolak permintaan',
+                icon: 'success',
+                showConfirmButton: 'Cool',
+              });
             }
           } catch (error) {
-            successAlert.style.display = 'none';
-            errorAlert.textContent = 'Gagal menanggapi permintaan.';
-            errorAlert.style.display = 'block';
-            console.error(error); 
-            pendingAlert.style.display = 'none';
+            Swal.fire({
+              title: 'Error!',
+              text: 'Gagal Menanggapi Permintaan',
+              icon: 'error',
+              confirmButtonText: 'Cool'
+            })
           }
         }
       });
