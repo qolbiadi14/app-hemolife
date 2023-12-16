@@ -7,6 +7,7 @@ import ProfileUser from '../views/pages/ProfileUser';
 import CariSukarelawan from '../views/pages/CariSukarelawan';
 import KelolaBankDarah from '../views/admin/KelolaBankDarah';
 import KelolaDonorDarah from '../views/admin/KelolaDonorDarah';
+import DasboardAdmin from '../views/admin/DashboardAdmin';
 
 const routes = {
   '/': DashboarUser,
@@ -19,6 +20,7 @@ const routes = {
   '404': NotFoundPage,
   '/kelola-bank-darah': KelolaBankDarah,
   '/kelola-donor-darah': KelolaDonorDarah,
+  '/dashboard-admin': DasboardAdmin,
 };
 
 export default routes;

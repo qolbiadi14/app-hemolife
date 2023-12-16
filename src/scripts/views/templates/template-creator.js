@@ -414,6 +414,75 @@ const createKelolaBankDarah = (adminProfile) => /* html */ `
 				</div>
 			</div>
 `;
+const createDashboardAdmin = (adminProfile) => /* html */ `
+<div class="col py-3">
+        <div class="container py-3">
+          <h2 class="mb-4">Dashboard Admin</h2>
+          <div class="row">
+            <!-- Chart -->
+            <div class="col-md-10 mb-4">
+              <canvas id="bloodStockChart"></canvas>
+            </div>
+
+            <!-- Stok Darah -->
+            <div class="col-md-4 mb-4">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Stok Darah</h5>
+                  <ul class="list-group">
+                    <li class="list-group-item">
+                      A + : 150 Kantong
+                    </li>
+                    <li class="list-group-item">
+                      A - : 50 Kantong
+                    </li>
+                    <li class="list-group-item">
+                      B + : 120 Kantong
+                    </li>
+                    <li class="list-group-item">
+                      B - : 30 Kantong
+                    </li>
+                    <li class="list-group-item">
+                      AB + : 80 Kantong
+                    </li>
+                    <li class="list-group-item">
+                      AB - : 20 Kantong
+                    </li>
+                    <li class="list-group-item">
+                      O + : 200 Kantong
+                    </li>
+                    <li class="list-group-item">
+                      O - : 50 Kantong
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Jumlah Pendonor -->
+            <div class="col-md-6 mb-4">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Jumlah Pendonor Bulan Ini</h5>
+                  <ul class="list-group">
+                    <li class="list-group-item">A+ : 20 pendonor</li>
+                    <li class="list-group-item">A- : 15 pendonor</li>
+                    <li class="list-group-item">B+ : 25 pendonor</li>
+                    <li class="list-group-item">B- : 10 pendonor</li>
+                    <li class="list-group-item">AB+ : 18 pendonor</li>
+                    <li class="list-group-item">AB- : 8 pendonor</li>
+                    <li class="list-group-item">O+ : 30 pendonor</li>
+                    <li class="list-group-item">O- : 12 pendonor</li>
+                    <!-- Tambahkan data jumlah pendonor lainnya sesuai kebutuhan -->
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+`;
 
 export {
   createProfileAdminTemplate,
@@ -430,4 +499,5 @@ export {
   initializeLeafletMaps,
   createKelolaDonorDarah,
   createKelolaBankDarah,
+  createDashboardAdmin,
 };
