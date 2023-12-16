@@ -1,7 +1,13 @@
+import '../views/pages/components/NotifikasiModal';
+import '../views/pages/components/Navbar';
+import '../views/pages/components/MainContent';
+import '../views/pages/components/notifikasi'
+// import '../views/pages/components/Footer'
+import NotFoundPage from '../views/pages/NotFoundPage';
+
 import DrawerInitiator from '../utils/drawer-initiator';
 import UrlParser from '../routes/url-parser';
 import routes from '../routes/routes';
-import '../views/pages/components/notifikasi'
 class App {
   constructor({ button, drawer, content }) {
     this._button = button;
@@ -20,24 +26,15 @@ class App {
     });
   }
 
-  // async renderPage() {
-  //   const url = UrlParser.parseActiveUrlWithCombiner();
-  //   const page = routes[url];
-  //   this._content.innerHTML = await page.render();
-  //   await page.afterRender();
-  // }
   async renderPage() {
     const url = UrlParser.parseActiveUrlWithCombiner();
-    const page = routes[url];
+    const page = routes[url] || NotFoundPage;
 
-    if (page) {
-      this._content.innerHTML = await page.render();
-      if (page.afterRender) {
-        await page.afterRender();
-      }
-    } else {
-      console.error('Page not found:', url);
-      // You might want to handle this case, for example, redirect to a 404 page
+   
+    this._content.innerHTML = await page.render();
+
+    if (page.afterRender) {
+      await page.afterRender();
     }
   }
 }

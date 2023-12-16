@@ -1,5 +1,4 @@
 import TheHemoLifeDbSource from '../../data/thehemo-lifedb-source';
-import { KelolaBankDarah } from '../../templates/template-creator';
 import { KelolaBankDarah } from '../templates/template-creator';
 
 const KelolaBankDarah = {

@@ -40,8 +40,7 @@ const ProfileAdmin = {
         console.log('After Render Admin Profile:', userProfile);
         profileContainer.innerHTML = createProfileAdminTemplate(userProfile[0]);
         editProfileContainer.innerHTML = createUpdateProfileAdminTemplate(userProfile[0]);
-      
-        // Add event listener for saving changes
+
         document.getElementById('save-changes-admin-btn').addEventListener('click', async () => {
           await this.saveChanges(userProfile[0].id_admin);
         });
@@ -58,26 +57,30 @@ const ProfileAdmin = {
   async saveChanges(id) {
     const updatedData = {
       id_admin: id,
-      nama_lengkap: document.getElementById('nama-lengkap-input-admin').value,
+      nama: document.getElementById('input-nama-admin').value,
+      email: document.getElementById('input-email-admin').value,
       // Add other fields as needed
     };
-
+  
     try {
       const updateResult = await TheHemoLifeDbSource.updateProfileAdmin(updatedData);
       console.log('Update Response:', updateResult);
-
-      if (updateResult && updateResult.message === "Data profil admin berhasil diperbarui") {
+      if (updateResult && updateResult.message === "Admin profile updated successfully") {
         console.log('Profil Admin berhasil diperbarui:', updateResult.admin[0]);
         this.showBootstrapAlert('success-alert');
       } else {
         console.log('Gagal memperbarui profil Admin:', updateResult);
         this.showBootstrapAlert('error-alert');
       }
+      
     } catch (error) {
       console.error('Error updating profile Admin:', error);
+      console.error('Update Result:', updateResult); // Tambahkan baris ini untuk melihat respons yang diterima
       this.showBootstrapAlert('error-alert');
     }
+    
   },
+  
 
   showBootstrapAlert(alertId) {
     const alertElement = document.getElementById(alertId);

@@ -1,41 +1,61 @@
 @import 'bootstrap/dist/css/bootstrap.css';
 
-/* @import '' */
+
 
 *{
   font-family: 'Poppins', sans-serif;
 }
-
+.card-text {
+  margin-bottom: 7px; 
+}
 img {
   display: block;
 }
 
-/* Your existing CSS styles */
+.download-pdf-btn {
+  display: flex;
+  align-items: center;
+}
+.not-found-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
 
-/* Media query for screens with a maximum width of 597px */
+.not-found {
+  text-align: center;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.not-found-title {
+  color: #e02424;
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.not-found-desc {
+  color: #333;
+  font-size: 18px;
+}
 @media (min-width: 597px) {
   .logo {
-    /* Adjust the size for smaller screens */
     width: 180px;
     height: auto;
-    /* Auto-adjust height to maintain aspect ratio */
   }
 }
 
-/* Media query for screens with a maximum width of 803px */
 @media (max-width: 803px) {
   .logo {
-    /* Adjust the size for medium-sized screens */
     width: 100px;
     height: auto;
-    /* Auto-adjust height to maintain aspect ratio */
   }
 }
 
 @media (min-width: 768px) {
   .border-md-end {
     border-right: 2px solid #F05941;
-    /* You can adjust the color as needed */
   }
 }
 
@@ -43,18 +63,20 @@ img {
   padding-top: 10px;
   margin-bottom: 20px;
   border-bottom: 2px solid #F05941;
-  /* You can adjust the color as needed */
 }
 
 @media (min-width: 768px) {
   .border-md-end {
     border-bottom: none;
-    /* Remove the border bottom for screens larger than 768px */
+  }
+  .not-found-title {
+    color: #e02424;
+    font-size: 3em;
+    margin-bottom: 10px;
   }
 }
-  /* Gaya untuk efek hover dan klik pada tombol */
   .navbar-nav .nav-item {
-    transition: color 0.3s, transform 0.5s; /* Efek transisi lembut dan perlahan */
+    transition: color 0.3s, transform 0.5s;
   }
 
   .navbar-nav .nav-link {
@@ -81,14 +103,13 @@ img {
   .switch-lg .form-check-input {
     width: 3rem;
     height: 1.5rem;
-    margin-right: 5px; /* Memberikan ruang di antara switch dan label */
+    margin-right: 5px; 
   }
   
   .switch-lg .form-check-label {
     font-size: 1.2rem;
   }
   
-  /* Style khusus untuk switch ketika dihover dan diactive */
   .switch-lg .form-check-input:hover {
     transform: scale(1.2);
   }

@@ -10,6 +10,8 @@ import {
 } from '../templates/template-creator';
 
 const DashboardUser = {
+
+  globalUserToken: localStorage.getItem('userToken') || 'ururururjrjrj', // Include this line
   async render() {
     return `
         <div  class="dashboards pt-sm-5">
@@ -26,7 +28,8 @@ const DashboardUser = {
   },
 
   async afterRender() {
-    const dataContainer = document.querySelector('#dashboards');
+    TheHemoLifeDbSource.setGlobalUserToken(this.globalUserToken);
+     const dataContainer = document.querySelector('#dashboards');
     const mainContainer = document.querySelector('#main-container');
     const response = await TheHemoLifeDbSource.dasboardUser();
     displayData(response);
@@ -44,22 +47,23 @@ const DashboardUser = {
       data.pendonor && createCardContainer(data.pendonor, createPendonoremplate);
 
       mainContainer.addEventListener('click', async (event) => {
-        if (event.target.classList.contains('btn-primary')) {
-          const donorId = event.target.parentElement
-            .querySelector('p.card-text')
-            .id.split('_')[1];
+        const targetButton = event.target.closest('.download-pdf-btn');
 
-          const pmiDetails = await TheHemoLifeDbSource.jadwalDetailDonorDarah(donorId);
+        if (targetButton) {
+          const donorId = targetButton.dataset.donorId;
 
-          // Check if pmiDetails is available
-          if (pmiDetails && pmiDetails.length > 0) {
-            generatePDF({ pendonor: data.pendonor, pmi: pmiDetails });
+          try {
+            const pmiDetails = await TheHemoLifeDbSource.jadwalDetailDonorDarah(donorId);
+
+            // Check if pmiDetails is available
+            if (pmiDetails && pmiDetails.length > 0) {
+              generatePDF({ pendonor: data.pendonor, pmi: pmiDetails });
+            }
+          } catch (error) {
+            console.error('Error generating PDF:', error);
           }
         }
-        if (
-          event.target.id === 'acceptBtn' ||
-          event.target.id === 'rejectBtn'
-        ) {
+        if (event.target.id === 'acceptBtn' || event.target.id === 'rejectBtn') {
           // Periksa apakah event.target.dataset.id_user_volunteer atau event.target.dataset.id_user
           const id =
             event.target.dataset.id_user_volunteer ||
@@ -71,7 +75,7 @@ const DashboardUser = {
             if (event.target.id === 'acceptBtn') {
               const response = await TheHemoLifeDbSource.acceptOrRejectRequest(
                 id,
-                true,
+                true
               );
               handleResponse(response);
               successAlert.textContent = 'Berhasil menerima permintaan.';
@@ -83,7 +87,7 @@ const DashboardUser = {
             } else if (event.target.id === 'rejectBtn') {
               const response = await TheHemoLifeDbSource.acceptOrRejectRequest(
                 id,
-                false,
+                false
               );
               handleResponse(response);
               pendingAlert.textContent = 'Berhasil menolak permintaan ';
@@ -98,10 +102,12 @@ const DashboardUser = {
             successAlert.style.display = 'none';
             errorAlert.textContent = 'Gagal menanggapi permintaan.';
             errorAlert.style.display = 'block';
+            console.error(error); 
             pendingAlert.style.display = 'none';
           }
         }
       });
+      
     }
 
     function createCardContainer(dataObject, templateFunction) {
@@ -142,10 +148,13 @@ const DashboardUser = {
 // ...
 
 function generatePDF(data) {
+  // console.log('Data for PDF generation:', data);
+
   if (!data || !data.pendonor || !data.pmi) {
+    // console.error('Invalid data for PDF generation.');
     return;
   }
-
+  console.log('Creating PDF...');
   const golDarah = data.pendonor.gol_darah;
   const lokasiPmi = data.pendonor.lokasi_pmi;
   const tanggalDonor = data.pendonor.tanggal_donor;
