@@ -64,6 +64,10 @@ const ProfileUser = {
             location.reload();
           }
         });
+        document.getElementById('logout-btn').addEventListener('click', () => {
+        // Perform logout action, e.g., redirect to "/leading"
+        window.location.href = "/landing";
+        });
       } else {
         console.log(
           'User tidak ditemukan atau terjadi kesalahan saat mengambil data profil.',

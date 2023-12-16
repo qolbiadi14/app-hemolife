@@ -1,7 +1,5 @@
 @import 'bootstrap/dist/css/bootstrap.css';
 
-
-
 * {
   font-family: 'Poppins', sans-serif;
 }
@@ -18,7 +16,12 @@ img {
   display: flex;
   align-items: center;
 }
-
+.not-found-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
 .not-found-container {
   display: flex;
   align-items: center;
@@ -37,11 +40,11 @@ img {
   font-size: 2em;
   margin-bottom: 10px;
 }
-
 .not-found-desc {
   color: #333;
   font-size: 18px;
 }
+
 
 @media (min-width: 597px) {
   .logo {
@@ -73,6 +76,16 @@ img {
   .border-md-end {
     border-bottom: none;
   }
+  .not-found-title {
+    color: #e02424;
+    font-size: 3em;
+    margin-bottom: 10px;
+  }
+}
+  .navbar-nav .nav-item {
+    transition: color 0.3s, transform 0.5s;
+
+  }
 
   .not-found-title {
     color: #e02424;
@@ -88,7 +101,6 @@ img {
 .navbar-nav .nav-link {
   transition: color 0.3s, transform 0.5s;
 }
-
 .navbar-nav .nav-link:hover {
   transform: scale(1.0);
 }

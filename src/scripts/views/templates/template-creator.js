@@ -270,5 +270,6 @@ export {
   createProfileUserTemplate,
   createUpdateProfileTemplate,
   createPendonoremplate,
+  createCariSukarelawanTemplate,
   initializeLeafletMaps,
 };
