@@ -19,7 +19,6 @@ const createPemohonTemplate = (pemohon) => /* html */ {
    </div>
   </div>
 `;
-};
 
 const createSukarelawanTemplate = (sukarelawan_menerima) => /* html */ `
   <div class="card shadow">
@@ -126,7 +125,6 @@ const createCariSukarelawanTemplate = (userProfile) => /* html */`
             </div>
           </div>
         </div>
-
         <!-- Box Kedua: Hasil Pencarian -->
         <div class="col-md-6">
           <div class="card">
@@ -150,7 +148,6 @@ const createProfileUserTemplate = (userProfile) => /* html */ `
       <li class="list-group-item">Alamat: ${userProfile.alamat}</li>
       <li class="list-group-item">Jenis Kelamin: ${userProfile.jenis_kelamin}</li>
       <li class="list-group-item pb-5">Tanggal Lahir: ${userProfile.tanggal_lahir}</li>
-      <!-- <a href="#/edit-profile/${userProfile.id_user}">Update Profile</a> -->
     </ul>
     <div class="form-check form-switch switch-lg pb-5 pt-3 ">
     <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
@@ -244,13 +241,11 @@ const createUpdateProfileTemplate = (userProfile) => /* html */ `
         </form>
 `;
 
-// Template rendering yang diperbarui
 const createProfileAdminTemplate = (adminProfile) => /* html */ `
   <div class="d-flex flex-column align-items-center text-center">
     <img class="rounded-circle" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" />
     <ul class="list-group list-group-flush">
       <li class="list-group-item"></li>
-      <li class="list-group-item">Nama Lengkap ${adminProfile.nama_lengkap}</li>
     </ul>
   </div>
 `;
@@ -264,28 +259,12 @@ const createUpdateProfileAdminTemplate = (adminProfile) => /* html */ `
       </div>
     </div>
     <div class="form-group">
-      <label class="col-md-3 control-label"></label>
       <div class="col-md-8">
         <button id="save-changes-admin-btn" type="submit" class="btn btn-primary">Save Change</button>
       </div>
     </div>
   </form>
 `;
-
-// TODO Add tamplaet update notifikasi
-const notifikasiTamplateMerima = (notifikasi) => /* html */ `
-  <div class="modal-body">
-    <h2 class="fs-5">"${Stasus && notifikasi.name} "</h2>
-    <p><a href="#" data-bs-toggle="tooltip" title="Tooltip">This link</a></p>
-  </div>
-`;
-const notifikasiTamplateMenolak = (notifikasi) => /* html */ `
-  <div class="modal-body">
-    <h2 class="fs-5">"${Stasus && notifikasi.name} "</h2>
-    <p><a href="#" data-bs-toggle="tooltip" title="Tooltip">This link</a></p>
-  </div>
-`;
-
 const Sidebar = (adminProfile) => /* html */ `
 <div class="container-fluid">
 <div class="row flex-nowrap">
