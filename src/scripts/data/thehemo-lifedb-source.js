@@ -13,6 +13,65 @@ class TheHemoLifeDbSource {
     globalAdminToken = token || 'ururururjrjrj';
     localStorage.setItem('adminToken', token || 'ururururjrjrj');
   }
+  // TODO login Fect
+  static async login(email, password) {
+    const requestBody = {
+      email,
+      password,
+    };
+
+    try {
+      const response = await fetch(API_ENDPOINT.LOGIN, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+      });
+
+      if (response.ok) {
+        const responseJson = await response.json();
+        console.log('API Response POST Login:', responseJson);
+        return responseJson;
+      } else {
+        // Handle unsuccessful login
+        console.error('Login failed:', response.status);
+        throw new Error('Login failed');
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      throw error;
+    }
+  } 
+  static async register(user) {
+    try {
+      const response = await fetch(API_ENDPOINT.REGISTER, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user),
+      });
+
+      if (response.status === 201) {
+        const responseJson = await response.json();
+        console.log('API Response POST Register:', responseJson);
+        return responseJson;
+      } else if (response.status === 409) {
+        const responseJson = await response.json();
+        console.error('Registration failed:', responseJson.message);
+        throw new Error('Registration failed');
+      } else {
+        console.error('Unexpected error during registration:', response.status);
+        throw new Error('Unexpected error during registration');
+      }
+    } catch (error) {
+      console.error('Error during registration:', error);
+      throw error;
+    }
+  } 
 
   static async updateProfileUser(updatedData) {
     const response = await fetch(API_ENDPOINT.UPDATE_PROFILE, {
@@ -155,64 +214,7 @@ class TheHemoLifeDbSource {
     return response.ok ? (await response.json()).pmi : [];
   }
 
-  static async register(user) {
-    try {
-      const response = await fetch(API_ENDPOINT.REGISTER, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(user),
-      });
-
-      if (response.status === 201) {
-        const responseJson = await response.json();
-        console.log('API Response POST Register:', responseJson);
-        return responseJson;
-      } else if (response.status === 409) {
-        const responseJson = await response.json();
-        console.error('Registration failed:', responseJson.message);
-        throw new Error('Registration failed');
-      } else {
-        console.error('Unexpected error during registration:', response.status);
-        throw new Error('Unexpected error during registration');
-      }
-    } catch (error) {
-      console.error('Error during registration:', error);
-      throw error;
-    }
-  }
-  static async login(email, password) {
-    const requestBody = {
-      email,
-      password,
-    };
-
-    try {
-      const response = await fetch(API_ENDPOINT.LOGIN, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(requestBody),
-      });
-
-      if (response.ok) {
-        const responseJson = await response.json();
-        console.log('API Response POST Login:', responseJson);
-        return responseJson;
-      } else {
-        // Handle unsuccessful login
-        console.error('Login failed:', response.status);
-        throw new Error('Login failed');
-      }
-    } catch (error) {
-      console.error('Error during login:', error);
-      throw error;
-    }
-  }
+  
 }
 
 export default TheHemoLifeDbSource;

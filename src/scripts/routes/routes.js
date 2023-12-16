@@ -5,8 +5,8 @@ import JadwalDaftarDetail from '../views/pages/JadwalDaftarDetail';
 import ProfileUser from '../views/pages/ProfileUser';
 import CariSukarelawan from '../views/pages/CariSukarelawan';
 import landing from '../views/pages/landingpage';
-import login from '../views/auth/login';
-import register from '../views/auth/register';
+import login from '../views/pages/auth/login';
+import register from '../views/pages/auth/register';
 import faq from '../views/pages/faq';
 
 const routes = {

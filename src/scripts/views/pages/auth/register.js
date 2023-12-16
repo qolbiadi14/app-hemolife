@@ -1,4 +1,4 @@
-import TheHemoLifeDbSource from '../../data/thehemo-lifedb-source';
+import TheHemoLifeDbSource from '../../../data/thehemo-lifedb-source';
 
 const register = {
   async render() {

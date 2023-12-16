@@ -1,5 +1,7 @@
 // login.js
-import TheHemoLifeDbSource from '../../data/thehemo-lifedb-source';
+import TheHemoLifeDbSource from '../../../data/thehemo-lifedb-source';
+// login.js
+import routes from '../../../routes/routes';
 
 const login = {
   async render() {
@@ -42,6 +44,7 @@ const login = {
         </div>
       `;
   },
+
   async afterRender() {
     const loginForm = document.getElementById('loginForm');
 
@@ -67,5 +70,18 @@ const login = {
     });
   },
 };
+
+async function renderDashboardPage() {
+  const page = routes['/dashboard-user'];
+  if (page) {
+    const mainContent = document.getElementById('mainContent');
+    mainContent.innerHTML = await page.render();
+    await page.afterRender();
+    // window.location.reload();
+
+    window.location.hash = '#/dashboard-user';
+    window.location.reload();
+  }
+}
 
 export default login;
