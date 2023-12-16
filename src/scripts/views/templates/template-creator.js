@@ -300,7 +300,120 @@ const createUpdateProfileAdminTemplate = (adminProfile) => /* html */ `
   </form>
 `;
 
-
+const createKelolaDonorDarah = (adminProfile) => /* html */ `
+<div class="col py-3">
+            <div class="container py-3">
+				<h2>Kelola Donor Darah</h2>
+				<form class="form-inline mb-4">
+					<label class="sr-only" for="searchInput">Cari Pendonor:</label>
+					<input type="text" class="form-control mb-2 mr-sm-2" id="searchInput"
+						   placeholder="Masukkan Nama Pendonor">
+					<button type="submit" class="btn btn-primary mb-2">Cari</button>
+				</form>
+				<div class="table-responsive">
+					<table class="table table-striped table-sm">
+						<thead>
+						<tr>
+							<th class="col">No</th>
+							<th class="col-6">Nama Pendonor</th>
+							<th class="col">Jadwal</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td class="col">1</td>
+							<td class="col-6">ARIEL</td>
+							<td class="col">SELASA - 12/10/2021</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+</div>
+`;
+const createKelolaBankDarah = (adminProfile) => /* html */ `
+<div class="col py-3">
+				<div class="container py-3">
+					<h2>Kelola Donor Darah</h2>
+					<div class="col-md-6">
+						<div class="card h-100">
+							<div class="card-body">
+								<div class="row g-3">
+									<div class="col-md-6">
+										<div
+											class="bg-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+											<p class="mb-0">A (+)</p>
+											<p class="mb-0">50</p>
+											<button type="button" class="btn btn-secondary ms-2">Edit</button>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="bg-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+											<p class="mb-0">A (-)</p>
+											<p class="mb-0">50</p>
+											<button type="button" class="btn btn-secondary ms-2">Edit</button>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="bg-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+											<p class="mb-0">B (+)</p>
+											<p class="mb-0">50</p>
+											<button type="button" class="btn btn-secondary ms-2">Edit</button>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="bg-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+											<p class="mb-0">B (+)</p>
+											<p class="mb-0">50</p>
+											<button type="button" class="btn btn-secondary ms-2">Edit</button>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="bg-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+											<p class="mb-0">AB (-)</p>
+											<p class="mb-0">50</p>
+											<button type="button" class="btn btn-secondary ms-2">Edit</button>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="bg-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+											<p class="mb-0">AB (+)</p>
+											<p class="mb-0">50</p>
+											<button type="button" class="btn btn-secondary ms-2">Edit</button>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="bg-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+											<p class="mb-0">0 (-)</p>
+											<p class="mb-0">50</p>
+											<button type="button" class="btn btn-secondary ms-2">Edit</button>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="bg-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+											<p class="mb-0">0 (+)</p>
+											<p class="mb-0">50</p>
+											<button type="button" class="btn btn-secondary ms-2">Edit</button>
+										</div>
+									</div>
+									<div class="mt-auto p-3 d-flex justify-content-end">
+										<button type="button" class="btn btn-secondary">Edit</button>
+										<button type="button" class="btn btn-primary ms-2">Simpan</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+`;
 
 export {
   createProfileAdminTemplate,
@@ -315,4 +428,6 @@ export {
   createPendonoremplate,
   createCariSukarelawanTemplate,
   initializeLeafletMaps,
+  createKelolaDonorDarah,
+  createKelolaBankDarah,
 };

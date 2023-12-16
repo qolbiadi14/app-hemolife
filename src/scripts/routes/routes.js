@@ -4,8 +4,9 @@ import JadwalDaftarDonorPMI from '../views/pages/JadawalDonorPMI';
 import JadwalDaftarDetail from '../views/pages/JadwalDaftarDetail';
 import NotFoundPage from '../views/pages/NotFoundPage';
 import ProfileUser from '../views/pages/ProfileUser';
-
 import CariSukarelawan from '../views/pages/CariSukarelawan';
+import KelolaBankDarah from '../views/admin/KelolaBankDarah';
+import KelolaDonorDarah from '../views/admin/KelolaDonorDarah';
 
 const routes = {
   '/': DashboarUser,
@@ -16,6 +17,8 @@ const routes = {
   '/cari-sukarelawan': CariSukarelawan,
   '/adminprofile': ProfileAdmin,
   '404': NotFoundPage,
+  '/kelola-bank-darah': KelolaBankDarah,
+  '/kelola-donor-darah': KelolaDonorDarah,
 };
 
 export default routes;
