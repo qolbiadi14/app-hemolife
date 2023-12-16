@@ -9,12 +9,12 @@ class CustomFooter extends HTMLElement {
                   <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
                     <img src="/images/heros/logo.png" alt="Website" class="mt-1 img-fluid" style="max-width: 150px;">
                   </a>
-                  <span class="mb-3 mb-md-0 text-body-secondary">&copy; 2023 Company, Inc</span>
+                  <span class="mb-3 mb-md-0 text-body-secondary">&copy; 2023 HemoLife, Inc</span>
                 </div>
                 <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-                  <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-facebook" style="font-size: 1.5em;"></i></a></li>
-                  <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-twitter" style="font-size: 1.5em;"></i></svg></a></li>
-                  <li class="ms-3"><a class="text-body-secondary" href="#"><i class="bi bi-instagram" style="font-size: 1.5em;"></i></a></li>
+                  <li class="ms-3"><a class="text-body-secondary" href="https://www.facebook.com/diawan.diawan.9212?mibextid=ZbWKwL" target="_blank"><i class="bi bi-facebook" style="font-size: 1.5em;"></i></a></li>
+                  <li class="ms-3"><a class="text-body-secondary" href="https://twitter.com/dicoding?t=D4abQFFxCkLMhYKLEynHpA&s=09" target="_blank"><i class="bi bi-twitter" style="font-size: 1.5em;"></i></svg></a></li>
+                  <li class="ms-3"><a class="text-body-secondary" href="https://instagram.com/anggraenideaaa"><i class="bi bi-instagram" target="_blank"></i></a></li>
                 </ul>
               </footer>
             </div>

@@ -58,6 +58,7 @@ img {
     width: 100px;
     height: auto;
   }
+
 }
 
 @media (min-width: 768px) {
@@ -92,7 +93,11 @@ img {
     font-size: 3em;
     margin-bottom: 10px;
   }
-}
+
+  .ledig-titel {
+    /* background-color: red; */
+    font-size: 3rm;
+  }
 
 .navbar-nav .nav-item {
   transition: color 0.3s, transform 0.5s;
@@ -134,4 +139,8 @@ img {
 
 .switch-lg .form-check-input:active {
   transform: scale(0.8);
+}
+
+i{
+  font-family: 1.5em;
 }
