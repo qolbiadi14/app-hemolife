@@ -12,3 +12,13 @@ Project Tim Members :
   <li>F432YA157 - Diyawan </li>
   <li>S296YB455 - Qolbi Adi Lumintang </li>
 </ol>
+
+# Tech Stack
+<ul>
+  <li>HTML</li>
+  <li>CSS</li>
+  <li>JavaScript</li>
+  <li>Express JS</li>
+  <li>MySQL</li>
+  <li>Webpack</li>
+</ul>
