@@ -8,7 +8,10 @@ const DrawerInitiator = {
       this._closeDrawer(event, drawer);
     });
 
-    this._adjustNavbarBasedOnLoginStatus(drawer);
+    this.
+    
+    
+    (drawer);
   },
 
   _toggleDrawer(event, drawer) {
@@ -20,7 +23,6 @@ const DrawerInitiator = {
     event.stopPropagation();
     drawer.classList.remove('open');
   },
-
   async _adjustNavbarBasedOnLoginStatus(drawer) {
     const userToken = localStorage.getItem('userToken');
     const adminToken = localStorage.getItem('adminToken');
@@ -35,7 +37,6 @@ const DrawerInitiator = {
       ;
       `;
     } else {
-      // Jika user belum login, tambahkan link ke halaman login dan register
       drawer.innerHTML += `       
       <custom-navbar></custom-navbar>
       `;

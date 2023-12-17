@@ -3,7 +3,10 @@ import 'leaflet.awesome-markers';
 import Swal from 'sweetalert2';
 
 import TheHemoLifeDbSource from '../../data/thehemo-lifedb-source';
-import { createJadwalTemplate, initializeLeafletMaps } from '../templates/template-creator';
+import {
+  createJadwalTemplate,
+  initializeLeafletMaps,
+} from '../templates/template-creator';
 
 const JadwalDaftarDonorPMI = {
   jadwals: [],

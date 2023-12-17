@@ -17,7 +17,8 @@ const register = {
                   <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
                   <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" required />
                 </div>
-              <div class="col">
+
+                <div class="col">
                   <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
                   <select
                     name="jenis_kelamin"
@@ -25,7 +26,9 @@ const register = {
                     class="form-control"
                     required
                   >
+
                     <option value="Laki-laki">Laki - laki</option>
+
                     <option value="perempuan">Perempuan</option>
                   </select>
                 </div>
@@ -46,6 +49,7 @@ const register = {
                   <input type="password" class="form-control" id="password" name="password" required />
                 </div>
                 <div class="col">
+
               <label for="golongan_darah" class="form-label">Golongan Darah</label>
               <select class="form-select" id="golongan_darah" name="golongan_darah" required>
                 <option value="" selected disabled>Pilih Golongan Darah</option>
@@ -68,7 +72,9 @@ const register = {
                 <div class="col">
                   <label for="no_hp" class="form-label">No Hp</label>
                   <input type="number" class="form-control" id="no_hp" name="no_hp" required />
- </div>
+              </div>
+
+
               </div>
               <div class="mt-3">
                 <button type="submit" class="btn btn-primary">Daftar</button>
@@ -99,6 +105,7 @@ const register = {
         kota_kab: formData.get('kota_kab'),
         no_hp: formData.get('no_hp'),
       };
+
       try {
         const registerResponse = await TheHemoLifeDbSource.register(user);
 

@@ -1,7 +1,11 @@
 import Swal from 'sweetalert2';
 import TheHemoLifeDbSource from '../../data/thehemo-lifedb-source';
 import UrlParser from '../../routes/url-parser';
-import { createProfileUserTemplate, createUpdateProfileTemplate } from '../templates/template-creator';
+import {
+  createProfileUserTemplate,
+  createUpdateProfileTemplate,
+} from '../templates/template-creator';
+import Swal from 'sweetalert2';
 
 const ProfileUser = {
   async render() {
@@ -67,6 +71,22 @@ const ProfileUser = {
             }
           });
         });
+        document.getElementById('logout-btn').addEventListener('click', () => {
+          // Tampilkan alert konfirmasi
+          Swal.fire({
+            title: 'Apakah Anda yakin ingin logout?',
+            showDenyButton: true,
+            confirmButtonText: 'Ya',
+            denyButtonText: 'Tidak',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              // Jika pengguna yakin, lakukan logout dan redirect ke halaman "/landing"
+              this.logout();
+              window.location.href = '#/landing';
+              location.reload();
+            }
+          });
+        });
       } else {
         console.log(
           'User tidak ditemukan atau terjadi kesalahan saat mengambil data profil.',
@@ -91,11 +111,11 @@ const ProfileUser = {
       jenis_kelamin: document.getElementById('jenis-kelamin-input').value,
       tanggal_lahir: document.getElementById('tanggal-lahir-input').value,
       status_volunteer: document.getElementById('flexSwitchCheckDefault').checked ? 1 : 0,
-
     };
 
     try {
-      const updateResult = await TheHemoLifeDbSource.updateProfileUser(updatedData);
+      const updateResult =
+        await TheHemoLifeDbSource.updateProfileUser(updatedData);
       console.log('Update Response:', updateResult);
 
       if (updateResult && updateResult.message === 'Data profil berhasil diperbarui') {

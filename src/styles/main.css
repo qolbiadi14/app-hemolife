@@ -1,7 +1,5 @@
 @import 'bootstrap/dist/css/bootstrap.css';
 
-
-
 * {
   font-family: 'Poppins', sans-serif;
   padding: 0;
@@ -27,6 +25,12 @@ img {
   justify-content: center;
   height: 100vh;
 }
+.not-found-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
 
 .not-found {
   text-align: center;
@@ -39,7 +43,6 @@ img {
   font-size: 2em;
   margin-bottom: 10px;
 }
-
 .not-found-desc {
   color: #333;
   font-size: 18px;
@@ -85,6 +88,7 @@ img {
 
   .ledig-titel {
     font-size: 3rm;
+
   }
 }
 
@@ -171,7 +175,6 @@ img {
 .text-body-secondary i:active {
   background: linear-gradient(to left, #ff0000, #209cd9);
 }
-
 
 .switch-lg .form-check-input {
   width: 3rem;
