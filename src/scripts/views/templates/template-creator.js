@@ -3,8 +3,8 @@ import 'leaflet.control.layers.tree';
 import 'leaflet.awesome-markers';
 
 
-const createPemohonTemplate = (pemohon) => /* html */ 
-   `
+const createPemohonTemplate = (pemohon) => /* html */
+  `
   <div class="card shadow">
     <!-- <img src="..." class="card-img-top" alt="..."> -->
     <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect></svg>
@@ -36,8 +36,8 @@ const createSukarelawanTemplate = (sukarelawan_menerima) => /* html */ `
       <p class="card-text">${sukarelawan_menerima.alamat_volunteer && `Alamat : ${sukarelawan_menerima.alamat_volunteer}`}</p>
       <p class="card-text">${sukarelawan_menerima.gol_darah && `Golongan Darah : ${sukarelawan_menerima.gol_darah}`}</p>
       <a href="https://wa.me/${getFormattedWhatsAppNumber(
-        sukarelawan_menerima.no_hp,
-      )}" target="_blank" class="btn btn-success w-100">Hubungi Via WhatsApp</a>
+  sukarelawan_menerima.no_hp,
+)}" target="_blank" class="btn btn-success w-100">Hubungi Via WhatsApp</a>
      </div>
   </div>
 `;
@@ -65,8 +65,8 @@ const createPendonoremplate = (pendonor) => /* html */ `
 
 const createDasboardTemplate = (data) => /* html */ `
   <div class="movie-item">
-    <h1 class="fw-bold">Selamat Datang <span class="text-danger"> ${ data.nama || data.id_user || 'Pengguna'
-    } </span></h1>
+    <h1 class="fw-bold">Selamat Datang <span class="text-danger"> ${data.nama || data.id_user || 'Pengguna'
+  } </span></h1>
   </div>
 `;
 const createJadwalTemplate = (jadwal) => /* html */ `
@@ -98,9 +98,9 @@ const createJadwalDetailPMITemplate = (pmi) => /* html */ `
     </div>
   </div>
 `;
- const initializeLeafletMaps = (jadwals) => {
+const initializeLeafletMaps = (jadwals) => {
   jadwals.forEach(({ id_lok_pmi, latitude, longitude, nama_lok_pmi }) => {
-    const mapContainer = document.getElementById(`map-${id_lok_pmi}-container`);    
+    const mapContainer = document.getElementById(`map-${id_lok_pmi}-container`);
     if (!mapContainer || mapContainer.dataset.leafletInitialized) return;
     const map = L.map(mapContainer, {
       center: [latitude, longitude],
@@ -180,33 +180,29 @@ const createUpdateProfileTemplate = (userProfile) => /* html */ `
             <div class="form-group">
                 <label class="col-lg-12 control-label">Nama Lengkap:</label>
                 <div class="col-lg-8">
-                    <input id="nama-lengkap-input" class="form-control" type="text" value="${
-                      userProfile.nama_lengkap
-                    }">
+                    <input id="nama-lengkap-input" class="form-control" type="text" value="${userProfile.nama_lengkap
+  }">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-12 control-label">No. Telp:</label>
                 <div class="col-lg-8">
-                    <input id="no-telp-input" class="form-control" type="text" value="${
-                      userProfile.no_telp
-                    }">
+                    <input id="no-telp-input" class="form-control" type="text" value="${userProfile.no_telp
+  }">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-12 control-label">Alamat:</label>
                 <div class="col-lg-8">
-                    <input id="alamat-input" class="form-control" type="text" value="${
-                      userProfile.alamat
-                    }">
+                    <input id="alamat-input" class="form-control" type="text" value="${userProfile.alamat
+  }">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-12 control-label">Jenis Kelamin:</label>
                 <div class="col-lg-8">
-                    <input id="jenis-kelamin-input" class="form-control" type="text" value="${
-                      userProfile.jenis_kelamin
-                    }">
+                    <input id="jenis-kelamin-input" class="form-control" type="text" value="${userProfile.jenis_kelamin
+  }">
                 </div>
             </div>
             <div class="form-group">
@@ -224,9 +220,8 @@ const createUpdateProfileTemplate = (userProfile) => /* html */ `
             <!-- <div class="form-group">
                 <label class="col-lg-3 control-label">Email:</label>
                 <div class="col-lg-8">
-                    <input id="email-input" class="form-control" type="text" value="${
-                      userProfile.email
-                    }">
+                    <input id="email-input" class="form-control" type="text" value="${userProfile.email
+  }">
                 </div>
             </div>
             <div class="form-group">
@@ -234,21 +229,18 @@ const createUpdateProfileTemplate = (userProfile) => /* html */ `
                 <div class="col-lg-8">
                     <div class="ui-select">
                         <select id="jenis-kelamin-input" class="form-control">
-                            <option value="Laki-Laki" ${
-                              userProfile.jenis_kelamin === 'Laki-Laki'
-                                ? 'selected'
-                                : ''
-                            }>Laki-Laki</option>
-                            <option value="Perempuan" ${
-                              userProfile.jenis_kelamin === 'Perempuan'
-                                ? 'selected'
-                                : ''
-                            }>Perempuan</option>
-                            <option value="LGBT" ${
-                              userProfile.jenis_kelamin === 'LGBT'
-                                ? 'selected'
-                                : ''
-                            }>LGBT</option>
+                            <option value="Laki-Laki" ${userProfile.jenis_kelamin === 'Laki-Laki'
+    ? 'selected'
+    : ''
+  }>Laki-Laki</option>
+                            <option value="Perempuan" ${userProfile.jenis_kelamin === 'Perempuan'
+    ? 'selected'
+    : ''
+  }>Perempuan</option>
+                            <option value="LGBT" ${userProfile.jenis_kelamin === 'LGBT'
+    ? 'selected'
+    : ''
+  }>LGBT</option>
                         </select>
                     </div>
                 </div>
@@ -417,73 +409,75 @@ const createKelolaBankDarah = (adminProfile) => /* html */ `
 `;
 const createDashboardAdmin = (adminProfile) => /* html */ `
 <div class="col py-3">
-        <div class="container py-3">
-          <h2 class="mb-4">Dashboard Admin</h2>
-          <div class="row">
-            <!-- Chart -->
-            <div class="col-md-10 mb-4">
-              <canvas id="bloodStockChart"></canvas>
+    <div class="container py-3">
+        <h2 class="mb-4">Dashboard Admin</h2>
+        <div class="row">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <!-- Kolom untuk Chart -->
+                        <div class="col-md-6 mb-2">
+                            <h3>Stok Darah</h3>
+                            <!-- Elemen canvas untuk chart -->
+                            <canvas id="bloodStockChart"></canvas>
+                        </div>
+
+                        <!-- Spasi antara kolom -->
+                        <div class="col-md-1"></div>
+
+                        <!-- Kolom untuk Keterangan Stok Darah -->
+                        <div class="col-md-5 mb-2">
+                            <h3>Keterangan Stok Darah</h3>
+                            <div class="keterangan-stok-darah">
+                                <p>A + :&nbsp;&nbsp;150 Kantong</p>
+                                <p>A - :&nbsp;&nbsp;50 Kantong</p>
+                                <p>B + :&nbsp;&nbsp;120 Kantong</p>
+                                <p>B - :&nbsp;&nbsp;30 Kantong</p>
+                                <p>AB + :&nbsp;&nbsp;80 Kantong</p>
+                                <p>AB - :&nbsp;&nbsp;20 Kantong</p>
+                                <p>O + :&nbsp;&nbsp;200 Kantong</p>
+                                <p>O - :&nbsp;&nbsp;50 Kantong</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Stok Darah -->
-            <div class="col-md-4 mb-4">
-              <div class="card">
+            <div class="card mb-4">
                 <div class="card-body">
-                  <h5 class="card-title">Stok Darah</h5>
-                  <ul class="list-group">
-                    <li class="list-group-item">
-                      A + : 150 Kantong
-                    </li>
-                    <li class="list-group-item">
-                      A - : 50 Kantong
-                    </li>
-                    <li class="list-group-item">
-                      B + : 120 Kantong
-                    </li>
-                    <li class="list-group-item">
-                      B - : 30 Kantong
-                    </li>
-                    <li class="list-group-item">
-                      AB + : 80 Kantong
-                    </li>
-                    <li class="list-group-item">
-                      AB - : 20 Kantong
-                    </li>
-                    <li class="list-group-item">
-                      O + : 200 Kantong
-                    </li>
-                    <li class="list-group-item">
-                      O - : 50 Kantong
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+                    <div class="row">
+                        <!-- Kolom untuk Chart -->
+                        <div class="col-md-6 mb-2">
+                            <h3>Jumlah Pendonor per Bulan</h3>
+                            <!-- Elemen canvas untuk chart -->
+                            <canvas id="pendonorChart"></canvas>
+                        </div>
 
-            <!-- Jumlah Pendonor -->
-            <div class="col-md-6 mb-4">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Jumlah Pendonor Bulan Ini</h5>
-                  <ul class="list-group">
-                    <li class="list-group-item">A+ : 20 pendonor</li>
-                    <li class="list-group-item">A- : 15 pendonor</li>
-                    <li class="list-group-item">B+ : 25 pendonor</li>
-                    <li class="list-group-item">B- : 10 pendonor</li>
-                    <li class="list-group-item">AB+ : 18 pendonor</li>
-                    <li class="list-group-item">AB- : 8 pendonor</li>
-                    <li class="list-group-item">O+ : 30 pendonor</li>
-                    <li class="list-group-item">O- : 12 pendonor</li>
-                    <!-- Tambahkan data jumlah pendonor lainnya sesuai kebutuhan -->
-                  </ul>
+                        <!-- Spasi antara kolom -->
+                        <div class="col-md-1"></div>
+
+                        <!-- Kolom untuk Keterangan Jumlah Pendonor -->
+                        <div class="col-md-5 mb-2">
+                            <h3>Keterangan Jumlah Pendonor</h3>
+                            <div class="keterangan-jumlah-pendonor">
+                                <p>Januari :&nbsp;&nbsp;20 Pendonor</p>
+                                <p>Februari :&nbsp;&nbsp;15 Pendonor</p>
+                                <p>Maret :&nbsp;&nbsp;25 Pendonor</p>
+                                <p>April :&nbsp;&nbsp;10 Pendonor</p>
+                                <p>Mei :&nbsp;&nbsp;18 Pendonor</p>
+                                <p>Juni :&nbsp;&nbsp;8 Pendonor</p>
+                                <p>Juli :&nbsp;&nbsp;30 Pendonor</p>
+                                <!-- Tambahkan data jumlah pendonor lainnya sesuai kebutuhan -->
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-    
+</div>
+</div>
+
 `;
 
 export {
