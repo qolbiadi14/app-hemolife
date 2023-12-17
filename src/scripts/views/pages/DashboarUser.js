@@ -11,7 +11,6 @@ import {
 } from '../templates/template-creator';
 
 const DashboardUser = {
-
   globalUserToken: localStorage.getItem('userToken'), // Include this line
   async render() {
     return `
@@ -31,11 +30,14 @@ const DashboardUser = {
     function displayData(data) {
       dataContainer.innerHTML = createDasboardTemplate(data.user);
 
-      data.sukarelawan_menerima?.forEach((sukarelawan) => createCardContainer(sukarelawan, createSukarelawanTemplate));
+      data.sukarelawan_menerima?.forEach((sukarelawan) =>
+        createCardContainer(sukarelawan, createSukarelawanTemplate));
 
-      data.pemohon?.forEach((pemohon) => createCardContainer(pemohon, createPemohonTemplate));
+      data.pemohon?.forEach((pemohon) =>
+        createCardContainer(pemohon, createPemohonTemplate));
 
-      data.pendonor && createCardContainer(data.pendonor, createPendonoremplate);
+      data.pendonor
+        && createCardContainer(data.pendonor, createPendonoremplate);
 
       mainContainer.addEventListener('click', async (event) => {
         const targetButton = event.target.closest('.download-pdf-btn');
@@ -54,7 +56,10 @@ const DashboardUser = {
             console.error('Error generating PDF:', error);
           }
         }
-        if (event.target.id === 'acceptBtn' || event.target.id === 'rejectBtn') {
+        if (
+          event.target.id === 'acceptBtn'
+          || event.target.id === 'rejectBtn'
+        ) {
           // Periksa apakah event.target.dataset.id_user_volunteer atau event.target.dataset.id_user
           const id = event.target.dataset.id_user_volunteer
             || event.target.dataset.id_user;
