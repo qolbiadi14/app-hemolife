@@ -1,23 +1,11 @@
 const landing = {
-    async render() {
-        return `
-    <!-- main content -->
-    <!-- <div class="container">
-        <header>
-            <nav class="navbar navbar-expand-lg" id="menuDrawer">
-                <div class="container-fluid">
-                    <a href="/" class="navbar-brand d-flex align-items-center link-body-emphasis text-decoration-none">
-                        <img src="/images/heros/logo.png" alt="Logo" class="d-inline-block align-text-top logo">
-                    </a>
-                    <div class="d-lg-flex col-lg-6 justify-content-lg-end ms-auto">
-                        <a class="btn btn-danger mr-2" href="/#/login">Login</a>
-                    </div>
-                </div>
-            </nav>
-        </header>
-    </div> -->
-
-    <div class="container" data-aos="fade-up">
+  async render() {
+    if (localStorage.getItem('userToken')) {
+      window.location.hash = '#/dashboard-user';
+      return '';
+    }
+    return `
+  <div class="container" data-aos="fade-up">
         <div class="row">
         <div class="col-md-6 d-flex" data-aos="fade-up">
             <div class="judul-apk pt-5">
@@ -50,7 +38,7 @@ const landing = {
         <div class="row pt-5 mt-5" data-aos="fade-up">
         <div class="row g-0">
             <div class="col-lg-6">
-            <img src="/images/login_regis/HEMOLIFE 3.png" class="img-fluid rounded-start" alt="...">
+            <img src="/images/heros/logo.png" class="img-fluid rounded-start" alt="logo">
             </div>
             <div class="col-lg-6">
             <div class="card-body">
@@ -205,7 +193,7 @@ const landing = {
                 <div class="card-body">
                     <div>
                         <h5 class="card-title" style="font-size: 1rem;">Dea Puspita Anggraeni</h5>
-                        <p class="card-text text-break" style="font-size: 0.8rem;">UI/UX & Front-End Develope</p>
+                        <p class="card-text text-break" style="font-size: 0.8rem;">UI/UX & Front-End Developer</p>
                     </div>
                     <div class="social-media-mt-3">
                         <a href="https://www.linkedin.com/in/dea-puspita-/" target="_blank" class="btn"><i class="fab fa-linkedin"></i></a>
@@ -235,7 +223,7 @@ const landing = {
         <!-- Card for diyawan -->
         <div class="col-md-3 col-sm-6 mb-3" data-aos="fade-up">
             <div class="card text-center" style="height: 400px;">
-                <img src="/images/login_regis/diyawan.jpg" class="card-img-top img-fluid" style="height: 60%; object-fit: cover;" alt="diyawan">
+                <img src="./images/login_regis/diyawan.jpg" class="card-img-top img-fluid" style="height: 60%; object-fit: cover;" alt="diyawan">
                 <div class="card-body">
                     <div>
                         <h5 class="card-title" style="font-size: 1rem;">Diyawan</h5>
@@ -248,7 +236,6 @@ const landing = {
                 </div>
             </div>
         </div>
-
         <!-- Card for qolbi -->
         <div class="col-md-3 col-sm-6 mb-3" data-aos="fade-up">
             <div class="card text-center" style="height: 400px;">
@@ -264,13 +251,10 @@ const landing = {
                     </div>
                 </div>
             </div>
-        </div>    
-        </div>
-    </div>
-
-    `;
-    },
-    async afterRender() {},
-    };
+</div>
+      `;
+  },
+  async afterRender() {},
+};
 
 export default landing;

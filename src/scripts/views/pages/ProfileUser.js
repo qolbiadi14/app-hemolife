@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 import TheHemoLifeDbSource from '../../data/thehemo-lifedb-source';
 import UrlParser from '../../routes/url-parser';
 import {
@@ -37,11 +38,9 @@ const ProfileUser = {
 
     console.log('Parsed URL:', url);
     try {
-      const userProfile = await TheHemoLifeDbSource.profileUser(url.id);
+      const userProfile = await TheHemoLifeDbSource.profileUser();
       const profileContainer = document.getElementById('profile-container');
-      const editProfileContainer = document.getElementById(
-        'edit-profile-container',
-      );
+      const editProfileContainer = document.getElementById('edit-profile-container');
 
       if (userProfile && userProfile.length > 0) {
         console.log('After Render User Profile:', userProfile);
@@ -54,8 +53,9 @@ const ProfileUser = {
         document
           .getElementById('save-changes-btn')
           .addEventListener('click', async () => {
-            await this.saveChanges(url.id);
+            await this.saveChanges();
           });
+        
         document.getElementById('logout-btn').addEventListener('click', () => {
           // Tampilkan alert konfirmasi
           Swal.fire({
@@ -76,8 +76,7 @@ const ProfileUser = {
         console.log(
           'User tidak ditemukan atau terjadi kesalahan saat mengambil data profil.',
         );
-        profileContainer.innerHTML =
-          'Terjadi kesalahan saat mengambil data profil.';
+        profileContainer.innerHTML = 'Terjadi kesalahan saat mengambil data profil.';
       }
     } catch (error) {
       console.error('Error rendering profile:', error);
@@ -90,17 +89,13 @@ const ProfileUser = {
     console.log('Token removed.');
   },
 
-  async saveChanges(id) {
+  async saveChanges() {
     const updatedData = {
-      // id_user: id,
       nama_lengkap: document.getElementById('nama-lengkap-input').value,
       alamat: document.getElementById('alamat-input').value,
       jenis_kelamin: document.getElementById('jenis-kelamin-input').value,
       tanggal_lahir: document.getElementById('tanggal-lahir-input').value,
-      status_volunteer: document.getElementById('flexSwitchCheckDefault')
-        .checked
-        ? 1
-        : 0,
+      status_volunteer: document.getElementById('flexSwitchCheckDefault').checked ? 1 : 0,
     };
 
     try {
@@ -108,10 +103,7 @@ const ProfileUser = {
         await TheHemoLifeDbSource.updateProfileUser(updatedData);
       console.log('Update Response:', updateResult);
 
-      if (
-        updateResult &&
-        updateResult.message === 'Data profil berhasil diperbarui'
-      ) {
+      if (updateResult && updateResult.message === 'Data profil berhasil diperbarui') {
         console.log('Profil berhasil diperbarui:', updateResult.user[0]);
         this.showBootstrapAlert('success-alert');
       } else {

@@ -13,22 +13,27 @@ import login from '../views/pages/auth/login';
 import register from '../views/pages/auth/register';
 import faq from '../views/pages/faq';
 
+function isLoggedIn() {
+  return localStorage.getItem('userToken') !== null || localStorage.getItem('adminToken') !== null;
+}
+function isAdminLoggedIn() {
+  return localStorage.getItem('adminToken') !== null;
+}
+
 const routes = {
-  '/': landing,
-  '/dashboard-user': DashboarUser,
-  '/profile': ProfileUser,
-  '/jadwal': JadwalDaftarDonorPMI,
-  '/detail-jadwal-daftar/:id': JadwalDaftarDetail,
-  '/cari-sukarelawan': CariSukarelawan,
-  '/login': login,
-  '/register': register,
+  '/': isLoggedIn() ? (isAdminLoggedIn() ? ProfileAdmin : DashboarUser) : landing,
   '/landing': landing,
-  '/faq': faq,
-  '/adminprofile': ProfileAdmin,
-  '404': NotFoundPage,
+  '/login': isLoggedIn() ? (isAdminLoggedIn() ? ProfileAdmin : DashboarUser) : login,
+  '/register': isLoggedIn() ? (isAdminLoggedIn() ? ProfileAdmin : DashboarUser) : register,
+  '/dashboard-user': isLoggedIn() ? (isAdminLoggedIn() ? ProfileAdmin : DashboarUser) : landing,
+  '/profile': isLoggedIn() ? (isAdminLoggedIn() ? ProfileAdmin : ProfileUser) : landing,
+  '/jadwal': isLoggedIn() ? (isAdminLoggedIn() ? ProfileAdmin : JadwalDaftarDonorPMI) : landing,
+  '/detail-jadwal-daftar/:id': isLoggedIn() ? (isAdminLoggedIn() ? ProfileAdmin : JadwalDaftarDetail) : landing,
+  '/cari-sukarelawan': isLoggedIn() ? (isAdminLoggedIn() ? ProfileAdmin : CariSukarelawan) : landing,
+  '/adminprofile': isLoggedIn() && isAdminLoggedIn() ? ProfileAdmin : landing,
   '/kelola-bank-darah': KelolaBankDarah,
   '/kelola-donor-darah': KelolaDonorDarah,
   '/dashboard-admin': DasboardAdmin,
+  '*': NotFoundPage,
 };
-
 export default routes;

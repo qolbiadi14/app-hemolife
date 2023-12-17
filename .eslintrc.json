@@ -6,14 +6,29 @@
   },
   "extends": "airbnb-base",
   "parserOptions": {
-    "ecmaVersion": "latest",
+    "ecmaVersion": 2022,
     "sourceType": "module"
   },
   "rules": {
     "import/no-extraneous-dependencies": "off",
-    "linebreak-style":"off",
+    "linebreak-style": "off",
     "on-underscore-dangle": "off",
     "no-underscore-dangle": "off",
-    "no-console":"off",
+    "no-console": "off",
+    "no-return-await": "off",
+    "no-restricted-globals": "off",
+    "new-cap": "off",
+    "camelcase": "off",
+  
+    "no-shadow": "off",
+    "no-param-reassign": "off",
+    "no-nested-ternary": "off",
+    "no-empty-function": "off",
+    "import/no-cycle": "off",
+    "max-len": "off",
+    "implicit-arrow-linebreak": "off",
+    "no-unused-expressions":"off",
+    "no-undef": "off",
+    "no-use-before-define": "off"
   }
 }

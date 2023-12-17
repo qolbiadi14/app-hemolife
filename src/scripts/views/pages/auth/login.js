@@ -1,6 +1,7 @@
-// login.js
+
+import Swal from 'sweetalert2';
 import TheHemoLifeDbSource from '../../../data/thehemo-lifedb-source';
-// login.js
+
 import routes from '../../../routes/routes';
 
 const login = {
@@ -55,24 +56,41 @@ const login = {
       const email = formData.get('email');
       const password = formData.get('password');
 
-      if (email === 'admin@gmail.com' && password === 'admin') {
-        TheHemoLifeDbSource.setGlobalAdminToken();
-        window.location.hash = '/dashboard-admin';
-        window.location.reload();
-        return;
-      }
-
       try {
         const loginResponse = await TheHemoLifeDbSource.login(email, password);
 
-        if (loginResponse && loginResponse.access_token) {
-          localStorage.setItem('userToken', loginResponse.access_token);
-          await renderDashboardPage();
+        if (loginResponse && loginResponse.token) {
+          if (loginResponse.role === 'admin') {
+            localStorage.setItem('adminToken', loginResponse.token);
+            await renderAdminProfilePage();
+          } else {
+            localStorage.setItem('userToken', loginResponse.token);
+            await renderDashboardPage();
+          }
         } else {
           console.error('Login failed:', loginResponse);
+          Swal.fire({
+            icon: 'error',
+            title: 'Login Gagal',
+            text: 'Email atau password salah. Silakan coba lagi.',
+          });
         }
       } catch (error) {
         console.error('Login failed:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Login Gagal',
+          text: 'Terjadi kesalahan saat login. Silakan coba lagi.',
+        });
+
+      // Jika username dan password adalah "admin", arahkan ke halaman profil admin
+      // if (email === 'admin@gmail.com' && password === 'admin') {
+      //   TheHemoLifeDbSource.setGlobalAdminToken();
+      //   window.location.hash = '/adminProfile';
+      //   window.location.reload();
+      //   return;
+      // }
+
       }
     });
   },
@@ -90,5 +108,17 @@ async function renderDashboardPage() {
     window.location.reload();
   }
 }
+
+async function renderAdminProfilePage() {
+  const page = routes['/adminprofile'];
+  if (page) {
+    const mainContent = document.getElementById('mainContent');
+    mainContent.innerHTML = await page.render();
+    await page.afterRender();
+    window.location.hash = '#/adminprofile';
+    window.location.reload();
+  }
+}
+
 
 export default login;

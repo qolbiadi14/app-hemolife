@@ -2,6 +2,8 @@
 
 * {
   font-family: 'Poppins', sans-serif;
+  padding: 0;
+  margin: 0;
 }
 
 .card-text {
@@ -16,6 +18,7 @@ img {
   display: flex;
   align-items: center;
 }
+
 .not-found-container {
   display: flex;
   align-items: center;
@@ -44,7 +47,6 @@ img {
   color: #333;
   font-size: 18px;
 }
-
 
 @media (min-width: 597px) {
   .logo {
@@ -77,16 +79,6 @@ img {
   .border-md-end {
     border-bottom: none;
   }
-  .not-found-title {
-    color: #e02424;
-    font-size: 3em;
-    margin-bottom: 10px;
-  }
-}
-  .navbar-nav .nav-item {
-    transition: color 0.3s, transform 0.5s;
-
-  }
 
   .not-found-title {
     color: #e02424;
@@ -95,9 +87,10 @@ img {
   }
 
   .ledig-titel {
-    /* background-color: red; */
     font-size: 3rm;
+
   }
+}
 
 .navbar-nav .nav-item {
   transition: color 0.3s, transform 0.5s;
@@ -166,6 +159,7 @@ img {
 .navbar-nav .nav-link {
   transition: color 0.3s, transform 0.5s;
 }
+
 .navbar-nav .nav-link:hover {
   transform: scale(1.0);
 }
@@ -181,6 +175,65 @@ img {
   border-radius: 5px;
   padding: 5px;
   background-color: #FFC0CB;
+}
+
+.bg-nav-footer {
+  background-color: #ff0000;
+  color: #EEEDED;
+}
+
+.social-icon:hover {
+  background: #f0f0f0;
+}
+
+.footer-link {
+  color: #ffffff;
+  transition: color 0.3s ease-in-out;
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  color: #af922a;
+}
+
+.footer-link:active {
+  font-size: 0.9em;
+  transition: font-size 0.3s ease-in-out;
+}
+
+.nav.col-md-4 li {
+  margin: 0 8px;
+}
+
+.text-body-secondary i {
+  background: #ffffff;
+  display: inline-block;
+  width: 45px;
+  height: 45px;
+
+  line-height: 45px;
+  text-align: center;
+  border-radius: 50%;
+  animation: gradientChange 5s infinite alternate;
+}
+
+@keyframes gradientChange {
+  0% {
+    background-position: 100% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
+
+/* .text-body-secondary i:hover {
+  animation: none; 
+  background: linear-gradient(to left, #ff0000, #00ff00); 
+} */
+
+.text-body-secondary i:active {
+  background: linear-gradient(to left, #ff0000, #209cd9);
 }
 
 .switch-lg .form-check-input {
@@ -201,6 +254,3 @@ img {
   transform: scale(0.8);
 }
 
-i{
-  font-family: 1.5em;
-}

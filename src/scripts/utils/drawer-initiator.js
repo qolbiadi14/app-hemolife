@@ -8,7 +8,10 @@ const DrawerInitiator = {
       this._closeDrawer(event, drawer);
     });
 
-    this._adjustNavbarBasedOnLoginStatus(drawer);
+    this.
+    
+    
+    (drawer);
   },
 
   _toggleDrawer(event, drawer) {
@@ -20,20 +23,22 @@ const DrawerInitiator = {
     event.stopPropagation();
     drawer.classList.remove('open');
   },
-
-  _adjustNavbarBasedOnLoginStatus(drawer) {
-    if (localStorage.getItem('userToken')) {
+  async _adjustNavbarBasedOnLoginStatus(drawer) {
+    const userToken = localStorage.getItem('userToken');
+    const adminToken = localStorage.getItem('adminToken');
+    if (userToken) {
       drawer.innerHTML += `
-     <navbar-component></navbar-component>
+        <navbar-component></navbar-component>
       `;
-    } else if (localStorage.getItem('adminToken')) {
+
+    } else if (adminToken) {
       drawer.innerHTML += `
-      <navbar-admin></navbar-admin>
+      <custom-navadmin></custom-navadmin>
       `;
     } else {
-      drawer.innerHTML += `
+      drawer.innerHTML += `       
       <custom-navbar></custom-navbar>
-    `;
+      `;
     }
   },
 };

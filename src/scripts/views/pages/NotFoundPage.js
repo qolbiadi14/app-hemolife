@@ -1,6 +1,7 @@
+/* eslint-disable class-methods-use-this */
 class NotFoundPage {
-    async render() {
-      return `
+  async render() {
+    return `
         <div class="not-found-container">
             <div class="not-found">
                 <h2 class="not-found-title">404 Not Found</h2>
@@ -8,8 +9,7 @@ class NotFoundPage {
             </div>
         </div>
       `;
-    }
   }
-  
-  export default new NotFoundPage;
-  
+}
+
+export default new NotFoundPage();
