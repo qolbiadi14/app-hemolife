@@ -80,6 +80,22 @@ const ProfileUser = {
             }
           });
         });
+        document.getElementById('logout-btn').addEventListener('click', () => {
+          // Tampilkan alert konfirmasi
+          Swal.fire({
+            title: 'Apakah Anda yakin ingin logout?',
+            showDenyButton: true,
+            confirmButtonText: 'Ya',
+            denyButtonText: 'Tidak',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              // Jika pengguna yakin, lakukan logout dan redirect ke halaman "/landing"
+              this.logout();
+              window.location.href = '#/landing';
+              location.reload();
+            }
+          });
+        });
       } else {
         // Tampilkan pesan error jika data user profile tidak ditemukan
         console.error(

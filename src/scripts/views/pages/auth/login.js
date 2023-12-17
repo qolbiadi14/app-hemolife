@@ -1,5 +1,7 @@
+
 import Swal from 'sweetalert2';
 import TheHemoLifeDbSource from '../../../data/thehemo-lifedb-source';
+
 import routes from '../../../routes/routes';
 
 const login = {
@@ -54,6 +56,7 @@ const login = {
       const email = formData.get('email');
       const password = formData.get('password');
 
+
       try {
         const loginResponse = await TheHemoLifeDbSource.login(email, password);
 
@@ -80,6 +83,15 @@ const login = {
           title: 'Login Gagal',
           text: 'Terjadi kesalahan saat login. Silakan coba lagi.',
         });
+
+      // Jika username dan password adalah "admin", arahkan ke halaman profil admin
+      // if (email === 'admin@gmail.com' && password === 'admin') {
+      //   TheHemoLifeDbSource.setGlobalAdminToken();
+      //   window.location.hash = '/adminProfile';
+      //   window.location.reload();
+      //   return;
+      // }
+
       }
     });
   },
@@ -97,6 +109,7 @@ async function renderDashboardPage() {
     window.location.reload();
   }
 }
+
 async function renderAdminProfilePage() {
   const page = routes['/adminprofile'];
   if (page) {
@@ -107,5 +120,6 @@ async function renderAdminProfilePage() {
     window.location.reload();
   }
 }
+
 
 export default login;
