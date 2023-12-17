@@ -2,9 +2,8 @@ import L from 'leaflet';
 import 'leaflet.control.layers.tree';
 import 'leaflet.awesome-markers';
 
-
-const createPemohonTemplate = (pemohon) => /* html */ 
-   `
+const createPemohonTemplate = (pemohon /* html */) =>
+  `
   <div class="card shadow">
     <!-- <img src="..." class="card-img-top" alt="..."> -->
     <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect></svg>
@@ -88,7 +87,8 @@ const createPendonoremplate = (pendonor) => /* html */ `
 
 const createDasboardTemplate = (data) => /* html */ `
   <div class="movie-item">
-    <h1 class="fw-bold">Selamat Datang <span class="text-danger"> ${ data.nama || data.id_user || 'Pengguna'
+    <h1 class="fw-bold">Selamat Datang <span class="text-danger"> ${
+      data.nama || data.id_user || 'Pengguna'
     } </span></h1>
   </div>
 `;
@@ -146,7 +146,7 @@ const createJadwalDetailPMITemplate = (pmi) => /* html */ `
     </div>
   </div>
 `;
- const initializeLeafletMaps = (jadwals) => {
+const initializeLeafletMaps = (jadwals) => {
   jadwals.forEach(({ id_lok_pmi, latitude, longitude, nama_lok_pmi }) => {
     const mapContainer = document.getElementById(`map-${id_lok_pmi}-container`);
     if (!mapContainer || mapContainer.dataset.leafletInitialized) return;
@@ -299,7 +299,236 @@ const createUpdateProfileAdminTemplate = (adminProfile) => /* html */ `
   </form>
 `;
 
+const createKelolaDonorDarah = (adminProfile) => /* html */ `
+<div class="col py-3">
+            <div class="container py-3">
+				<h2>Kelola Donor Darah</h2>
+				<form class="form-inline mb-4">
+					<label class="sr-only" for="searchInput">Cari Pendonor:</label>
+					<input type="text" class="form-control mb-2 mr-sm-2" id="searchInput"
+						   placeholder="Masukkan Nama Pendonor">
+					<button type="submit" class="btn btn-primary mb-2">Cari</button>
+				</form>
+				<div class="table-responsive">
+					<table class="table table-striped table-sm">
+						<thead>
+						<tr>
+							<th class="col">No</th>
+							<th class="col-6">Nama Pendonor</th>
+							<th class="col">Jadwal</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td class="col">1</td>
+							<td class="col-6">ARIEL</td>
+							<td class="col">SELASA - 12/10/2021</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+</div>
+`;
+const createKelolaBankDarah = (adminProfile) => /* html */ `
+<div class="col py-3">
+				<div class="container py-3">
+					<h2>Kelola Donor Darah</h2>
+					<div class="col-md-6">
+						<div class="card h-100">
+							<div class="card-body">
+								<div class="row g-3">
+									<div class="col-md-6">
+										<div
+											class="bg-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+											<p class="mb-0">A (+)</p>
+											<p class="mb-0">50</p>
+											<button type="button" class="btn btn-secondary ms-2">Edit</button>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="bg-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+											<p class="mb-0">A (-)</p>
+											<p class="mb-0">50</p>
+											<button type="button" class="btn btn-secondary ms-2">Edit</button>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="bg-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+											<p class="mb-0">B (+)</p>
+											<p class="mb-0">50</p>
+											<button type="button" class="btn btn-secondary ms-2">Edit</button>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="bg-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+											<p class="mb-0">B (+)</p>
+											<p class="mb-0">50</p>
+											<button type="button" class="btn btn-secondary ms-2">Edit</button>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="bg-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+											<p class="mb-0">AB (-)</p>
+											<p class="mb-0">50</p>
+											<button type="button" class="btn btn-secondary ms-2">Edit</button>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="bg-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+											<p class="mb-0">AB (+)</p>
+											<p class="mb-0">50</p>
+											<button type="button" class="btn btn-secondary ms-2">Edit</button>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="bg-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+											<p class="mb-0">0 (-)</p>
+											<p class="mb-0">50</p>
+											<button type="button" class="btn btn-secondary ms-2">Edit</button>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="bg-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+											<p class="mb-0">0 (+)</p>
+											<p class="mb-0">50</p>
+											<button type="button" class="btn btn-secondary ms-2">Edit</button>
+										</div>
+									</div>
+									<div class="mt-auto p-3 d-flex justify-content-end">
+										<button type="button" class="btn btn-secondary">Edit</button>
+										<button type="button" class="btn btn-primary ms-2">Simpan</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+`;
+const createDashboardAdmin = (adminProfile) => /* html */ `
+<div class="col py-3">
+    <div class="container py-3">
+        <h2 class="mb-4">Dashboard Admin</h2>
+        <div class="row">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <!-- Kolom untuk Chart -->
+                        <div class="col-md-6 mb-2">
+                            <h3>Stok Darah</h3>
+                            <!-- Elemen canvas untuk chart -->
+                            <canvas id="bloodStockChart"></canvas>
+                        </div>
 
+                        <!-- Spasi antara kolom -->
+                        <div class="col-md-1"></div>
+
+                        <!-- Kolom untuk Keterangan Stok Darah -->
+                        <div class="col-md-5 mb-2">
+                            <h3>Keterangan Stok Darah</h3>
+                            <div class="keterangan-stok-darah">
+                                <p>A + :&nbsp;&nbsp;150 Kantong</p>
+                                <p>A - :&nbsp;&nbsp;50 Kantong</p>
+                                <p>B + :&nbsp;&nbsp;120 Kantong</p>
+                                <p>B - :&nbsp;&nbsp;30 Kantong</p>
+                                <p>AB + :&nbsp;&nbsp;80 Kantong</p>
+                                <p>AB - :&nbsp;&nbsp;20 Kantong</p>
+                                <p>O + :&nbsp;&nbsp;200 Kantong</p>
+                                <p>O - :&nbsp;&nbsp;50 Kantong</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <!-- Kolom untuk Chart -->
+                        <div class="col-md-6 mb-2">
+                            <h3>Jumlah Pendonor per Bulan</h3>
+                            <!-- Elemen canvas untuk chart -->
+                            <canvas id="pendonorChart"></canvas>
+                        </div>
+
+                        <!-- Spasi antara kolom -->
+                        <div class="col-md-1"></div>
+
+                        <!-- Kolom untuk Keterangan Jumlah Pendonor -->
+                        <div class="col-md-5 mb-2">
+                            <h3>Keterangan Jumlah Pendonor</h3>
+                            <div class="keterangan-jumlah-pendonor">
+                                <p>Januari :&nbsp;&nbsp;20 Pendonor</p>
+                                <p>Februari :&nbsp;&nbsp;15 Pendonor</p>
+                                <p>Maret :&nbsp;&nbsp;25 Pendonor</p>
+                                <p>April :&nbsp;&nbsp;10 Pendonor</p>
+                                <p>Mei :&nbsp;&nbsp;18 Pendonor</p>
+                                <p>Juni :&nbsp;&nbsp;8 Pendonor</p>
+                                <p>Juli :&nbsp;&nbsp;30 Pendonor</p>
+                                <!-- Tambahkan data jumlah pendonor lainnya sesuai kebutuhan -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+`;
+const createCariSukarelawanTemplate = (userProfile) => /* html */ `
+      <div class="container mt-5">
+      <div class="row">
+        <!-- Box Pertama: Form Pencarian -->
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Form Pencarian</h5>
+              <form>
+                <div class="mb-3">
+                  <label for="golonganDarah" class="form-label">Golongan Darah</label>
+                  <select class="form-select" id="golonganDarah">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="AB">AB</option>
+                    <option value="O">O</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="lokasi" class="form-label">Lokasi</label>
+                  <select class="form-select" id="lokasi">
+                    <option value="Jakarta">Jakarta</option>
+                    <option value="Bandung">Bandung</option>
+                    <option value="Jogja">Jogja</option>
+                  </select>
+                </div>
+                <button type="button" id="buttonCari" class="btn btn-primary">Cari</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- Box Kedua: Hasil Pencarian -->
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Hasil Pencarian</h5>
+              <div id="hasilPencarian">
+                <!-- Hasil pencarian akan ditampilkan di sini -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+`;
 
 export {
   createProfileAdminTemplate,

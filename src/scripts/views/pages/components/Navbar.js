@@ -4,9 +4,6 @@ class NavbarComponent extends HTMLElement {
         <header>
             <nav class="navbar navbar-expand-lg" id="menuDrawer">
                 <div class="container-fluid">
-                <a href="/" class="navbar-brand d-flex align-items-center link-body-emphasis text-decoration-none">
-                        <img src="/images/heros/logo.png" alt="Logo" class="d-inline-block align-text-top logo">
-                    </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
                         id="hamburgerButton">
