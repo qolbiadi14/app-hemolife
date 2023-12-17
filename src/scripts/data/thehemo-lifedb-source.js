@@ -219,7 +219,7 @@ class TheHemoLifeDbSource {
       const response = await fetch(API_ENDPOINT.CARI_SUKARELAWAN, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${globalUserToken}`, // Sesuaikan dengan token yang diperlukan
+          'Authorization': `${globalUserToken}`, // Sesuaikan dengan token yang diperlukan
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
@@ -248,7 +248,7 @@ class TheHemoLifeDbSource {
   try {
     const response = await fetch(API_ENDPOINT.DASHBOARD_ADMIN, {
       headers: {
-        'Authorization': `Bearer ${globalAdminToken}`,
+        'Authorization': `${globalAdminToken}`,
         'Content-Type': 'application/json',
       },
     });
@@ -276,7 +276,7 @@ static async kelolaDonorDarah() {
   try {
     const response = await fetch(API_ENDPOINT.KELOLA_PENDONOR_DARAH, {
       headers: {
-        'Authorization': `Bearer ${globalAdminToken}`,
+        'Authorization': `${globalAdminToken}`,
         'Content-Type': 'application/json',
       },
     });
