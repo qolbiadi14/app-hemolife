@@ -17,7 +17,7 @@ const register = {
                   <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
                   <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" required />
                 </div>
- <div class="col">
+              <div class="col">
                   <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
                   <select
                     name="jenis_kelamin"

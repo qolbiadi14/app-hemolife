@@ -23,8 +23,8 @@ class TheHemoLifeDbSource {
 
     try {
       const response = await fetch(API_ENDPOINT.LOGIN, {
-        method: 'POST',
         mode: 'cors',
+        method: 'POST',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
@@ -49,6 +49,7 @@ class TheHemoLifeDbSource {
   static async register(user) {
     try {
       const response = await fetch(API_ENDPOINT.REGISTER, {
+        // mode: 'cors',
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -77,10 +78,12 @@ class TheHemoLifeDbSource {
 
   static async updateProfileUser(updatedData) {
     const response = await fetch(API_ENDPOINT.UPDATE_PROFILE, {
+      // mode: 'cors',
       method: 'PUT',
       headers: {
         Authorization: `Bearer ${globalUserToken}`,
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify(updatedData),
     });
@@ -90,10 +93,11 @@ class TheHemoLifeDbSource {
 
   static async profileUser() {
     const response = await fetch(API_ENDPOINT.USER_PROFILE, {
-      mode: 'cors',
+      // mode: 'cors',
       headers: {
         Authorization: `Bearer ${globalUserToken}`,
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
       },
     });
     return response.ok ? (await response.json()).user : [];
@@ -102,10 +106,12 @@ class TheHemoLifeDbSource {
   static async profilAdmin() {
     try {
       const response = await fetch(API_ENDPOINT.ADMIN_PROFILE, {
+        // mode: 'cors',
         method: 'GET',
         headers: {
           Authorization: `Bearer ${globalAdminToken}`,
           'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
         },
       });
 
@@ -127,10 +133,12 @@ class TheHemoLifeDbSource {
 
   static async updateProfileAdmin(updatedData) {
     const response = await fetch(API_ENDPOINT.UPDATE_PROFILE_ADMIN, {
+      // mode: 'cors',
       method: 'PUT',
       headers: {
         Authorization: `Bearer ${globalAdminToken}`,
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify(updatedData),
     });
@@ -151,11 +159,13 @@ class TheHemoLifeDbSource {
     };
 
     const response = await fetch(endpoint, {
+      // mode: 'cors',
       method: 'POST',
       headers: {
         Authorization: `Bearer ${userToken}`,
         Accept: 'application/json',
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify(requestBody),
     });
@@ -171,9 +181,11 @@ class TheHemoLifeDbSource {
 
   static async dasboardUser() {
     const response = await fetch(API_ENDPOINT.DASHBOARD_USER, {
+      mode: 'cors',
       headers: {
         Authorization: `Bearer ${globalUserToken}`,
         'Content-Type': 'application/json',
+        // 'Access-Control-Allow-Origin': '*',
       },
     });
     const responseJson = await response.json();
@@ -182,9 +194,11 @@ class TheHemoLifeDbSource {
 
   static async jadwalDonorHemoLife() {
     const response = await fetch(API_ENDPOINT.JADWAL, {
+      mode: 'cors',
       headers: {
         Authorization: `Bearer ${globalUserToken}`,
         'Content-Type': 'application/json',
+        // 'Access-Control-Allow-Origin': '*',
       },
     });
     return response.ok ? (await response.json()).jadwal : [];
@@ -192,10 +206,12 @@ class TheHemoLifeDbSource {
 
   static async daftarJadwalDonorHemoLife(data) {
     const response = await fetch(API_ENDPOINT.DAFTAR_JADWAL, {
+      // mode: 'cors',
       method: 'POST',
       headers: {
         Authorization: `Bearer ${globalUserToken}`,
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify(data),
     });
@@ -207,9 +223,11 @@ class TheHemoLifeDbSource {
   static async jadwalDetailDonorDarah(idPmi) {
     const userToken = globalUserToken || globalAdminToken;
     const response = await fetch(API_ENDPOINT.JADWAL_DETAIL(idPmi), {
+      // mode: 'cors',
       headers: {
         Authorization: `Bearer ${userToken}`,
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
       },
     });
     return response.ok ? (await response.json()).pmi : [];
