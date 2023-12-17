@@ -96,6 +96,66 @@ img {
   transition: color 0.3s, transform 0.5s;
 }
 
+  .switch-lg .form-check {
+    display: flex;
+    align-items: center;
+    border: 2px solid #F00;
+    border-radius: 5px; 
+    padding: 5px; 
+    background-color: #FFC0CB;
+  }
+  
+  .switch-lg .form-check-input {
+    width: 3rem;
+    height: 1.5rem;
+    margin-right: 5px; 
+  }
+  
+  .switch-lg .form-check-label {
+    font-size: 1.2rem;
+  }
+  
+  .switch-lg .form-check-input:hover {
+    transform: scale(1.2);
+  }
+  
+  .switch-lg .form-check-input:active {
+    transform: scale(0.8);
+  }
+  
+  /* Tambahkan gaya untuk card stok darah */
+.card {
+  border: 1px solid #ddd; /* Tambahkan garis tepi pada card */
+  border-radius: 10px; /* Tambahkan sudut bulat pada card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan untuk efek lift */
+}
+
+.card-body {
+  padding: 20px; /* Tambahkan jarak antara isi card dan tepi card */
+}
+
+.card-title {
+  font-size: 1.5rem; /* Ubah ukuran font judul card */
+  margin-bottom: 15px; /* Tambahkan jarak antara judul card dan isi card */
+}
+
+.list-group-item {
+  background-color: #f8f9fa; /* Warna latar belakang item dalam list-group */
+  border: none; /* Hapus garis tepi item */
+  border-radius: 5px; /* Tambahkan sudut bulat pada item */
+  margin-bottom: 5px; /* Tambahkan jarak antara item */
+}
+
+/* Hover effect pada item */
+.list-group-item:hover {
+  background-color: #e2e6ea; /* Warna latar belakang saat dihover */
+  cursor: pointer; /* Ganti kursor saat dihover */
+}
+
+#pendonorChart {
+  width: 400px;
+  height: 200px;
+}
 .navbar-nav .nav-link {
   transition: color 0.3s, transform 0.5s;
 }
@@ -193,3 +253,4 @@ img {
 .switch-lg .form-check-input:active {
   transform: scale(0.8);
 }
+

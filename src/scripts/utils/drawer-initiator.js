@@ -7,11 +7,7 @@ const DrawerInitiator = {
     content.addEventListener('click', (event) => {
       this._closeDrawer(event, drawer);
     });
-
-    this.
-    
-    
-    (drawer);
+    this._adjustNavbarBasedOnLoginStatus(drawer);
   },
 
   _toggleDrawer(event, drawer) {
@@ -26,15 +22,14 @@ const DrawerInitiator = {
   async _adjustNavbarBasedOnLoginStatus(drawer) {
     const userToken = localStorage.getItem('userToken');
     const adminToken = localStorage.getItem('adminToken');
-
     if (userToken) {
       drawer.innerHTML += `
         <navbar-component></navbar-component>
       `;
+
     } else if (adminToken) {
       drawer.innerHTML += `
-       <custom-navadmin></custom-navadmin>
-      ;
+      <custom-navadmin></custom-navadmin>
       `;
     } else {
       drawer.innerHTML += `       
