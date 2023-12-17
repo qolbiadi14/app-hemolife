@@ -23,14 +23,12 @@ const DrawerInitiator = {
 
   _adjustNavbarBasedOnLoginStatus(drawer) {
     if (localStorage.getItem('userToken')) {
-      // Jika user sudah login, tambahkan link ke profil user
       drawer.innerHTML += `
      <navbar-component></navbar-component>
       `;
     } else if (localStorage.getItem('adminToken')) {
       // menu navbar admin
     } else {
-      // Jika user belum login, tambahkan link ke halaman login dan register
       drawer.innerHTML += `
       <custom-navbar></custom-navbar>
     `;
