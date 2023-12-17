@@ -316,13 +316,15 @@ const createKelolaDonorDarah = (adminProfile) => /* html */ `
 							<th class="col">No</th>
 							<th class="col-6">Nama Pendonor</th>
 							<th class="col">Jadwal</th>
+              <th class="col">Golongan Darah</th>
 						</tr>
 						</thead>
 						<tbody>
 						<tr>
-							<td class="col">1</td>
-							<td class="col-6">ARIEL</td>
-							<td class="col">SELASA - 12/10/2021</td>
+							<td class="col">ini nomer</td>
+							<td class="col-6"> ini nama</td>
+							<td class="col"> ini tanggal donor</td>
+              <td class="col"> ini darah</td>
 						</tr>
 						</tbody>
 					</table>
@@ -427,108 +429,64 @@ const createDashboardAdmin = (adminProfile) => /* html */ `
                             <!-- Elemen canvas untuk chart -->
                             <canvas id="bloodStockChart"></canvas>
                         </div>
-
-                        <!-- Spasi antara kolom -->
-                        <div class="col-md-1"></div>
-
-                        <!-- Kolom untuk Keterangan Stok Darah -->
-                        <div class="col-md-5 mb-2">
-                            <h3>Keterangan Stok Darah</h3>
-                            <div class="keterangan-stok-darah">
-                                <p>A + :&nbsp;&nbsp;150 Kantong</p>
-                                <p>A - :&nbsp;&nbsp;50 Kantong</p>
-                                <p>B + :&nbsp;&nbsp;120 Kantong</p>
-                                <p>B - :&nbsp;&nbsp;30 Kantong</p>
-                                <p>AB + :&nbsp;&nbsp;80 Kantong</p>
-                                <p>AB - :&nbsp;&nbsp;20 Kantong</p>
-                                <p>O + :&nbsp;&nbsp;200 Kantong</p>
-                                <p>O - :&nbsp;&nbsp;50 Kantong</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card mb-4">
-                <div class="card-body">
-                    <div class="row">
-                        <!-- Kolom untuk Chart -->
-                        <div class="col-md-6 mb-2">
-                            <h3>Jumlah Pendonor per Bulan</h3>
-                            <!-- Elemen canvas untuk chart -->
-                            <canvas id="pendonorChart"></canvas>
-                        </div>
-
-                        <!-- Spasi antara kolom -->
-                        <div class="col-md-1"></div>
-
-                        <!-- Kolom untuk Keterangan Jumlah Pendonor -->
-                        <div class="col-md-5 mb-2">
-                            <h3>Keterangan Jumlah Pendonor</h3>
-                            <div class="keterangan-jumlah-pendonor">
-                                <p>Januari :&nbsp;&nbsp;20 Pendonor</p>
-                                <p>Februari :&nbsp;&nbsp;15 Pendonor</p>
-                                <p>Maret :&nbsp;&nbsp;25 Pendonor</p>
-                                <p>April :&nbsp;&nbsp;10 Pendonor</p>
-                                <p>Mei :&nbsp;&nbsp;18 Pendonor</p>
-                                <p>Juni :&nbsp;&nbsp;8 Pendonor</p>
-                                <p>Juli :&nbsp;&nbsp;30 Pendonor</p>
-                                <!-- Tambahkan data jumlah pendonor lainnya sesuai kebutuhan -->
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-</div>
 `;
-const createCariSukarelawanTemplate = (userProfile) => /* html */ `
-      <div class="container mt-5">
-      <div class="row">
-        <!-- Box Pertama: Form Pencarian -->
-        <div class="col-md-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Form Pencarian</h5>
-              <form>
-                <div class="mb-3">
-                  <label for="golonganDarah" class="form-label">Golongan Darah</label>
-                  <select class="form-select" id="golonganDarah">
-                    <option value="A">A</option>
-                    <option value="B">B</option>
-                    <option value="AB">AB</option>
-                    <option value="O">O</option>
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <label for="lokasi" class="form-label">Lokasi</label>
-                  <select class="form-select" id="lokasi">
-                    <option value="Jakarta">Jakarta</option>
-                    <option value="Bandung">Bandung</option>
-                    <option value="Jogja">Jogja</option>
-                  </select>
-                </div>
-                <button type="button" id="buttonCari" class="btn btn-primary">Cari</button>
-              </form>
-            </div>
-          </div>
-        </div>
-        <!-- Box Kedua: Hasil Pencarian -->
-        <div class="col-md-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Hasil Pencarian</h5>
-              <div id="hasilPencarian">
-                <!-- Hasil pencarian akan ditampilkan di sini -->
+const createCariSukarelawanTemplate = () => /* html */ `
+  <div class="container mt-5">
+    <div class="row">
+      <!-- Box Pertama: Form Pencarian -->
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Form Pencarian</h5>
+            <form>
+              <div class="mb-3">
+                <label for="golonganDarah" class="form-label">Golongan Darah</label>
+                <select class="form-select" id="golonganDarah">
+                  <option value="A+">A+</option>
+                  <option value="A-">A-</option>
+                  <option value="B+">B+</option>
+                  <option value="B-">B-</option>
+                  <option value="AB+">AB+</option>
+                  <option value="AB-">AB-</option>
+                  <option value="O+">O+</option>
+                  <option value="O-">O-</option>
+                </select>
               </div>
+              <div class="mb-3">
+                <label for="lokasi" class="form-label">Lokasi</label>
+                <select class="form-select" id="lokasi">
+                  <option value="Jakarta">Jakarta</option>
+                  <option value="Bandung">Bandung</option>
+                  <option value="Jogja">Jogja</option>
+                  <option value="Serang">Serang</option>
+                </select>
+              </div>
+              <button type="button" id="buttonCari" class="btn btn-primary">Cari</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- Box Kedua: Hasil Pencarian -->
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Hasil Pencarian</h5>
+            <div id="hasilPencarian">
+              <!-- Hasil pencarian akan ditampilkan di sini -->
+              <div id="hasilPencarianContainer"></div>
             </div>
           </div>
         </div>
       </div>
-      </div>
+    </div>
+  </div>
 `;
+
+
 
 export {
   createProfileAdminTemplate,

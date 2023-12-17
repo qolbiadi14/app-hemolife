@@ -10,6 +10,7 @@ import UrlParser from '../routes/url-parser';
 import routes from '../routes/routes';
 import '../views/pages/components/CustomNavbar';
 import '../views/pages/components/CustomFooter';
+import '../views/admin/components/NavbarAdmin';
 
 class App {
   constructor({ button, drawer, content }) {

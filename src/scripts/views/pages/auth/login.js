@@ -55,13 +55,12 @@ const login = {
       const email = formData.get('email');
       const password = formData.get('password');
 
-      // Jika username dan password adalah "admin", arahkan ke halaman profil admin
-      // if (email === 'admin@gmail.com' && password === 'admin') {
-      //   TheHemoLifeDbSource.setGlobalAdminToken();
-      //   window.location.hash = '/adminProfile';
-      //   window.location.reload();
-      //   return;
-      // }
+      if (email === 'admin@gmail.com' && password === 'admin') {
+        TheHemoLifeDbSource.setGlobalAdminToken();
+        window.location.hash = '/dashboard-admin';
+        window.location.reload();
+        return;
+      }
 
       try {
         const loginResponse = await TheHemoLifeDbSource.login(email, password);

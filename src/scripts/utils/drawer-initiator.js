@@ -27,7 +27,9 @@ const DrawerInitiator = {
      <navbar-component></navbar-component>
       `;
     } else if (localStorage.getItem('adminToken')) {
-      // menu navbar admin
+      drawer.innerHTML += `
+      <navbar-admin></navbar-admin>
+      `;
     } else {
       drawer.innerHTML += `
       <custom-navbar></custom-navbar>

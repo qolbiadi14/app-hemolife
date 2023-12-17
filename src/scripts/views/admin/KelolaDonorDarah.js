@@ -1,26 +1,25 @@
 import TheHemoLifeDbSource from '../../data/thehemo-lifedb-source';
-import { createKelolaDonorDarah} from '../templates/template-creator';
+import { createKelolaDonorDarah } from '../templates/template-creator';
 
 const KelolaDonorDarah = {
   async render() {
-    return `
-      <div class="content">
-        ${createKelolaDonorDarah()}
-      </div>
-    `;
+    try {
+      const bloodDonorData = await TheHemoLifeDbSource.kelolaDonorDarah();
+      return `
+        <div class="content">
+          ${createKelolaDonorDarah(bloodDonorData)}
+        </div>
+      `;
+    } catch (error) {
+      console.error('Error fetching blood donor data:', error);
+      // Handle error, show a message, or redirect as needed
+      return `
+        <div class="content">
+          <p>Error fetching blood donor data. Please try again later.</p>
+        </div>
+      `;
+    }
   },
-    // async afterRender() {
-    //     const buttonCari = document.querySelector('#buttonCari'); // Replace with the actual ID or class of your button
-    //     const hasilPencarianContainer = document.querySelector('#hasilPencarian');
-
-    //     if (buttonCari && hasilPencarianContainer) {
-    //     buttonCari.addEventListener('click', async () => {
-    //         const data = await TheHemoLifeDbSource.CariSukarelawan();
-    //         console.log('Data:', data);
-    //         hasilPencarianContainer.innerHTML = createCariSukarelawanTemplate(data);
-    //     });
-    //     }
-    // },
 };
 
 export default KelolaDonorDarah;
