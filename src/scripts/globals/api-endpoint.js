@@ -1,8 +1,6 @@
 import CONFIG from './config';
 
 const API_ENDPOINT = {
-//  DETAIL: (id) => `${CONFIG.BASE_URL}movie/${id}?api_key=${CONFIG.KEY}`,
-
   // GET
   DASHBOARD_USER: `${CONFIG.HEMO_LIFE_URL}/v1/user/dashboardUser`,
 
@@ -21,7 +19,7 @@ const API_ENDPOINT = {
   // POST
   DAFTAR_JADWAL: `${CONFIG.HEMO_LIFE_URL}/v1/user/jadwal/daftar`,
   // GET
-  USER_PROFILE: (idUser) => `${CONFIG.HEMO_LIFE_URL}/v1/user/userProfile/${idUser}`,
+  USER_PROFILE: `${CONFIG.HEMO_LIFE_URL}/v1/user/userProfile`,
   // PUT
   UPDATE_PROFILE: `${CONFIG.HEMO_LIFE_URL}/v1/user/userUpdateProfile/Update`,
   ADMIN_PROFILE: `${CONFIG.HEMO_LIFE_URL}/v1/admin/adminProfile`,
@@ -36,43 +34,3 @@ const API_ENDPOINT = {
 };
 
 export default API_ENDPOINT;
-// GET
-// /v1/admin/adminProfile/{idAdmin}
-// Profile admin
-
-
-// PUT
-// /v1/admin/adminUpdateProfile/{idAdmin}
-
-// TODO end point
-// GET
-// /v1/user/dashboardUser
-// Dashboard User
-
-// POST
-// /v1/user/dashboardUser/acceptRequest
-// Ketika tombol terima di dashboard diklik
-
-// POST
-// /v1/user/dashboardUser/rejectRequest
-// Ketika tombol tolak di dashboard diklik
-
-// GET
-// /v1/user/jadwal
-// Jadwal Donor Darah
-
-// GET
-// /v1/user/jadwal/detail/{idPmi}
-// Detail Jadwal Donor Darah
-
-// POST
-// /v1/user/jadwal/daftar
-// Daftar Jadwal Donor
-
-// GET
-// /v1/user/userProfile/{idUser}
-// Profile User
-
-// PUT
-// /v1/user/userUpdateProfile/{idUser}
-// Update Profile User

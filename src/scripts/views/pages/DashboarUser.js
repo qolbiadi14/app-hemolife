@@ -1,6 +1,6 @@
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 import TheHemoLifeDbSource from '../../data/thehemo-lifedb-source';
 import {
@@ -24,28 +24,24 @@ const DashboardUser = {
 
   async afterRender() {
     TheHemoLifeDbSource.setGlobalUserToken(this.globalUserToken);
-     const dataContainer = document.querySelector('#dashboards');
+    const dataContainer = document.querySelector('#dashboards');
     const mainContainer = document.querySelector('#main-container');
     const response = await TheHemoLifeDbSource.dasboardUser();
     displayData(response);
     function displayData(data) {
       dataContainer.innerHTML = createDasboardTemplate(data.user);
 
-      data.sukarelawan_menerima?.forEach((sukarelawan) =>
-        createCardContainer(sukarelawan, createSukarelawanTemplate),
-      );
-      
-      data.pemohon?.forEach((pemohon) =>
-        createCardContainer(pemohon, createPemohonTemplate),
-      );
-      
+      data.sukarelawan_menerima?.forEach((sukarelawan) => createCardContainer(sukarelawan, createSukarelawanTemplate));
+
+      data.pemohon?.forEach((pemohon) => createCardContainer(pemohon, createPemohonTemplate));
+
       data.pendonor && createCardContainer(data.pendonor, createPendonoremplate);
 
       mainContainer.addEventListener('click', async (event) => {
         const targetButton = event.target.closest('.download-pdf-btn');
 
         if (targetButton) {
-          const donorId = targetButton.dataset.donorId;
+          const { donorId } = targetButton.dataset;
 
           try {
             const pmiDetails = await TheHemoLifeDbSource.jadwalDetailDonorDarah(donorId);
@@ -60,14 +56,13 @@ const DashboardUser = {
         }
         if (event.target.id === 'acceptBtn' || event.target.id === 'rejectBtn') {
           // Periksa apakah event.target.dataset.id_user_volunteer atau event.target.dataset.id_user
-          const id =
-            event.target.dataset.id_user_volunteer ||
-            event.target.dataset.id_user;
+          const id = event.target.dataset.id_user_volunteer
+            || event.target.dataset.id_user;
           try {
             if (event.target.id === 'acceptBtn') {
               const response = await TheHemoLifeDbSource.acceptOrRejectRequest(
                 id,
-                true
+                true,
               );
               handleResponse(response);
               Swal.fire({
@@ -75,11 +70,10 @@ const DashboardUser = {
                 icon: 'success',
                 showConfirmButton: 'Cool',
               });
-              
             } else if (event.target.id === 'rejectBtn') {
               const response = await TheHemoLifeDbSource.acceptOrRejectRequest(
                 id,
-                false
+                false,
               );
               handleResponse(response);
               Swal.fire({
@@ -93,12 +87,11 @@ const DashboardUser = {
               title: 'Error!',
               text: 'Gagal Menanggapi Permintaan',
               icon: 'error',
-              confirmButtonText: 'Cool'
-            })
+              confirmButtonText: 'Cool',
+            });
           }
         }
       });
-      
     }
 
     function createCardContainer(dataObject, templateFunction) {
@@ -121,9 +114,9 @@ const DashboardUser = {
 
     function handleResponse(response) {
       if (
-        Array.isArray(response) &&
-        response.length > 0 &&
-        response[0].id_user_volunteer
+        Array.isArray(response)
+        && response.length > 0
+        && response[0].id_user_volunteer
       ) {
         console.log(
           'ID User Volunteer Pemohon (handleResponse):',
@@ -182,25 +175,25 @@ function generatePDF(data) {
 
   // Add header
   doc.text(
-    'PMI Name: ' + pmiDetails.nama_lok_pmi,
+    `PMI Name: ${pmiDetails.nama_lok_pmi}`,
     doc.internal.pageSize.width / 2,
     25,
     { align: 'center' },
   );
   doc.text(
-    'PMI Address: ' + pmiDetails.alamat_pmi,
+    `PMI Address: ${pmiDetails.alamat_pmi}`,
     doc.internal.pageSize.width / 2,
     30,
     { align: 'center' },
   );
   doc.text(
-    'PMI Email: ' + pmiDetails.email,
+    `PMI Email: ${pmiDetails.email}`,
     doc.internal.pageSize.width / 2,
     35,
     { align: 'center' },
   );
   doc.text(
-    'PMI Phone: ' + pmiDetails.no_telpon_pmi,
+    `PMI Phone: ${pmiDetails.no_telpon_pmi}`,
     doc.internal.pageSize.width / 2,
     40,
     { align: 'center' },

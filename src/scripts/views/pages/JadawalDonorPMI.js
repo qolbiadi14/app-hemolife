@@ -33,10 +33,7 @@ const JadwalDaftarDonorPMI = {
     });
     initializeLeafletMaps(this.jadwals);
     jadwalsContainer.removeEventListener('click', this.handleButtonClick);
-    jadwalsContainer.addEventListener(
-      'click',
-      this.handleButtonClick.bind(this),
-    );
+    jadwalsContainer.addEventListener('click', this.handleButtonClick.bind(this));
   },
 
   async handleButtonClick(event) {
@@ -48,9 +45,7 @@ const JadwalDaftarDonorPMI = {
     if (targetButton) {
       const idLokPmi = targetButton.dataset.id;
       console.log('Clicked Button ID:', idLokPmi);
-      const selectedJadwal = this.jadwals.find(
-        (jadwal) => jadwal.id_lok_pmi === idLokPmi,
-      );
+      const selectedJadwal = this.jadwals.find((jadwal) => jadwal.id_lok_pmi === idLokPmi);
       console.log('Selected Jadwal:', selectedJadwal);
 
       if (selectedJadwal) {
@@ -73,14 +68,10 @@ const JadwalDaftarDonorPMI = {
         event.target.dataset.processed = true;
 
         try {
-          const response =
-            await TheHemoLifeDbSource.daftarJadwalDonorHemoLife(postData);
+          const response = await TheHemoLifeDbSource.daftarJadwalDonorHemoLife(postData);
           console.log('Full Response:', response);
-          const success =
-            response && response.pendonor && response.pendonor.length > 0;
-          const message = success
-            ? 'Berhasil mendaftar!'
-            : 'Gagal mendaftar. Silakan coba lagi.';
+          const success = response && response.pendonor && response.pendonor.length > 0;
+          const message = success ? 'Berhasil mendaftar!' : 'Gagal mendaftar. Silakan coba lagi.';
           const type = success ? 'success' : 'danger';
           Swal.fire({
             title: message,

@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 import TheHemoLifeDbSource from '../../../data/thehemo-lifedb-source';
 
 const register = {
@@ -16,6 +17,7 @@ const register = {
                   <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
                   <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" required />
                 </div>
+
                 <div class="col">
                   <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
                   <select
@@ -24,7 +26,9 @@ const register = {
                     class="form-control"
                     required
                   >
-                    <option value="Laki-laki">Laki - Laki</option>
+
+                    <option value="Laki-laki">Laki - laki</option>
+
                     <option value="perempuan">Perempuan</option>
                   </select>
                 </div>
@@ -45,9 +49,20 @@ const register = {
                   <input type="password" class="form-control" id="password" name="password" required />
                 </div>
                 <div class="col">
-                  <label for="golongan_darah" class="form-label">Golongan Darah</label>
-                  <input type="text" class="form-control" id="golongan_darah" name="golongan_darah" required />
-                </div>
+
+              <label for="golongan_darah" class="form-label">Golongan Darah</label>
+              <select class="form-select" id="golongan_darah" name="golongan_darah" required>
+                <option value="" selected disabled>Pilih Golongan Darah</option>
+                <option value="A+">A+</option>
+                <option value="B+">B+</option>
+                <option value="AB+">AB+</option>
+                <option value="O+">O+</option>
+                <option value="B-">B-</option>
+                <option value="A-">A-</option>
+                <option value="AB-">AB-</option>
+                <option value="O-">O-</option>
+              </select>
+            </div>
               </div>
               <div class="row pt-3">
                 <div class="col">
@@ -57,7 +72,9 @@ const register = {
                 <div class="col">
                   <label for="no_hp" class="form-label">No Hp</label>
                   <input type="number" class="form-control" id="no_hp" name="no_hp" required />
-                </div>
+              </div>
+
+
               </div>
               <div class="mt-3">
                 <button type="submit" class="btn btn-primary">Daftar</button>
@@ -92,11 +109,29 @@ const register = {
       try {
         const registerResponse = await TheHemoLifeDbSource.register(user);
 
-        // Handle successful registration, e.g., show success message or redirect to login page
-        console.log('Registration successful:', registerResponse);
+        // Handle successful registration
+        if (registerResponse.user) {
+          Swal.fire(
+            'Registrasi Berhasil!',
+            'Anda telah berhasil terdaftar.',
+            'success',
+          );
+          window.location.hash = '#/login';
+        } else {
+          // Handle specific error message from server
+          Swal.fire(
+            'Registrasi Gagal',
+            registerResponse.message, // Tampilkan pesan kesalahan dari server
+            'error',
+          );
+        }
       } catch (error) {
-        // Handle unsuccessful registration or error
-        console.error('Registration failed:', error);
+        // Handle other errors
+        Swal.fire(
+          'Registrasi Gagal',
+          'Terjadi kesalahan saat registrasi. Silakan coba lagi.',
+          'error',
+        );
       }
     });
   },

@@ -1,7 +1,6 @@
-// NotifikasiModal.js
 class NotifikasiModalComponent extends HTMLElement {
-    connectedCallback() {
-        this.innerHTML = `
+  connectedCallback() {
+    this.innerHTML = `
             <li class="nav-item">
                 <a class="nav-link" title="Notifikasi" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
                     data-toggle="dropdown" aria-expanded="false">
@@ -11,7 +10,7 @@ class NotifikasiModalComponent extends HTMLElement {
     
             <notifikasi-modal></notifikasi-modal>
         `;
-    }
+  }
 }
 
 customElements.define('notifikasi-modal-component', NotifikasiModalComponent);
