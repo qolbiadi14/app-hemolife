@@ -81,7 +81,7 @@ class TheHemoLifeDbSource {
       // mode: 'cors',
       method: 'PUT',
       headers: {
-        Authorization: `Bearer ${globalUserToken}`,
+        Authorization: `${globalUserToken}`,
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
       },
@@ -109,7 +109,7 @@ class TheHemoLifeDbSource {
         // mode: 'cors',
         method: 'GET',
         headers: {
-          Authorization: `Bearer ${globalAdminToken}`,
+          Authorization: `${globalAdminToken}`,
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
         },
@@ -136,7 +136,7 @@ class TheHemoLifeDbSource {
       // mode: 'cors',
       method: 'PUT',
       headers: {
-        Authorization: `Bearer ${globalAdminToken}`,
+        Authorization: `${globalAdminToken}`,
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
       },
@@ -162,7 +162,7 @@ class TheHemoLifeDbSource {
       // mode: 'cors',
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${userToken}`,
+        Authorization: `${userToken}`,
         Accept: 'application/json',
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
@@ -183,7 +183,7 @@ class TheHemoLifeDbSource {
     const response = await fetch(API_ENDPOINT.DASHBOARD_USER, {
       mode: 'cors',
       headers: {
-        Authorization: `Bearer ${globalUserToken}`,
+        Authorization: `${globalUserToken}`,
         'Content-Type': 'application/json',
         // 'Access-Control-Allow-Origin': '*',
       },
@@ -196,7 +196,7 @@ class TheHemoLifeDbSource {
     const response = await fetch(API_ENDPOINT.JADWAL, {
       mode: 'cors',
       headers: {
-        Authorization: `Bearer ${globalUserToken}`,
+        Authorization: `${globalUserToken}`,
         'Content-Type': 'application/json',
         // 'Access-Control-Allow-Origin': '*',
       },
@@ -209,7 +209,7 @@ class TheHemoLifeDbSource {
       // mode: 'cors',
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${globalUserToken}`,
+        Authorization: `${globalUserToken}`,
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
       },
@@ -225,7 +225,7 @@ class TheHemoLifeDbSource {
     const response = await fetch(API_ENDPOINT.JADWAL_DETAIL(idPmi), {
       // mode: 'cors',
       headers: {
-        Authorization: `Bearer ${userToken}`,
+        Authorization: `${userToken}`,
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
       },
