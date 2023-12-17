@@ -495,4 +495,5 @@ export {
   createKelolaDonorDarah,
   createKelolaBankDarah,
   createDashboardAdmin,
+  createCariSukarelawanTemplate,
 };
