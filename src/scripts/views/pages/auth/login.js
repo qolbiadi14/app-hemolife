@@ -1,6 +1,5 @@
-// login.js
+import Swal from 'sweetalert2';
 import TheHemoLifeDbSource from '../../../data/thehemo-lifedb-source';
-// login.js
 import routes from '../../../routes/routes';
 
 const login = {
@@ -58,19 +57,29 @@ const login = {
       try {
         const loginResponse = await TheHemoLifeDbSource.login(email, password);
 
-        if (loginResponse && loginResponse.access_token) {
+        if (loginResponse && loginResponse.token) {
           if (loginResponse.role === 'admin') {
-            localStorage.setItem('adminToken', loginResponse.access_token);
+            localStorage.setItem('adminToken', loginResponse.token);
             await renderAdminProfilePage();
           } else {
-            localStorage.setItem('userToken', loginResponse.access_token);
+            localStorage.setItem('userToken', loginResponse.token);
             await renderDashboardPage();
           }
         } else {
           console.error('Login failed:', loginResponse);
+          Swal.fire({
+            icon: 'error',
+            title: 'Login Gagal',
+            text: 'Email atau password salah. Silakan coba lagi.',
+          });
         }
       } catch (error) {
         console.error('Login failed:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Login Gagal',
+          text: 'Terjadi kesalahan saat login. Silakan coba lagi.',
+        });
       }
     });
   },

@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="dicoding:email" content="ariel.ariadi123@gmail.com">
     <title>Hemo Life</title>
     <!-- Icon Font Awsome -->
     <link
@@ -31,7 +32,6 @@
 
   <body>
     <!-- TODO Page Dasboard -->
-    <div class="container">
       <div class="container">
         <header>
           <nav class="navbar navbar-expand-lg" id="menuDrawer">
@@ -61,15 +61,17 @@
             </div>
           </nav>
         </header>
+        <main-content></main-content>
       </div>
-      <main id="mainContent"></main>
-    </div>
+
+    <!-- Use the custom footer element -->
+    <custom-footer></custom-footer>
 
     <!-- Menggunakan module leaflet dari node_modules -->
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-      AOS.init();
+        AOS.init();
     </script>
   </body>
 </html>

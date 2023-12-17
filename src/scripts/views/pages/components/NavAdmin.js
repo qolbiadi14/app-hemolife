@@ -1,6 +1,6 @@
 class CustomNavbar extends HTMLElement {
-    connectedCallback() {
-      this.innerHTML = `
+  connectedCallback() {
+    this.innerHTML = `
                 <div class="collapse navbar-collapse" id="navbarNav">
           <div class="d-lg-flex col-lg-6 justify-content-lg-end ms-auto">
             <ul class="navbar-nav">
@@ -18,8 +18,7 @@ class CustomNavbar extends HTMLElement {
           </div>
         </div>
           `;
-    }
   }
-  
-  customElements.define('custom-navadmin', CustomNavbar);
-  
+}
+
+customElements.define('custom-navadmin', CustomNavbar);

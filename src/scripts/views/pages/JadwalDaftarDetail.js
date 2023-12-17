@@ -12,23 +12,21 @@ const JadwalDaftarDetail = {
   async afterRender() {
     const url = UrlParser.parseActiveUrlWithoutCombiner();
     const pmiContainer = document.querySelector('#pmi');
-  
+
     const pmi = await TheHemoLifeDbSource.jadwalDetailDonorDarah(url.id);
-  
+
     // Cek Data Response Render
     console.log('Render Response:', pmi);
-  
     pmi.forEach((jadwal) => {
       pmiContainer.innerHTML += createJadwalDetailPMITemplate(jadwal);
-      initializeLeafletMaps([jadwal]); 
+      initializeLeafletMaps([jadwal]);
     });
     // Initialize Leaflet maps
-  
+
     // Note: If pmi is an empty array or undefined, the forEach loop will simply do nothing.
     console.log('Tidak ada data atau data kosong.');
   },
-  
-};
 
+};
 
 export default JadwalDaftarDetail;

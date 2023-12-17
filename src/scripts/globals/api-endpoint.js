@@ -1,8 +1,6 @@
 import CONFIG from './config';
 
 const API_ENDPOINT = {
-//  DETAIL: (id) => `${CONFIG.BASE_URL}movie/${id}?api_key=${CONFIG.KEY}`,
-
   // GET
   DASHBOARD_USER: `${CONFIG.HEMO_LIFE_URL}/v1/user/dashboardUser`,
 
@@ -21,13 +19,13 @@ const API_ENDPOINT = {
   // POST
   DAFTAR_JADWAL: `${CONFIG.HEMO_LIFE_URL}/v1/user/jadwal/daftar`,
   // GET
-  USER_PROFILE: (idUser) => `${CONFIG.HEMO_LIFE_URL}/v1/user/userProfile/${idUser}`,
+  USER_PROFILE: `${CONFIG.HEMO_LIFE_URL}/v1/user/userProfile`,
   // PUT
   UPDATE_PROFILE: `${CONFIG.HEMO_LIFE_URL}/v1/user/userUpdateProfile/Update`,
   ADMIN_PROFILE: `${CONFIG.HEMO_LIFE_URL}/v1/admin/adminProfile`,
   // PUT
   UPDATE_PROFILE_ADMIN: `${CONFIG.HEMO_LIFE_URL}/v1/admin/adminProfile/update`,
-  
+
   // POST
   LOGIN: `${CONFIG.HEMO_LIFE_URL}/v1/auth/login`,
 
@@ -39,7 +37,6 @@ export default API_ENDPOINT;
 // GET
 // /v1/admin/adminProfile/{idAdmin}
 // Profile admin
-
 
 // PUT
 // /v1/admin/adminUpdateProfile/{idAdmin}

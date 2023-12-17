@@ -1,7 +1,6 @@
-
 import 'leaflet.control.layers.tree';
 import 'leaflet.awesome-markers';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 import TheHemoLifeDbSource from '../../data/thehemo-lifedb-source';
 import { createJadwalTemplate, initializeLeafletMaps } from '../templates/template-creator';
@@ -35,7 +34,6 @@ const JadwalDaftarDonorPMI = {
   },
 
   async handleButtonClick(event) {
-
     if (event.target.dataset.processed) {
       return;
     }
@@ -87,8 +85,7 @@ const JadwalDaftarDonorPMI = {
         }
       }
     }
-  }
+  },
 };
-
 
 export default JadwalDaftarDonorPMI;

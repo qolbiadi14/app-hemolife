@@ -2,8 +2,8 @@ import L from 'leaflet';
 import 'leaflet.control.layers.tree';
 import 'leaflet.awesome-markers';
 
-const createPemohonTemplate = (pemohon) => /* html */ 
-   `
+const createPemohonTemplate = (pemohon) => /* html */
+  `
   <div class="card shadow">
     <!-- <img src="..." class="card-img-top" alt="..."> -->
     <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect></svg>
@@ -35,8 +35,8 @@ const createSukarelawanTemplate = (sukarelawan_menerima) => /* html */ `
       <p class="card-text">${sukarelawan_menerima.alamat_volunteer && `Alamat : ${sukarelawan_menerima.alamat_volunteer}`}</p>
       <p class="card-text">${sukarelawan_menerima.gol_darah && `Golongan Darah : ${sukarelawan_menerima.gol_darah}`}</p>
       <a href="https://wa.me/${getFormattedWhatsAppNumber(
-        sukarelawan_menerima.no_hp,
-      )}" target="_blank" class="btn btn-success w-100">Hubungi Via WhatsApp</a>
+    sukarelawan_menerima.no_hp,
+  )}" target="_blank" class="btn btn-success w-100">Hubungi Via WhatsApp</a>
      </div>
   </div>
 `;
@@ -64,8 +64,8 @@ const createPendonoremplate = (pendonor) => /* html */ `
 
 const createDasboardTemplate = (data) => /* html */ `
   <div class="movie-item">
-    <h1 class="fw-bold">Selamat Datang <span class="text-danger"> ${ data.nama || data.id_user || 'Pengguna'
-    } </span></h1>
+    <h1 class="fw-bold">Selamat Datang <span class="text-danger"> ${data.nama || data.id_user || 'Pengguna'
+} </span></h1>
   </div>
 `;
 const createJadwalTemplate = (jadwal) => /* html */ `
@@ -98,21 +98,21 @@ const createJadwalDetailPMITemplate = (pmi) => /* html */ `
   </div>
 `;
 
- const initializeLeafletMaps = (jadwals) => {
-  jadwals.forEach(({ id_lok_pmi, latitude, longitude, nama_lok_pmi }) => {
-    const mapContainer = document.getElementById(`map-${id_lok_pmi}-container`);    
+const initializeLeafletMaps = (jadwals) => {
+  jadwals.forEach(({
+    id_lok_pmi, latitude, longitude, nama_lok_pmi,
+  }) => {
+    const mapContainer = document.getElementById(`map-${id_lok_pmi}-container`);
     if (!mapContainer || mapContainer.dataset.leafletInitialized) return;
     const map = L.map(mapContainer, {
       center: [latitude, longitude],
       zoom: 16,
-      layers: [L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap contributors' })]
+      layers: [L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap contributors' })],
     });
     L.marker([latitude, longitude]).addTo(map).bindPopup(nama_lok_pmi);
     mapContainer.dataset.leafletInitialized = true;
   });
 };
-
-
 
 const createProfileUserTemplate = (userProfile) => /* html */ `
   <div class="d-flex flex-column align-items-center text-center">
@@ -137,32 +137,32 @@ const createUpdateProfileTemplate = (userProfile) => /* html */ `
                 <label class="col-lg-12 control-label">Nama Lengkap:</label>
                 <div class="col-lg-8">
                     <input id="nama-lengkap-input" class="form-control" type="text" value="${
-                      userProfile.nama_lengkap
-                    }">
+  userProfile.nama_lengkap
+}">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-12 control-label">No. Telp:</label>
                 <div class="col-lg-8">
                     <input id="no-telp-input" class="form-control" type="text" value="${
-                      userProfile.no_telp
-                    }">
+  userProfile.no_telp
+}">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-12 control-label">Alamat:</label>
                 <div class="col-lg-8">
                     <input id="alamat-input" class="form-control" type="text" value="${
-                      userProfile.alamat
-                    }">
+  userProfile.alamat
+}">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-12 control-label">Jenis Kelamin:</label>
                 <div class="col-lg-8">
                     <input id="jenis-kelamin-input" class="form-control" type="text" value="${
-                      userProfile.jenis_kelamin
-                    }">
+  userProfile.jenis_kelamin
+}">
                 </div>
             </div>
             <div class="form-group">
@@ -181,8 +181,8 @@ const createUpdateProfileTemplate = (userProfile) => /* html */ `
                 <label class="col-lg-3 control-label">Email:</label>
                 <div class="col-lg-8">
                     <input id="email-input" class="form-control" type="text" value="${
-                      userProfile.email
-                    }">
+  userProfile.email
+}">
                 </div>
             </div>
             <div class="form-group">
@@ -191,20 +191,20 @@ const createUpdateProfileTemplate = (userProfile) => /* html */ `
                     <div class="ui-select">
                         <select id="jenis-kelamin-input" class="form-control">
                             <option value="Laki-Laki" ${
-                              userProfile.jenis_kelamin === 'Laki-Laki'
-                                ? 'selected'
-                                : ''
-                            }>Laki-Laki</option>
+  userProfile.jenis_kelamin === 'Laki-Laki'
+    ? 'selected'
+    : ''
+}>Laki-Laki</option>
                             <option value="Perempuan" ${
-                              userProfile.jenis_kelamin === 'Perempuan'
-                                ? 'selected'
-                                : ''
-                            }>Perempuan</option>
+  userProfile.jenis_kelamin === 'Perempuan'
+    ? 'selected'
+    : ''
+}>Perempuan</option>
                             <option value="LGBT" ${
-                              userProfile.jenis_kelamin === 'LGBT'
-                                ? 'selected'
-                                : ''
-                            }>LGBT</option>
+  userProfile.jenis_kelamin === 'LGBT'
+    ? 'selected'
+    : ''
+}>LGBT</option>
                         </select>
                     </div>
                 </div>
@@ -222,8 +222,6 @@ function formatDate(dateString) {
   return isNaN(date) ? '' : date.toISOString().split('T')[0];
 }
 
-
-
 const createProfileAdminTemplate = (adminProfile) => /* html */ `
   <div class="d-flex flex-column align-items-center text-center">
     <img class="rounded-circle" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" />
@@ -232,6 +230,11 @@ const createProfileAdminTemplate = (adminProfile) => /* html */ `
       <li class="list-group-item">${adminProfile.email}</li>
       <li class="list-group-item"></li>
     </ul>
+    <div class="logout">
+    <button type="button" id="logout-admin" title="LogOut" class="btn mb-3 p-3 me-2" data-donor-id="">
+    <i class="fa-solid fa-right-from-bracket fa-2xl" style="color: #db3939;"></i>
+      </button>
+    </div>
   </div>
 `;
 
@@ -256,8 +259,6 @@ const createUpdateProfileAdminTemplate = (adminProfile) => /* html */ `
     </div>
   </form>
 `;
-
-
 
 export {
   createProfileAdminTemplate,

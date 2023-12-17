@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 import TheHemoLifeDbSource from '../../data/thehemo-lifedb-source';
 import UrlParser from '../../routes/url-parser';
 import { createProfileAdminTemplate, createUpdateProfileAdminTemplate } from '../templates/template-creator';
@@ -44,11 +45,26 @@ const ProfileAdmin = {
         document.getElementById('save-changes-admin-btn').addEventListener('click', async () => {
           await this.saveChanges(userProfile[0].id_admin);
         });
+        document.getElementById('logout-admin').addEventListener('click', () => {
+          // Tampilkan alert konfirmasi
+          Swal.fire({
+            title: 'Apakah Anda yakin ingin logout?',
+            showDenyButton: true,
+            confirmButtonText: 'Ya',
+            denyButtonText: 'Tidak',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              // Jika pengguna yakin, lakukan logout dan redirect ke halaman "/landing"
+              this.logout();
+              window.location.href = '#/landing';
+              location.reload();
+            }
+          });
+        });
       } else {
         console.log('Admin tidak ditemukan atau terjadi kesalahan saat mengambil data profil.');
         profileContainer.innerHTML = 'Terjadi kesalahan saat mengambil data profil.';
       }
-      
     } catch (error) {
       console.error('Error rendering profile Admin:', error);
     }
@@ -61,26 +77,24 @@ const ProfileAdmin = {
       email: document.getElementById('input-email-admin').value,
       // Add other fields as needed
     };
-  
+
     try {
       const updateResult = await TheHemoLifeDbSource.updateProfileAdmin(updatedData);
       console.log('Update Response:', updateResult);
-      if (updateResult && updateResult.message === "Admin profile updated successfully") {
+      if (updateResult && updateResult.message === 'Admin profile updated successfully') {
         console.log('Profil Admin berhasil diperbarui:', updateResult.admin[0]);
         this.showBootstrapAlert('success-alert');
       } else {
         console.log('Gagal memperbarui profil Admin:', updateResult);
         this.showBootstrapAlert('error-alert');
       }
-      
     } catch (error) {
       console.error('Error updating profile Admin:', error);
-      console.error('Update Result:', updateResult); // Tambahkan baris ini untuk melihat respons yang diterima
+      // console.error('Update Result:', updateResult);
+      // Tambahkan baris ini untuk melihat respons yang diterima
       this.showBootstrapAlert('error-alert');
     }
-    
   },
-  
 
   showBootstrapAlert(alertId) {
     const alertElement = document.getElementById(alertId);
