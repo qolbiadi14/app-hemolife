@@ -11,7 +11,7 @@ class TheHemoLifeDbSource {
 
   static setGlobalAdminToken(token) {
     globalAdminToken = token;
-    localStorage.setItem('adminToken', token);
+    localStorage.setItem('adminToken', token || 'TokenAdmin');
   }
 
   // TODO login Fect
@@ -23,7 +23,6 @@ class TheHemoLifeDbSource {
 
     try {
       const response = await fetch(API_ENDPOINT.LOGIN, {
-        mode: 'cors',
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -49,7 +48,6 @@ class TheHemoLifeDbSource {
   static async register(user) {
     try {
       const response = await fetch(API_ENDPOINT.REGISTER, {
-        // mode: 'cors',
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -62,7 +60,8 @@ class TheHemoLifeDbSource {
         const responseJson = await response.json();
         console.log('API Response POST Register:', responseJson);
         return responseJson;
-      } if (response.status === 409) {
+      }
+      if (response.status === 409) {
         const responseJson = await response.json();
         console.error('Registration failed:', responseJson.message);
         throw new Error('Registration failed');
@@ -78,7 +77,6 @@ class TheHemoLifeDbSource {
 
   static async updateProfileUser(updatedData) {
     const response = await fetch(API_ENDPOINT.UPDATE_PROFILE, {
-      // mode: 'cors',
       method: 'PUT',
       headers: {
         Authorization: `${globalUserToken}`,
@@ -93,9 +91,9 @@ class TheHemoLifeDbSource {
 
   static async profileUser() {
     const response = await fetch(API_ENDPOINT.USER_PROFILE, {
-      // mode: 'cors',
+      mode: 'cors',
       headers: {
-        Authorization: `Bearer ${globalUserToken}`,
+        Authorization: `${globalUserToken}`,
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
       },
@@ -106,12 +104,10 @@ class TheHemoLifeDbSource {
   static async profilAdmin() {
     try {
       const response = await fetch(API_ENDPOINT.ADMIN_PROFILE, {
-        // mode: 'cors',
         method: 'GET',
         headers: {
-          Authorization: `${globalAdminToken}`,
+          Authorization: `Bearer ${globalAdminToken}`,
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
         },
       });
 
@@ -133,12 +129,10 @@ class TheHemoLifeDbSource {
 
   static async updateProfileAdmin(updatedData) {
     const response = await fetch(API_ENDPOINT.UPDATE_PROFILE_ADMIN, {
-      // mode: 'cors',
       method: 'PUT',
       headers: {
-        Authorization: `${globalAdminToken}`,
+        Authorization: `Bearer ${globalAdminToken}`,
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify(updatedData),
     });
@@ -147,7 +141,9 @@ class TheHemoLifeDbSource {
   }
 
   static async acceptOrRejectRequest(idUserVolunteer, isAccept) {
-    const endpoint = isAccept ? API_ENDPOINT.ACCEPT_REQUEST : API_ENDPOINT.REJECT_REQUEST;
+    const endpoint = isAccept
+      ? API_ENDPOINT.ACCEPT_REQUEST
+      : API_ENDPOINT.REJECT_REQUEST;
     const userToken = globalUserToken || globalAdminToken;
 
     if (!userToken) {
@@ -159,13 +155,11 @@ class TheHemoLifeDbSource {
     };
 
     const response = await fetch(endpoint, {
-      // mode: 'cors',
       method: 'POST',
       headers: {
-        Authorization: `${userToken}`,
+        Authorization: `Bearer ${userToken}`,
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify(requestBody),
     });
@@ -181,11 +175,9 @@ class TheHemoLifeDbSource {
 
   static async dasboardUser() {
     const response = await fetch(API_ENDPOINT.DASHBOARD_USER, {
-      mode: 'cors',
       headers: {
-        Authorization: `${globalUserToken}`,
+        Authorization: `Bearer ${globalUserToken}`,
         'Content-Type': 'application/json',
-        // 'Access-Control-Allow-Origin': '*',
       },
     });
     const responseJson = await response.json();
@@ -194,24 +186,20 @@ class TheHemoLifeDbSource {
 
   static async jadwalDonorHemoLife() {
     const response = await fetch(API_ENDPOINT.JADWAL, {
-      mode: 'cors',
       headers: {
         Authorization: `${globalUserToken}`,
         'Content-Type': 'application/json',
-        // 'Access-Control-Allow-Origin': '*',
       },
     });
-    return response.ok ? (await response.json()).jadwal : [];
+    return response.ok ? (await response.json()).data : [];
   }
 
   static async daftarJadwalDonorHemoLife(data) {
     const response = await fetch(API_ENDPOINT.DAFTAR_JADWAL, {
-      // mode: 'cors',
       method: 'POST',
       headers: {
-        Authorization: `${globalUserToken}`,
+        Authorization: `Bearer ${globalUserToken}`,
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify(data),
     });
@@ -220,17 +208,15 @@ class TheHemoLifeDbSource {
     return responseData;
   }
 
-  static async jadwalDetailDonorDarah(idPmi) {
+  static async jadwalDetailDonorDarah(id_lokasi_pmi) {
     const userToken = globalUserToken || globalAdminToken;
-    const response = await fetch(API_ENDPOINT.JADWAL_DETAIL(idPmi), {
-      // mode: 'cors',
+    const response = await fetch(API_ENDPOINT.JADWAL_DETAIL(id_lokasi_pmi), {
       headers: {
         Authorization: `${userToken}`,
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
       },
     });
-    return response.ok ? (await response.json()).pmi : [];
+    return response.ok ? (await response.json()).data : [];
   }
 }
 

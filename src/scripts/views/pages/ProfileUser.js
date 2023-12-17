@@ -1,7 +1,10 @@
 import Swal from 'sweetalert2';
 import TheHemoLifeDbSource from '../../data/thehemo-lifedb-source';
 import UrlParser from '../../routes/url-parser';
-import { createProfileUserTemplate, createUpdateProfileTemplate } from '../templates/template-creator';
+import {
+  createProfileUserTemplate,
+  createUpdateProfileTemplate,
+} from '../templates/template-creator';
 
 const ProfileUser = {
   async render() {
@@ -30,29 +33,39 @@ const ProfileUser = {
   },
 
   async afterRender() {
+    // Parse URL untuk mengetahui halaman aktif
     const url = UrlParser.parseActiveUrlWithoutCombiner();
-
     console.log('Parsed URL:', url);
+
     try {
+      // Ambil data user profile dari API
       const userProfile = await TheHemoLifeDbSource.profileUser();
+
+      console.log('Fetched User Profile:', userProfile);
+
+      // Elemen DOM untuk menampilkan data profile dan form edit
       const profileContainer = document.getElementById('profile-container');
-      const editProfileContainer = document.getElementById('edit-profile-container');
+      const editProfileContainer = document.getElementById(
+        'edit-profile-container',
+      );
 
-      if (userProfile && userProfile.length > 0) {
-        console.log('After Render User Profile:', userProfile);
-        profileContainer.innerHTML = createProfileUserTemplate(userProfile[0]);
-        editProfileContainer.innerHTML = createUpdateProfileTemplate(
-          userProfile[0],
-        );
+      // Periksa apakah data user profile berhasil diambil
+      if (userProfile) {
+        // Tampilkan data profile dalam container
+        profileContainer.innerHTML = createProfileUserTemplate(userProfile);
 
-        // Add event listener for saving changes
+        // Tampilkan form edit profile dengan data awal dari user profile
+        editProfileContainer.innerHTML = createUpdateProfileTemplate(userProfile);
+
+        // Tambahkan event listener untuk tombol simpan perubahan
         document
           .getElementById('save-changes-btn')
           .addEventListener('click', async () => {
-            await this.saveChanges();
+            await this.saveChanges;
           });
+
+        // Tambahkan event listener untuk tombol logout dengan konfirmasi
         document.getElementById('logout-btn').addEventListener('click', () => {
-          // Tampilkan alert konfirmasi
           Swal.fire({
             title: 'Apakah Anda yakin ingin logout?',
             showDenyButton: true,
@@ -60,7 +73,7 @@ const ProfileUser = {
             denyButtonText: 'Tidak',
           }).then((result) => {
             if (result.isConfirmed) {
-              // Jika pengguna yakin, lakukan logout dan redirect ke halaman "/landing"
+              // Lakukan logout dan redirect ke halaman landing
               this.logout();
               window.location.href = '#/landing';
               location.reload();
@@ -68,7 +81,8 @@ const ProfileUser = {
           });
         });
       } else {
-        console.log(
+        // Tampilkan pesan error jika data user profile tidak ditemukan
+        console.error(
           'User tidak ditemukan atau terjadi kesalahan saat mengambil data profil.',
         );
         profileContainer.innerHTML = 'Terjadi kesalahan saat mengambil data profil.';
@@ -90,15 +104,20 @@ const ProfileUser = {
       alamat: document.getElementById('alamat-input').value,
       jenis_kelamin: document.getElementById('jenis-kelamin-input').value,
       tanggal_lahir: document.getElementById('tanggal-lahir-input').value,
-      status_volunteer: document.getElementById('flexSwitchCheckDefault').checked ? 1 : 0,
-
+      status_volunteer: document.getElementById('flexSwitchCheckDefault')
+        .checked
+        ? 1
+        : 0,
     };
 
     try {
       const updateResult = await TheHemoLifeDbSource.updateProfileUser(updatedData);
       console.log('Update Response:', updateResult);
 
-      if (updateResult && updateResult.message === 'Data profil berhasil diperbarui') {
+      if (
+        updateResult
+        && updateResult.message === 'Data profil berhasil diperbarui'
+      ) {
         console.log('Profil berhasil diperbarui:', updateResult.user[0]);
         this.showBootstrapAlert('success-alert');
       } else {
@@ -118,5 +137,4 @@ const ProfileUser = {
     }, 3000);
   },
 };
-
 export default ProfileUser;

@@ -6,7 +6,6 @@ import './pages/components/CustomFooter';
 import './pages/components/NavBarLending';
 import './pages/components/NavAdmin';
 import NotFoundPage from './pages/NotFoundPage';
-
 import DrawerInitiator from '../utils/drawer-initiator';
 import UrlParser from '../routes/url-parser';
 import routes from '../routes/routes';

@@ -2,15 +2,19 @@ import L from 'leaflet';
 import 'leaflet.control.layers.tree';
 import 'leaflet.awesome-markers';
 
-const createPemohonTemplate = (pemohon) => /* html */
+const createPemohonTemplate = (pemohon /* html */) =>
   `
   <div class="card shadow">
     <!-- <img src="..." class="card-img-top" alt="..."> -->
     <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect></svg>
     <div class="card-body">      
       <h5 class="card-title">Pemohon</h5>
-      <p class="card-text">${pemohon.nama_pemohon && `Nama : ${pemohon.nama_pemohon}`}</p>
-      <p class="card-text">${pemohon.gol_darah && `Pemohom : ${pemohon.gol_darah}`}</p>
+      <p class="card-text">${
+  pemohon.nama_pemohon && `Nama : ${pemohon.nama_pemohon}`
+}</p>
+      <p class="card-text">${
+  pemohon.gol_darah && `Pemohom : ${pemohon.gol_darah}`
+}</p>
       <p class="card-text">${pemohon.alamat && `Alamat : ${pemohon.alamat}`}</p>
       <div class="row">
     <div class="col-md-6 col-sm-12 mb-2">
@@ -30,10 +34,21 @@ const createSukarelawanTemplate = (sukarelawan_menerima) => /* html */ `
     <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect></svg>
     <div class="card-body">
       <h5 class="card-title">Sukarelawan</h5>
-      <p class="card-text">${sukarelawan_menerima.nama_volunteer && `Nama : ${sukarelawan_menerima.nama_volunteer}`}</p>
-      <p class="card-text">${sukarelawan_menerima.status && `Status : ${sukarelawan_menerima.status}`}</p>
-      <p class="card-text">${sukarelawan_menerima.alamat_volunteer && `Alamat : ${sukarelawan_menerima.alamat_volunteer}`}</p>
-      <p class="card-text">${sukarelawan_menerima.gol_darah && `Golongan Darah : ${sukarelawan_menerima.gol_darah}`}</p>
+      <p class="card-text">${
+  sukarelawan_menerima.nama_volunteer
+        && `Nama : ${sukarelawan_menerima.nama_volunteer}`
+}</p>
+      <p class="card-text">${
+  sukarelawan_menerima.status && `Status : ${sukarelawan_menerima.status}`
+}</p>
+      <p class="card-text">${
+  sukarelawan_menerima.alamat_volunteer
+        && `Alamat : ${sukarelawan_menerima.alamat_volunteer}`
+}</p>
+      <p class="card-text">${
+  sukarelawan_menerima.gol_darah
+        && `Golongan Darah : ${sukarelawan_menerima.gol_darah}`
+}</p>
       <a href="https://wa.me/${getFormattedWhatsAppNumber(
     sukarelawan_menerima.no_hp,
   )}" target="_blank" class="btn btn-success w-100">Hubungi Via WhatsApp</a>
@@ -52,10 +67,18 @@ const createPendonoremplate = (pendonor) => /* html */ `
       <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect></svg>
       <div class="card-body">
         <h5 class="card-title">Pendonor</h5>
-        <p class="card-text" id="golDarah_${pendonor.id_donor}">${pendonor.gol_darah && `Gol Darah: ${pendonor.gol_darah}`}</p>
-        <p class="card-text" id="lokasiPmi_${pendonor.id_donor}">${pendonor.lokasi_pmi && `Lokasi PMI: ${pendonor.lokasi_pmi}`}</p>
-        <p class="card-text" id="tanggalDonor_${pendonor.id_donor}">${pendonor.tanggal_donor && `Tanggal Donor: ${pendonor.tanggal_donor}`}</p>
-        <button type="button" title="Cetak Bukti Pendaftaran" class="download-pdf-btn btn mb-3 p-3 me-2" data-donor-id="${pendonor.id_donor}" style="position: absolute; bottom: 0; right: 0;">
+        <p class="card-text" id="golDarah_${pendonor.id_donor}">${
+  pendonor.gol_darah && `Gol Darah: ${pendonor.gol_darah}`
+}</p>
+        <p class="card-text" id="lokasiPmi_${pendonor.id_donor}">${
+  pendonor.lokasi_pmi && `Lokasi PMI: ${pendonor.lokasi_pmi}`
+}</p>
+        <p class="card-text" id="tanggalDonor_${pendonor.id_donor}">${
+  pendonor.tanggal_donor && `Tanggal Donor: ${pendonor.tanggal_donor}`
+}</p>
+        <button type="button" title="Cetak Bukti Pendaftaran" class="download-pdf-btn btn mb-3 p-3 me-2" data-donor-id="${
+  pendonor.id_donor
+}" style="position: absolute; bottom: 0; right: 0;">
         <i class="fa-solid fa-circle-arrow-down fa-2xl" style="color: #db3939;"></i>
       </button>
       </div>
@@ -64,36 +87,61 @@ const createPendonoremplate = (pendonor) => /* html */ `
 
 const createDasboardTemplate = (data) => /* html */ `
   <div class="movie-item">
-    <h1 class="fw-bold">Selamat Datang <span class="text-danger"> ${data.nama || data.id_user || 'Pengguna'
+    <h1 class="fw-bold">Selamat Datang <span class="text-danger"> ${
+  data.nama || data.id_user || 'Pengguna'
 } </span></h1>
   </div>
 `;
-const createJadwalTemplate = (jadwal) => /* html */ `
+const createJadwalTemplate = (data) => /* html */ `
 <div class="col">
   <div class="card shadow">
     <div class="card-body">
-    <div id="map-${jadwal.id_lok_pmi}-container" style="height: 200px; width: 100%;"></div>
-     <h3 class="mt-5 fs-2 fw-bold text-danger text-center"><a class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="/#/detail-jadwal-daftar/${jadwal.id_lok_pmi}">${jadwal.nama_lok_pmi}</a></h3>
-     <p class="card-text">${jadwal.alamat_pmi && `Alamat : ${jadwal.alamat_pmi}`}</p>
-    <p class="card-text">${jadwal.jadwal_jam_mulai && jadwal.jadwal_jam_selesai && `Waktu : ${jadwal.jadwal_jam_mulai} - ${jadwal.jadwal_jam_selesai}`}</p>
-    <p class="card-text">${jadwal.no_telpon_pmi && `Kontak : ${jadwal.no_telpon_pmi}`}</p>
-    <p class="card-text">${jadwal.email && `Email : ${jadwal.email}`}</p>
-      <button type="button" title="Daftar Donor" class="btn btn-outline-danger btn-lg" data-id="${jadwal.id_lok_pmi}">Daftar</button>
+    <div id="map-${
+  data.id_lok_pmi
+}-container" style="height: 200px; width: 100%;"></div>
+     <h3 class="mt-5 fs-2 fw-bold text-danger text-center"><a class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="/#/detail-jadwal-daftar/${
+  data.id_lok_pmi
+}">${data.nama_lok_pmi}</a></h3>
+     <p class="card-text">${
+  data.alamat_pmi && `Alamat : ${data.alamat_pmi}`
+}</p>
+    <p class="card-text">${
+  data.jadwal_jam_mulai
+      && data.jadwal_jam_selesai
+      && `Waktu : ${data.jadwal_jam_mulai} - ${data.jadwal_jam_selesai}`
+}</p>
+   
+      <button type="button" title="Daftar Donor" class="btn btn-outline-danger btn-lg" data-id="${
+  data.id_lok_pmi
+}">Daftar</button>
     </div>
   </div>
 </div>
 `;
-const createJadwalDetailPMITemplate = (pmi) => /* html */ `
- <h2 class="display-6 text-center mb-4 mt-3 fs-2 fw-bold">Detail<span class="text-danger"> ${pmi.nama_lok_pmi}</span></h2>
+
+const createJadwalDetailPMITemplate = (data) => /* html */ `
+ <h2 class="display-6 text-center mb-4 mt-3 fs-2 fw-bold">Detail<span class="text-danger"> ${
+  data.nama
+}</span></h2>
   <div class="card shadow">
     <div class="card-body">
-      <div id="map-${pmi.id_lok_pmi}-container" style="height: 400px; width: 100%;"></div>
-      <p class="card-text mt-5 fs-2 fw-bold text-danger">${pmi.nama_lok_pmi}</p>
-      <p class="card-text">${pmi.jumlah_kantong_darah && `Jumlah Kantong Darah: ${pmi.jumlah_kantong_darah}`}</p>
-      <p class="card-text">${pmi.alamat_pmi && `Alamat: ${pmi.alamat_pmi}`}</p>
-      <p class="card-text">${pmi.no_telpon_pmi && `Nomor Telepon: ${pmi.no_telpon_pmi}`}</p>
-      <p class="card-text">${pmi.email && `Email: ${pmi.email}`}</p>
-      <a href="mailto:${pmi.email}" class="btn btn-success" data-id="${pmi.id_lok_pmi}">Hubung</a>
+      <div id="map-${
+  data.id_lok_pmi
+}-container" style="height: 400px; width: 100%;"></div>
+      <p class="card-text mt-5 fs-2 fw-bold text-danger">${data.nama}</p>
+      <p class="card-text">${
+  data.stok_darah
+        && `Jumlah Kantong Darah: ${data.stok_darah
+          .map((stok) => `${stok.gol_darah}: ${stok.jumlah_kantong_darah}`)
+          .join(', ')}`
+}</p>
+      <p class="card-text">${data.alamat && `Alamat: ${data.alamat}`}</p>
+      <p class="card-text">${
+  data.no_telpon && `Nomor Telepon: ${data.no_telpon}`
+}</p>
+      <a href="mailto:${data.email}" class="btn btn-success" data-id="${
+  data.id_lokasi_pmi
+}">Hubung</a>
     </div>
   </div>
 `;
@@ -107,7 +155,11 @@ const initializeLeafletMaps = (jadwals) => {
     const map = L.map(mapContainer, {
       center: [latitude, longitude],
       zoom: 16,
-      layers: [L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap contributors' })],
+      layers: [
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '© OpenStreetMap contributors',
+        }),
+      ],
     });
     L.marker([latitude, longitude]).addTo(map).bindPopup(nama_lok_pmi);
     mapContainer.dataset.leafletInitialized = true;
@@ -137,7 +189,7 @@ const createUpdateProfileTemplate = (userProfile) => /* html */ `
                 <label class="col-lg-12 control-label">Nama Lengkap:</label>
                 <div class="col-lg-8">
                     <input id="nama-lengkap-input" class="form-control" type="text" value="${
-  userProfile.nama_lengkap
+  userProfile.nama
 }">
                 </div>
             </div>
@@ -145,7 +197,7 @@ const createUpdateProfileTemplate = (userProfile) => /* html */ `
                 <label class="col-lg-12 control-label">No. Telp:</label>
                 <div class="col-lg-8">
                     <input id="no-telp-input" class="form-control" type="text" value="${
-  userProfile.no_telp
+  userProfile.no_hp
 }">
                 </div>
             </div>
@@ -168,7 +220,9 @@ const createUpdateProfileTemplate = (userProfile) => /* html */ `
             <div class="form-group">
                 <label class="col-lg-12 control-label">Tanggal Lahir:</label>
                 <div class="col-lg-8">
-                <input id="tanggal-lahir-input" class="form-control" type="date" value="${formatDate(userProfile.tanggal_lahir)}">
+                <input id="tanggal-lahir-input" class="form-control" type="date" value="${formatDate(
+    userProfile.tanggal_lahir,
+  )}">
                 </div>
             </div>
             <div class="form-check form-switch switch-lg pt-3 ">
