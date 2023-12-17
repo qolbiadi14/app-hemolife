@@ -7,11 +7,7 @@ const DrawerInitiator = {
     content.addEventListener('click', (event) => {
       this._closeDrawer(event, drawer);
     });
-
-    this.
-    
-    
-    (drawer);
+    this._adjustNavbarBasedOnLoginStatus(drawer);
   },
 
   _toggleDrawer(event, drawer) {
