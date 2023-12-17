@@ -1,13 +1,13 @@
 @import 'bootstrap/dist/css/bootstrap.css';
 
-
-
-*{
+* {
   font-family: 'Poppins', sans-serif;
 }
+
 .card-text {
-  margin-bottom: 7px; 
+  margin-bottom: 7px;
 }
+
 img {
   display: block;
 }
@@ -15,6 +15,12 @@ img {
 .download-pdf-btn {
   display: flex;
   align-items: center;
+}
+.not-found-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 .not-found-container {
   display: flex;
@@ -34,11 +40,12 @@ img {
   font-size: 2em;
   margin-bottom: 10px;
 }
-
 .not-found-desc {
   color: #333;
   font-size: 18px;
 }
+
+
 @media (min-width: 597px) {
   .logo {
     width: 180px;
@@ -51,6 +58,7 @@ img {
     width: 100px;
     height: auto;
   }
+
 }
 
 @media (min-width: 768px) {
@@ -77,19 +85,23 @@ img {
 }
   .navbar-nav .nav-item {
     transition: color 0.3s, transform 0.5s;
+
   }
 
-  .navbar-nav .nav-link {
-    transition: color 0.3s, transform 0.5s; 
+  .not-found-title {
+    color: #e02424;
+    font-size: 3em;
+    margin-bottom: 10px;
   }
 
-  .navbar-nav .nav-link:hover {
-    transform: scale(1.0); 
+  .ledig-titel {
+    /* background-color: red; */
+    font-size: 3rm;
   }
 
-  .navbar-nav .nav-link:active {
-    transform: scale(0.9); 
-  }
+.navbar-nav .nav-item {
+  transition: color 0.3s, transform 0.5s;
+}
 
   .switch-lg .form-check {
     display: flex;
@@ -150,4 +162,45 @@ img {
 #pendonorChart {
   width: 400px;
   height: 200px;
+}
+.navbar-nav .nav-link {
+  transition: color 0.3s, transform 0.5s;
+}
+.navbar-nav .nav-link:hover {
+  transform: scale(1.0);
+}
+
+.navbar-nav .nav-link:active {
+  transform: scale(0.9);
+}
+
+.switch-lg .form-check {
+  display: flex;
+  align-items: center;
+  border: 2px solid #F00;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: #FFC0CB;
+}
+
+.switch-lg .form-check-input {
+  width: 3rem;
+  height: 1.5rem;
+  margin-right: 5px;
+}
+
+.switch-lg .form-check-label {
+  font-size: 1.2rem;
+}
+
+.switch-lg .form-check-input:hover {
+  transform: scale(1.2);
+}
+
+.switch-lg .form-check-input:active {
+  transform: scale(0.8);
+}
+
+i{
+  font-family: 1.5em;
 }

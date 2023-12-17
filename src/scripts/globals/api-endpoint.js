@@ -27,6 +27,12 @@ const API_ENDPOINT = {
   ADMIN_PROFILE: `${CONFIG.HEMO_LIFE_URL}/v1/admin/adminProfile`,
   // PUT
   UPDATE_PROFILE_ADMIN: `${CONFIG.HEMO_LIFE_URL}/v1/admin/adminProfile/update`,
+
+  // POST
+  LOGIN: `${CONFIG.HEMO_LIFE_URL}/v1/auth/login`,
+
+  // POST
+  REGISTER: `${CONFIG.HEMO_LIFE_URL}/v1/auth/register`,
 };
 
 export default API_ENDPOINT;
