@@ -1,4 +1,3 @@
-import Swal from 'sweetalert2';
 import TheHemoLifeDbSource from '../../data/thehemo-lifedb-source';
 import UrlParser from '../../routes/url-parser';
 import {
@@ -63,7 +62,6 @@ const ProfileUser = {
           .addEventListener('click', async () => {
             await this.saveChanges;
           });
-
         // Tambahkan event listener untuk tombol logout dengan konfirmasi
         document.getElementById('logout-btn').addEventListener('click', () => {
           Swal.fire({
@@ -80,6 +78,7 @@ const ProfileUser = {
             }
           });
         });
+
         document.getElementById('logout-btn').addEventListener('click', () => {
           // Tampilkan alert konfirmasi
           Swal.fire({
