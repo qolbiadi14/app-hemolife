@@ -294,14 +294,9 @@ const createKelolaDonorDarah = (adminProfile) => /* html */ `
               <th class="col">Golongan Darah</th>
 						</tr>
 						</thead>
-						<tbody>
-						<tr>
-							<td class="col">ini nomer</td>
-							<td class="col-6"> ini nama</td>
-							<td class="col"> ini tanggal donor</td>
-              <td class="col"> ini darah</td>
-						</tr>
-						</tbody>
+						<tbody id="tableBody">
+        <!-- Table content will be dynamically added here -->
+    </tbody>
 					</table>
 				</div>
 			</div>
@@ -403,6 +398,7 @@ const createDashboardAdmin = (adminProfile) => /* html */ `
                             <h3>Stok Darah</h3>
                             <!-- Elemen canvas untuk chart -->
                             <canvas id="bloodStockChart"></canvas>
+                            
                         </div>
                     </div>
                 </div>

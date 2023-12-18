@@ -257,72 +257,105 @@ class TheHemoLifeDbSource {
           'Content-Type': 'application/json',
         },
       });
-
+  
       if (!response.ok) {
         throw new Error('Failed to fetch admin dashboard data');
       }
-
+  
       const responseData = await response.json();
-
+  
       // Adjust the data structure based on the actual response
       const formattedData = responseData.data.map((item) => ({
-        nama_kota: item.nama_kota, // Adjust to match the actual property in your response
+        nama_lokasi_pmi: item.LokasiPmi.nama, // Access the nested property
         jumlah_kantong_darah: item.jumlah_kantong_darah,
       }));
-
+  
       return formattedData;
     } catch (error) {
       console.error('Error fetching admin dashboard data:', error);
       throw error;
     }
   }
+  
 
   static async kelolaDonorDarah() {
     try {
-      const response = await fetch(API_ENDPOINT.KELOLA_PENDONOR_DARAH, {
-        headers: {
-          Authorization: `${globalAdminToken}`,
-          'Content-Type': 'application/json',
-        },
-      });
+        const response = await fetch(API_ENDPOINT.KELOLA_PENDONOR_DARAH, {
+            headers: {
+                Authorization: `${globalAdminToken}`,
+                'Content-Type': 'application/json',
+            },
+        });
 
-      if (!response.ok) {
-        throw new Error('Failed to fetch blood donor data');
-      }
+        if (!response.ok) {
+            throw new Error('Failed to fetch blood donor data');
+        }
 
-      const responseData = await response.json();
+        const responseData = await response.json();
 
-      const formattedData = responseData.pendonor.map((item) => ({
-        id_tra_donor: item.id_tra_donor,
-        id_user: item.id_user,
-        id_gol_darah: item.id_gol_darah,
-        id_lokasi_pmi: item.id_lokasi_pmi,
-        tgl_donor: item.tgl_donor,
-        status: item.status,
-        user: {
-          id_user: item.User.id_user,
-          nama: item.User.nama,
-          email: item.User.email,
-          no_hp: item.User.no_hp,
-          jenis_kelamin: item.User.jenis_kelamin,
-          tanggal_lahir: item.User.tanggal_lahir,
-          alamat: item.User.alamat,
-        },
-        golDarah: {
-          gol_darah: item.GolDarah.gol_darah,
-        },
-        lokasiPmi: {
-          id_lokasi_pmi: item.LokasiPmi.id_lokasi_pmi,
+        const formattedData = responseData.pendonor.map((item) => ({
+            nama: item.User.nama,
+            tgl_donor: item.tgl_donor,
+            gol_darah: item.GolDarah.gol_darah,
+        }));
 
-        },
-      }));
-
-      return formattedData;
+        return formattedData;
     } catch (error) {
-      console.error('Error fetching blood donor data:', error);
-      throw error;
+        console.error('Error fetching blood donor data:', error);
+        throw error;
     }
-  }
+}
+
+
+  // static async kelolaBankDarah() {
+  //   try {
+  //     const response = await fetch(API_ENDPOINT.KELOLA_BANK_DARAH, {
+  //       headers: {
+  //         Authorization: `${globalAdminToken}`,
+  //         'Content-Type': 'application/json',
+  //       },
+  //     });
+  
+  //     if (!response.ok) {
+  //       throw new Error('Failed to fetch blood donor data');
+  //     }
+  
+  //     const responseData = await response.json();
+  
+  //     const formattedData = responseData.pendonor.map((item) => ({
+  //       id_tra_donor: item.id_tra_donor,
+  //       id_user: item.id_user,
+  //       id_gol_darah: item.id_gol_darah,
+  //       id_lokasi_pmi: item.id_lokasi_pmi,
+  //       tgl_donor: item.tgl_donor,
+  //       status: item.status,
+  //       user: {
+  //         id_user: item.User.id_user,
+  //         nama: item.User.nama,
+  //         email: item.User.email,
+  //         no_hp: item.User.no_hp,
+  //         jenis_kelamin: item.User.jenis_kelamin,
+  //         tanggal_lahir: item.User.tanggal_lahir,
+  //         alamat: item.User.alamat,
+  //       },
+  //       golDarah: {
+  //         gol_darah: item.GolDarah.gol_darah,
+  //       },
+  //       lokasiPmi: {
+  //         id_lokasi_pmi: item.LokasiPmi.id_lokasi_pmi,
+  //         nama: item.LokasiPmi.nama,  // Tambahkan properti nama atau sesuai kebutuhan
+  //         alamat: item.LokasiPmi.alamat,  // Tambahkan properti alamat atau sesuai kebutuhan
+  //         // Tambahkan properti lainnya jika diperlukan
+  //       },
+  //     }));
+  
+  //     return formattedData;
+  //   } catch (error) {
+  //     console.error('Error fetching blood donor data:', error);
+  //     throw error;
+  //   }
+  // }
+  
 }
 
 export default TheHemoLifeDbSource;

@@ -10,14 +10,17 @@ class NavbarAdmin extends HTMLElement {
                                         class="bi bi-home"></i>Dashboard</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link fw-bolder" href="#/kelola-bank-darah">Bank Darah</a>
+                                <a class="nav-link fw-bolder" href="#/kelola-bank-darah" style="white-space: nowrap;">Bank Darah</a>
                             </li>
                             <li class="nav-item">
                              <li class="nav-item">
                                 <a class="nav-link fw-bolder" href="#/kelola-donor-darah">Pendonor</a>
                             </li>
-                            
-                        <notifikasi-modal-component></notifikasi-modal-component>
+                            <li class="nav-item">
+                            <a class="nav-link" href="#/profile" title="Profile"><i
+                                    class="fa-solid fa-circle-user fa-xl" style="color: #e02424;"></i></a>
+                            </li>
+                        
                         </ul>
                     </div>
                 </div>
