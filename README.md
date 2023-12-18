@@ -1,3 +1,6 @@
+# Informasi Branch Utama
+Untuk branch utama project ini ada di branch "reset"
+
 # About HemoLife
 HemoLife adalah platform digital yang dirancang untuk menghubungkan sukarelawan pendonor darah dengan penerima darah atau fasilitas kesehatan yang membutuhkan darah. Keunggulan utama dari HemoLife adalah kemudahannya dalam mengetahui jadwal donor darah, pendaftaran donor darah dan pencarian sukarelawan pendonor darah. Dengan HemoLife, proses donor darah menjadi lebih efisien, pencarian sukarelawan donor darah menjadi mudah, dan dapat diakses oleh semua orang.
 
