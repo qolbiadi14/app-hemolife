@@ -220,12 +220,13 @@ class TheHemoLifeDbSource {
     return response.ok ? (await response.json()).data : [];
   }
 
+  // TODO search
   static async CariSukarelawan(golonganDarah, lokasi) {
     try {
       const response = await fetch(API_ENDPOINT.CARI_SUKARELAWAN, {
         method: 'POST',
         headers: {
-          Authorization: `${globalUserToken}`, // Sesuaikan dengan token yang diperlukan
+          Authorization: `${globalUserToken}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
@@ -237,9 +238,9 @@ class TheHemoLifeDbSource {
       if (response.ok) {
         const responseData = await response.json();
         if (responseData.message === 'Volunteer berhasil ditemukan') {
-          return responseData.volunteer; // Sesuaikan dengan struktur data yang diharapkan
+          return responseData.volunteer;
         }
-        return []; // Tidak ada sukarelawan yang ditemukan
+        return [];
       }
       console.error('Failed to fetch volunteers:', response.status);
       throw new Error('Failed to fetch volunteers');

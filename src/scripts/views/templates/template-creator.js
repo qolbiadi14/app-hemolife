@@ -35,8 +35,8 @@ const createSukarelawanTemplate = (sukarelawan_menerima) => /* html */ `
       <p class="card-text">Darah : ${sukarelawan_menerima.gol_darah}</p>
       <a href="https://wa.me/${getFormattedWhatsAppNumber(
 
-  sukarelawan_menerima.no_hp,
-)}" target="_blank" class="btn btn-success w-100">Hubungi Via WhatsApp</a>
+    sukarelawan_menerima.no_hp,
+  )}" target="_blank" class="btn btn-success w-100">Hubungi Via WhatsApp</a>
 
      </div>
   </div>
@@ -53,9 +53,9 @@ const createPendonoremplate = (pendonor) => /* html */ `
       <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect></svg>
       <div class="card-body">
         <h5 class="card-title">Pendonor</h5>
-        <p class="card-text">Nama ${pendonor.gol_darah}</p>
+        <p class="card-text">Darah ${pendonor.gol_darah}</p>
         <p class="card-text">Lokasi ${pendonor.lokasi_pmi}</p>
-        <p class="card-text">Darah${pendonor.tanggal_donor}</p>
+        <p class="card-text">Tanggal Donor ${pendonor.tangal_donor}</p>
         <button type="button" class="btn btn-success w-100">Cetak pdf Bukti Pendaftran</button>
       </div>
     </div>
@@ -216,9 +216,9 @@ const createUpdateProfileTemplate = (userProfile) => /* html */ `
                 <div class="col-lg-8">
                     <div class="ui-select">
                         <select id="jenis-kelamin-input" class="form-control">
-                            <option value="Laki-Laki" ${userProfile.jenis_kelamin === 'Laki-Laki'? 'selected': ''}>Laki-Laki</option>
-                            <option value="Perempuan" ${userProfile.jenis_kelamin === 'Perempuan'? 'selected': ''}>Perempuan</option>
-                            <option value="LGBT" ${userProfile.jenis_kelamin === 'LGBT'? 'selected': ''}>LGBT</option>
+                            <option value="Laki-Laki" ${userProfile.jenis_kelamin === 'Laki-Laki' ? 'selected' : ''}>Laki-Laki</option>
+                            <option value="Perempuan" ${userProfile.jenis_kelamin === 'Perempuan' ? 'selected' : ''}>Perempuan</option>
+                            <option value="LGBT" ${userProfile.jenis_kelamin === 'LGBT' ? 'selected' : ''}>LGBT</option>
                         </select>
                     </div>
                 </div>

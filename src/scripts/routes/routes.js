@@ -11,7 +11,6 @@ import DasboardAdmin from '../views/admin/DashboardAdmin';
 import landing from '../views/pages/landingpage';
 import login from '../views/pages/auth/login';
 import register from '../views/pages/auth/register';
-import faq from '../views/pages/faq';
 
 function isLoggedIn() {
   return localStorage.getItem('userToken') !== null || localStorage.getItem('adminToken') !== null;
@@ -31,9 +30,9 @@ const routes = {
   '/detail-jadwal-daftar/:id': isLoggedIn() ? (isAdminLoggedIn() ? ProfileAdmin : JadwalDaftarDetail) : landing,
   '/cari-sukarelawan': isLoggedIn() ? (isAdminLoggedIn() ? ProfileAdmin : CariSukarelawan) : landing,
   '/adminprofile': isLoggedIn() && isAdminLoggedIn() ? ProfileAdmin : landing,
-  '/kelola-bank-darah': KelolaBankDarah,
-  '/kelola-donor-darah': KelolaDonorDarah,
-  '/dashboard-admin': DasboardAdmin,
+  '/kelola-bank-darah': isLoggedIn() && isAdminLoggedIn() ? KelolaBankDarah : landing,
+  '/kelola-donor-darah': isLoggedIn() && isAdminLoggedIn() ? KelolaDonorDarah : landing,
+  '/dashboard-admin': isLoggedIn() && isAdminLoggedIn() ? DasboardAdmin : landing,
   '*': NotFoundPage,
 };
 export default routes;

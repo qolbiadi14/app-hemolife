@@ -23,7 +23,7 @@ class NotifikasiModal extends HTMLElement {
             <div class="dropdown-list dropdown-menu-right animated--grow-in show" aria-labelledby="alertsDropdown">
                 ${this.generateAlertItem('Sukarelawan Menerima', data.sukarelawan_menerima)}
                 ${this.generateAlertItem('Sukarelawan Menolak', data.sukarelawan_menolak, true)}
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                <a class="dropdown-item text-center small text-gray-500" href="#">Notifikasi</a>
             </div>
         `;
   }

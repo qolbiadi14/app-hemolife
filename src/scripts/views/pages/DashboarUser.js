@@ -29,7 +29,7 @@ const DashboardUser = {
     displayData(response);
     function displayData(data) {
       dataContainer.innerHTML = createDasboardTemplate(data.user);
-      console.log('Data user:', data);
+      // console.log('Data user:', data);
       // Cek jika data.user tidak kosong
       if (data[0].pendonor && typeof data[0].pendonor === 'object') {
         createCardContainer(data[0].pendonor, createPendonoremplate);
@@ -42,8 +42,8 @@ const DashboardUser = {
 
       // Cek dan tampilkan data pemohon
       if (data.pemohon && typeof data.pemohon === 'object') {
-        console.log('Data pemohon:', data.pemohon);
-        console.log('ID User Volunteer Pemohon:', data.pemohon.id_user);
+        // console.log('Data pemohon:', data.pemohon);
+        // console.log('ID User Volunteer Pemohon:', data.pemohon.id_user);
         createCardContainer(data.pemohon, createPemohonTemplate);
       }
 
@@ -113,38 +113,38 @@ const DashboardUser = {
       const rejectBtn = cardContainer.querySelector('#rejectBtn');
 
       if (acceptBtn && dataObject.id_user_volunteer) {
-        console.log('Dataset acceptBtn:', acceptBtn.dataset.id_user_volunteer);
+        // console.log('Dataset acceptBtn:', acceptBtn.dataset.id_user_volunteer);
         acceptBtn.dataset.id_user_volunteer = dataObject.id_user_volunteer;
       }
 
       if (rejectBtn && dataObject.id_user_volunteer) {
-        console.log('Dataset rejectBtn:', rejectBtn.dataset.id_user_volunteer);
+        // console.log('Dataset rejectBtn:', rejectBtn.dataset.id_user_volunteer);
         rejectBtn.dataset.id_user_volunteer = dataObject.id_user_volunteer;
       }
 
       if (acceptBtn && dataObject.id_user) {
-        console.log('Dataset acceptBtn:', acceptBtn.dataset.id_user);
+        // console.log('Dataset acceptBtn:', acceptBtn.dataset.id_user);
         acceptBtn.dataset.id_user = dataObject.id_user;
       }
 
       if (rejectBtn && dataObject.id_user) {
-        console.log('Dataset rejectBtn:', rejectBtn.dataset.id_user);
+        // console.log('Dataset rejectBtn:', rejectBtn.dataset.id_user);
         rejectBtn.dataset.id_user = dataObject.id_user;
       }
 
       mainContainer.appendChild(cardContainer);
-      console.log('Card Container created:', cardContainer); // Tambahkan log ini
+      // console.log('Card Container created:', cardContainer); // Tambahkan log ini
 
       return cardContainer;
     }
 
     function handleResponse(response) {
-      console.log('API Response:', response);
+      // console.log('API Response:', response);
 
       if (Array.isArray(response) && response.length > 0 && response[0].id_user_volunteer) {
-        console.log('ID User Volunteer Pemohon (handleResponse):', response[0].id_user_volunteer);
+        // console.log('ID User Volunteer Pemohon (handleResponse):', response[0].id_user_volunteer);
       } else {
-        console.error('Error:', 'Response is empty or undefined');
+        // console.error('Error:', 'Response is empty or undefined');
       }
     }
   },

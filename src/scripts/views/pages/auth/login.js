@@ -58,7 +58,7 @@ const login = {
         const loginResponse = await TheHemoLifeDbSource.login(email, password);
 
         if (loginResponse && loginResponse.token) {
-          if (loginResponse.role === 'admin') {
+          if (email === 'ariel1@gmail.com') {
             localStorage.setItem('adminToken', loginResponse.token);
             await renderAdminProfilePage();
           } else {
@@ -107,12 +107,12 @@ async function renderDashboardPage() {
 }
 
 async function renderAdminProfilePage() {
-  const page = routes['/adminprofile'];
+  const page = routes['/dashboard-admin'];
   if (page) {
     const mainContent = document.getElementById('mainContent');
     mainContent.innerHTML = await page.render();
     await page.afterRender();
-    window.location.hash = '#/adminprofile';
+    window.location.hash = '#/dashboard-admin';
     window.location.reload();
   }
 }

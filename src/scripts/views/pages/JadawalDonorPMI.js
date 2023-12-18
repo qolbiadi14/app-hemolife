@@ -68,17 +68,17 @@ const JadwalDaftarDonorPMI = {
       const idLokPmi = targetButton.dataset.id;
       const idUser = targetButton.dataset.id;
 
-      console.log('Clicked Button ID:', idLokPmi);
+      // console.log('Clicked Button ID:', idLokPmi);
 
       const selectedJadwal = this.jadwals.find(
         (jadwal) => jadwal.id_lok_pmi === idLokPmi,
       );
 
       const selectedUser = await TheHemoLifeDbSource.profileUser();
-      console.log('Selected User:', selectedUser);
+      // console.log('Selected User:', selectedUser);
 
-      console.log('Selected Jadwal:', selectedJadwal);
-      console.log('Users:', selectedUser);
+      // console.log('Selected Jadwal:', selectedJadwal);
+      // console.log('Users:', selectedUser);
 
       if (selectedJadwal && selectedUser) {
         const postData = {
@@ -99,7 +99,7 @@ const JadwalDaftarDonorPMI = {
 
         try {
           const response = await TheHemoLifeDbSource.daftarJadwalDonorHemoLife(postData);
-          console.log('Full Response:', response);
+          // console.log('Full Response:', response);
           const success = response;
           const message = success
             ? 'Berhasil mendaftar!'
@@ -112,7 +112,7 @@ const JadwalDaftarDonorPMI = {
             confirmButtonText: 'Cool',
           });
         } catch (error) {
-          console.error('Error during data submission:', error);
+          // console.error('Error during data submission:', error);
           Swal.fire({
             title: 'Terjadi kesalahan. Silakan coba lagi.',
             icon: 'error',

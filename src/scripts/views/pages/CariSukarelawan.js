@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import TheHemoLifeDbSource from '../../data/thehemo-lifedb-source';
 import { createCariSukarelawanTemplate } from '../templates/template-creator';
 
@@ -50,7 +51,4 @@ function hubungiVolunteer(index) {
   // Lakukan tindakan yang sesuai, misalnya tampilkan modal atau lakukan pengiriman pesan, dll.
   console.log(`Hubungi sukarelawan ke-${index + 1}`);
 }
-
-
-
 export default CariSukarelawan;

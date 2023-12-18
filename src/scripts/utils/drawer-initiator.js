@@ -7,12 +7,8 @@ const DrawerInitiator = {
     content.addEventListener('click', (event) => {
       this._closeDrawer(event, drawer);
     });
-<<<<<<< HEAD
 
     this._adjustNavbarBasedOnLoginStatus(drawer); // Fixed this line
-=======
-    this._adjustNavbarBasedOnLoginStatus(drawer);
->>>>>>> d50537e601291f338172758a7718d26a4f07d87f
   },
 
   _toggleDrawer(event, drawer) {
@@ -32,14 +28,9 @@ const DrawerInitiator = {
       drawer.innerHTML += `
         <navbar-component></navbar-component>
       `;
-
     } else if (adminToken) {
       drawer.innerHTML += `
-<<<<<<< HEAD
-        <custom-navadmin></custom-navadmin>
-=======
-      <custom-navadmin></custom-navadmin>
->>>>>>> d50537e601291f338172758a7718d26a4f07d87f
+        <navbar-admin></navbar-admin>
       `;
     } else {
       drawer.innerHTML += `       

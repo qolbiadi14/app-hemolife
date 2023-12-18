@@ -30,15 +30,15 @@ const API_ENDPOINT = {
 
   // POST
   LOGIN: `${CONFIG.HEMO_LIFE_URL}/v1/auth/login`,
-  //post cari sukarelawan
+  // post cari sukarelawan
   CARI_SUKARELAWAN: `${CONFIG.HEMO_LIFE_URL}/v1/user/volunteer/search`,
 
   // POST
   REGISTER: `${CONFIG.HEMO_LIFE_URL}/v1/auth/register`,
 
-  //admindashboard
+  // admindashboard
   DASHBOARD_ADMIN: `${CONFIG.HEMO_LIFE_URL}/v1/admin/dashboardAdmin`,
-  //keloladonor darah
+  // keloladonor darah
   // GET
   KELOLA_PENDONOR_DARAH: `${CONFIG.HEMO_LIFE_URL}/v1/admin/pendonorDarah`,
 
