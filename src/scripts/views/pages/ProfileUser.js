@@ -33,7 +33,6 @@ const ProfileUser = {
   },
 
   async afterRender() {
-    // Parse URL untuk mengetahui halaman aktif
     const url = UrlParser.parseActiveUrlWithoutCombiner();
     console.log('Parsed URL:', url);
 
@@ -48,22 +47,17 @@ const ProfileUser = {
       const editProfileContainer = document.getElementById(
         'edit-profile-container',
       );
-
-      // Periksa apakah data user profile berhasil diambil
       if (userProfile) {
-        // Tampilkan data profile dalam container
         profileContainer.innerHTML = createProfileUserTemplate(userProfile);
 
         // Tampilkan form edit profile dengan data awal dari user profile
         editProfileContainer.innerHTML = createUpdateProfileTemplate(userProfile);
 
         // Tambahkan event listener untuk tombol simpan perubahan
-        document
-          .getElementById('save-changes-btn')
-          .addEventListener('click', async () => {
-            await this.saveChanges;
-          });
-
+        document.getElementById('save-changes-btn').addEventListener('click', async () => {
+          console.log('Save Changes Button Clicked');
+          await this.saveChanges();
+        });
         // Tambahkan event listener untuk tombol logout dengan konfirmasi
         document.getElementById('logout-btn').addEventListener('click', () => {
           Swal.fire({
@@ -89,7 +83,6 @@ const ProfileUser = {
             denyButtonText: 'Tidak',
           }).then((result) => {
             if (result.isConfirmed) {
-              // Jika pengguna yakin, lakukan logout dan redirect ke halaman "/landing"
               this.logout();
               window.location.href = '#/landing';
               location.reload();
@@ -113,15 +106,21 @@ const ProfileUser = {
     localStorage.removeItem('userToken');
     console.log('Token removed.');
   },
-
+  showSweetAlert(type, message) {
+    Swal.fire({
+      icon: type,
+      text: message,
+      showConfirmButton: false,
+      timer: 3000,
+    });
+  },
   async saveChanges() {
     const updatedData = {
       nama_lengkap: document.getElementById('nama-lengkap-input').value,
       alamat: document.getElementById('alamat-input').value,
       jenis_kelamin: document.getElementById('jenis-kelamin-input').value,
       tanggal_lahir: document.getElementById('tanggal-lahir-input').value,
-      status_volunteer: document.getElementById('flexSwitchCheckDefault')
-        .checked
+      sts_volunteer: document.getElementById('flexSwitchCheckDefault').checked
         ? 1
         : 0,
     };
@@ -132,25 +131,19 @@ const ProfileUser = {
 
       if (
         updateResult
-        && updateResult.message === 'Data profil berhasil diperbarui'
+        && updateResult.message === 'User profile updated successfully'
+        && updateResult.user !== null
       ) {
-        console.log('Profil berhasil diperbarui:', updateResult.user[0]);
-        this.showBootstrapAlert('success-alert');
+        console.log('Profil berhasil diperbarui:', updateResult);
+        this.showSweetAlert('success', 'Profil berhasil diperbarui');
       } else {
         console.log('Gagal memperbarui profil:', updateResult);
-        this.showBootstrapAlert('error-alert');
+        this.showSweetAlert('error', 'Gagal memperbarui profil. Silakan coba lagi.');
       }
     } catch (error) {
       console.error('Error updating profile:', error);
-      this.showBootstrapAlert('error-alert');
+      this.showSweetAlert('error', 'Gagal memperbarui profil. Silakan coba lagi.');
     }
-  },
-  showBootstrapAlert(alertId) {
-    const alertElement = document.getElementById(alertId);
-    alertElement.classList.remove('d-none');
-    setTimeout(() => {
-      alertElement.classList.add('d-none');
-    }, 3000);
   },
 };
 export default ProfileUser;

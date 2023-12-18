@@ -11,7 +11,7 @@ class TheHemoLifeDbSource {
 
   static setGlobalAdminToken(token) {
     globalAdminToken = token;
-    localStorage.setItem('adminToken', token || 'TokenAdmin');
+    localStorage.setItem('adminToken', token);
   }
 
   // TODO login Fect
@@ -23,6 +23,7 @@ class TheHemoLifeDbSource {
 
     try {
       const response = await fetch(API_ENDPOINT.LOGIN, {
+        mode: 'cors',
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -74,65 +75,6 @@ class TheHemoLifeDbSource {
       throw error;
     }
   }
-  // TODO login Fect
-  static async login(email, password) {
-    const requestBody = {
-      email,
-      password,
-    };
-
-    try {
-      const response = await fetch(API_ENDPOINT.LOGIN, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(requestBody),
-      });
-
-      if (response.ok) {
-        const responseJson = await response.json();
-        console.log('API Response POST Login:', responseJson);
-        return responseJson;
-      } else {
-        // Handle unsuccessful login
-        console.error('Login failed:', response.status);
-        throw new Error('Login failed');
-      }
-    } catch (error) {
-      console.error('Error during login:', error);
-      throw error;
-    }
-  } 
-  static async register(user) {
-    try {
-      const response = await fetch(API_ENDPOINT.REGISTER, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(user),
-      });
-
-      if (response.status === 201) {
-        const responseJson = await response.json();
-        console.log('API Response POST Register:', responseJson);
-        return responseJson;
-      } else if (response.status === 409) {
-        const responseJson = await response.json();
-        console.error('Registration failed:', responseJson.message);
-        throw new Error('Registration failed');
-      } else {
-        console.error('Unexpected error during registration:', response.status);
-        throw new Error('Unexpected error during registration');
-      }
-    } catch (error) {
-      console.error('Error during registration:', error);
-      throw error;
-    }
-  } 
 
   static async updateProfileUser(updatedData) {
     const response = await fetch(API_ENDPOINT.UPDATE_PROFILE, {
@@ -140,7 +82,6 @@ class TheHemoLifeDbSource {
       headers: {
         Authorization: `${globalUserToken}`,
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify(updatedData),
     });
@@ -150,7 +91,6 @@ class TheHemoLifeDbSource {
 
   static async profileUser() {
     const response = await fetch(API_ENDPOINT.USER_PROFILE, {
-      mode: 'cors',
       headers: {
         Authorization: `${globalUserToken}`,
         'Content-Type': 'application/json',
@@ -165,7 +105,7 @@ class TheHemoLifeDbSource {
       const response = await fetch(API_ENDPOINT.ADMIN_PROFILE, {
         method: 'GET',
         headers: {
-          Authorization: `Bearer ${globalAdminToken}`,
+          Authorization: `${globalAdminToken}`,
           'Content-Type': 'application/json',
         },
       });
@@ -190,7 +130,7 @@ class TheHemoLifeDbSource {
     const response = await fetch(API_ENDPOINT.UPDATE_PROFILE_ADMIN, {
       method: 'PUT',
       headers: {
-        Authorization: `Bearer ${globalAdminToken}`,
+        Authorization: `${globalAdminToken}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(updatedData),
@@ -216,7 +156,7 @@ class TheHemoLifeDbSource {
     const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${userToken}`,
+        Authorization: `${userToken}`,
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
@@ -235,16 +175,18 @@ class TheHemoLifeDbSource {
   static async dasboardUser() {
     const response = await fetch(API_ENDPOINT.DASHBOARD_USER, {
       headers: {
-        Authorization: `Bearer ${globalUserToken}`,
+        Authorization: `${globalUserToken}`,
         'Content-Type': 'application/json',
       },
     });
     const responseJson = await response.json();
+    // console.log('GET dashboard User Rensponse:', responseJson);
     return responseJson;
   }
 
   static async jadwalDonorHemoLife() {
     const response = await fetch(API_ENDPOINT.JADWAL, {
+      mode: 'cors',
       headers: {
         Authorization: `${globalUserToken}`,
         'Content-Type': 'application/json',
@@ -257,7 +199,7 @@ class TheHemoLifeDbSource {
     const response = await fetch(API_ENDPOINT.DAFTAR_JADWAL, {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${globalUserToken}`,
+        Authorization: `${globalUserToken}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),

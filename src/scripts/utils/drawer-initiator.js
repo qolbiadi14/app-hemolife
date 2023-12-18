@@ -8,10 +8,7 @@ const DrawerInitiator = {
       this._closeDrawer(event, drawer);
     });
 
-    this.
-    
-    
-    (drawer);
+    this._adjustNavbarBasedOnLoginStatus(drawer); // Fixed this line
   },
 
   _toggleDrawer(event, drawer) {
@@ -23,6 +20,7 @@ const DrawerInitiator = {
     event.stopPropagation();
     drawer.classList.remove('open');
   },
+
   async _adjustNavbarBasedOnLoginStatus(drawer) {
     const userToken = localStorage.getItem('userToken');
     const adminToken = localStorage.getItem('adminToken');
@@ -33,12 +31,11 @@ const DrawerInitiator = {
       `;
     } else if (adminToken) {
       drawer.innerHTML += `
-       <custom-navadmin></custom-navadmin>
-      ;
+        <custom-navadmin></custom-navadmin>
       `;
     } else {
       drawer.innerHTML += `       
-      <custom-navbar></custom-navbar>
+        <custom-navbar></custom-navbar>
       `;
     }
   },
