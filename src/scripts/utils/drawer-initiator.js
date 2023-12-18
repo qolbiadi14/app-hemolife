@@ -9,9 +9,6 @@ const DrawerInitiator = {
     });
 <<<<<<< HEAD
 
-    this._adjustNavbarBasedOnLoginStatus(drawer); // Fixed this line
-=======
-    this._adjustNavbarBasedOnLoginStatus(drawer);
 >>>>>>> d50537e601291f338172758a7718d26a4f07d87f
   },
 
