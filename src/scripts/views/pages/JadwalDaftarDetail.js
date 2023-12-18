@@ -19,13 +19,13 @@ const JadwalDaftarDetail = {
     const pmi = await TheHemoLifeDbSource.jadwalDetailDonorDarah(url.id);
 
     // Cek Data Response Render
-    // console.log('Render Response:', pmi);
+    console.log('Render Response:', pmi);
 
     // Jika pmi tidak terdefinisi atau null, tampilkan pesan error
-    // if (!pmi) {
-    //   console.log('Tidak ada data atau data kosong.');
-    //   return;
-    // }
+    if (!pmi) {
+      console.log('Tidak ada data atau data kosong.');
+      return;
+    }
 
     // Tambahkan template ke container
     pmiContainer.innerHTML += createJadwalDetailPMITemplate(pmi);

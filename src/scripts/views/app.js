@@ -1,7 +1,5 @@
-import './pages/components/NotifikasiModal';
 import './pages/components/Navbar';
 import './pages/components/MainContent';
-import './pages/components/notifikasi';
 import './pages/components/CustomFooter';
 import './pages/components/NavBarLending';
 import './admin/components/NavbarAdmin';
