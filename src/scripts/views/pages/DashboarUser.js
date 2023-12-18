@@ -29,19 +29,31 @@ const DashboardUser = {
     displayData(response);
     function displayData(data) {
       dataContainer.innerHTML = createDasboardTemplate(data.user);
+      console.log('Data user:', data);
+      // Cek jika data.user tidak kosong
+      if (data[0].pendonor && typeof data[0].pendonor === 'object') {
+        createCardContainer(data[0].pendonor, createPendonoremplate);
+      }
 
-      data.sukarelawan_menerima?.forEach((sukarelawan) =>
-        createCardContainer(sukarelawan, createSukarelawanTemplate));
+      // Cek dan tampilkan data sukarelawan
+      if (data.sukarelawan_menerima && typeof data.sukarelawan_menerima === 'object') {
+        createCardContainer(data.sukarelawan_menerima, createSukarelawanTemplate);
+      }
 
-      data.pemohon?.forEach((pemohon) =>
-        createCardContainer(pemohon, createPemohonTemplate));
+      // Cek dan tampilkan data pemohon
+      if (data.pemohon && typeof data.pemohon === 'object') {
+        console.log('Data pemohon:', data.pemohon);
+        console.log('ID User Volunteer Pemohon:', data.pemohon.id_user);
+        createCardContainer(data.pemohon, createPemohonTemplate);
+      }
 
-      data.pendonor
-        && createCardContainer(data.pendonor, createPendonoremplate);
+      // Cek dan tampilkan data pendonor
+      if (data.pendonor && typeof data.pendonor === 'object') {
+        createCardContainer(data.pendonor, createPendonoremplate);
+      }
 
       mainContainer.addEventListener('click', async (event) => {
         const targetButton = event.target.closest('.download-pdf-btn');
-
         if (targetButton) {
           const { donorId } = targetButton.dataset;
 
@@ -53,33 +65,25 @@ const DashboardUser = {
               generatePDF({ pendonor: data.pendonor, pmi: pmiDetails });
             }
           } catch (error) {
-            console.error('Error generating PDF:', error);
+            // console.error('Error generating PDF:', error);
           }
         }
-        if (
-          event.target.id === 'acceptBtn'
-          || event.target.id === 'rejectBtn'
-        ) {
+        console.log('Clicked element ID:', event.target.id); // Tambahkan log ini
+        console.log('Clicked element dataset:', event.target.dataset); // Tambahkan log ini
+        if (event.target.id === 'acceptBtn' || event.target.id === 'rejectBtn') {
           // Periksa apakah event.target.dataset.id_user_volunteer atau event.target.dataset.id_user
-          const id = event.target.dataset.id_user_volunteer
-            || event.target.dataset.id_user;
+          const id = event.target.dataset.id_user_volunteer || event.target.dataset.id_user;
           try {
             if (event.target.id === 'acceptBtn') {
-              const response = await TheHemoLifeDbSource.acceptOrRejectRequest(
-                id,
-                true,
-              );
+              const response = await TheHemoLifeDbSource.acceptRequest(id);
               handleResponse(response);
               Swal.fire({
-                title: 'Berhasil menerima permintaan.',
+                title: 'Berhasil Menerima permintaan',
                 icon: 'success',
                 showConfirmButton: 'Cool',
               });
             } else if (event.target.id === 'rejectBtn') {
-              const response = await TheHemoLifeDbSource.acceptOrRejectRequest(
-                id,
-                false,
-              );
+              const response = await TheHemoLifeDbSource.rejectRequest(id);
               handleResponse(response);
               Swal.fire({
                 title: 'Berhasil menolak permintaan',
@@ -100,33 +104,45 @@ const DashboardUser = {
     }
 
     function createCardContainer(dataObject, templateFunction) {
+      console.log('Data Object:', dataObject);
       const cardContainer = document.createElement('div');
       cardContainer.classList.add('col');
       cardContainer.innerHTML = templateFunction(dataObject);
-      ['acceptBtn', 'rejectBtn'].forEach((button) => {
-        const btnElement = cardContainer.querySelector(`#${button}`);
-        const datasetKey = button.includes('accept')
-          ? 'id_user_volunteer'
-          : 'id_user';
 
-        if (btnElement && dataObject[datasetKey]) {
-          btnElement.dataset[datasetKey] = dataObject[datasetKey];
-        }
-      });
+      const acceptBtn = cardContainer.querySelector('#acceptBtn');
+      const rejectBtn = cardContainer.querySelector('#rejectBtn');
+
+      if (acceptBtn && dataObject.id_user_volunteer) {
+        console.log('Dataset acceptBtn:', acceptBtn.dataset.id_user_volunteer);
+        acceptBtn.dataset.id_user_volunteer = dataObject.id_user_volunteer;
+      }
+
+      if (rejectBtn && dataObject.id_user_volunteer) {
+        console.log('Dataset rejectBtn:', rejectBtn.dataset.id_user_volunteer);
+        rejectBtn.dataset.id_user_volunteer = dataObject.id_user_volunteer;
+      }
+
+      if (acceptBtn && dataObject.id_user) {
+        console.log('Dataset acceptBtn:', acceptBtn.dataset.id_user);
+        acceptBtn.dataset.id_user = dataObject.id_user;
+      }
+
+      if (rejectBtn && dataObject.id_user) {
+        console.log('Dataset rejectBtn:', rejectBtn.dataset.id_user);
+        rejectBtn.dataset.id_user = dataObject.id_user;
+      }
+
       mainContainer.appendChild(cardContainer);
+      console.log('Card Container created:', cardContainer); // Tambahkan log ini
+
       return cardContainer;
     }
 
     function handleResponse(response) {
-      if (
-        Array.isArray(response)
-        && response.length > 0
-        && response[0].id_user_volunteer
-      ) {
-        console.log(
-          'ID User Volunteer Pemohon (handleResponse):',
-          response[0].id_user_volunteer,
-        );
+      console.log('API Response:', response);
+
+      if (Array.isArray(response) && response.length > 0 && response[0].id_user_volunteer) {
+        console.log('ID User Volunteer Pemohon (handleResponse):', response[0].id_user_volunteer);
       } else {
         console.error('Error:', 'Response is empty or undefined');
       }

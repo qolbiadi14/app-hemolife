@@ -2,7 +2,7 @@ import CONFIG from './config';
 
 const API_ENDPOINT = {
   // GET
-  // DASHBOARD_USER: `${CONFIG.HEMO_LIFE_URL}/v1/user/dashboardUser`,
+  DASHBOARD_USER: `${CONFIG.HEMO_LIFE_URL}/v1/user/dashboardUser`,
 
   // POST
   ACCEPT_REQUEST: `${CONFIG.HEMO_LIFE_URL}/v1/user/dashboardUser/acceptRequest`,

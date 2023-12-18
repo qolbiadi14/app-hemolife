@@ -2,20 +2,15 @@ import L from 'leaflet';
 import 'leaflet.control.layers.tree';
 import 'leaflet.awesome-markers';
 
-const createPemohonTemplate = (pemohon /* html */) =>
-  `
+const createPemohonTemplate = (pemohon) => /* html */ `
   <div class="card shadow">
     <!-- <img src="..." class="card-img-top" alt="..."> -->
     <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect></svg>
     <div class="card-body">      
       <h5 class="card-title">Pemohon</h5>
-      <p class="card-text">${
-  pemohon.nama_pemohon && `Nama : ${pemohon.nama_pemohon}`
-}</p>
-      <p class="card-text">${
-  pemohon.gol_darah && `Pemohom : ${pemohon.gol_darah}`
-}</p>
-      <p class="card-text">${pemohon.alamat && `Alamat : ${pemohon.alamat}`}</p>
+      <p class="card-text">Pemohon : ${pemohon.nama_pemohon}</p>
+      <p class="card-text">Darah : ${pemohon.gol_darah}</p>
+      <p class="card-text">Alamat : ${pemohon.alamat}</p>
       <div class="row">
     <div class="col-md-6 col-sm-12 mb-2">
       <button type="button" id="rejectBtn" class="btn btn-danger reject-btn w-100" data-id_user="1">Tolak</button>
@@ -34,21 +29,10 @@ const createSukarelawanTemplate = (sukarelawan_menerima) => /* html */ `
     <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect></svg>
     <div class="card-body">
       <h5 class="card-title">Sukarelawan</h5>
-      <p class="card-text">${
-  sukarelawan_menerima.nama_volunteer
-        && `Nama : ${sukarelawan_menerima.nama_volunteer}`
-}</p>
-      <p class="card-text">${
-  sukarelawan_menerima.status && `Status : ${sukarelawan_menerima.status}`
-}</p>
-      <p class="card-text">${
-  sukarelawan_menerima.alamat_volunteer
-        && `Alamat : ${sukarelawan_menerima.alamat_volunteer}`
-}</p>
-      <p class="card-text">${
-  sukarelawan_menerima.gol_darah
-        && `Golongan Darah : ${sukarelawan_menerima.gol_darah}`
-}</p>
+      <p class="card-text">Voluonter : ${sukarelawan_menerima.nama_volunteer}</p>
+      <p class="card-text">Status : ${sukarelawan_menerima.status}</p>
+      <p class="card-text">Alamat : ${sukarelawan_menerima.alamat_volunteer}</p>
+      <p class="card-text">Darah : ${sukarelawan_menerima.gol_darah}</p>
       <a href="https://wa.me/${getFormattedWhatsAppNumber(
 
   sukarelawan_menerima.no_hp,
@@ -64,36 +48,27 @@ function getFormattedWhatsAppNumber(number) {
 }
 
 const createPendonoremplate = (pendonor) => /* html */ `
-  <div class="card shadow" style="position: relative;">
+  <div class="card shadow">
       <!-- <img src="..." class="card-img-top" alt="..."> -->
       <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect></svg>
       <div class="card-body">
         <h5 class="card-title">Pendonor</h5>
-        <p class="card-text" id="golDarah_${pendonor.id_donor}">${
-  pendonor.gol_darah && `Gol Darah: ${pendonor.gol_darah}`
-}</p>
-        <p class="card-text" id="lokasiPmi_${pendonor.id_donor}">${
-  pendonor.lokasi_pmi && `Lokasi PMI: ${pendonor.lokasi_pmi}`
-}</p>
-        <p class="card-text" id="tanggalDonor_${pendonor.id_donor}">${
-  pendonor.tanggal_donor && `Tanggal Donor: ${pendonor.tanggal_donor}`
-}</p>
-        <button type="button" title="Cetak Bukti Pendaftaran" class="download-pdf-btn btn mb-3 p-3 me-2" data-donor-id="${
-  pendonor.id_donor
-}" style="position: absolute; bottom: 0; right: 0;">
-        <i class="fa-solid fa-circle-arrow-down fa-2xl" style="color: #db3939;"></i>
-      </button>
+        <p class="card-text">Nama ${pendonor.gol_darah}</p>
+        <p class="card-text">Lokasi ${pendonor.lokasi_pmi}</p>
+        <p class="card-text">Darah${pendonor.tanggal_donor}</p>
+        <button type="button" class="btn btn-success w-100">Cetak pdf Bukti Pendaftran</button>
       </div>
-  </div>
+    </div>
 `;
 
 const createDasboardTemplate = (data) => /* html */ `
   <div class="movie-item">
     <h1 class="fw-bold">Selamat Datang <span class="text-danger"> ${
-  data.nama || data.id_user || 'Pengguna'
+  data && data.nama ? data.nama : data && data.id_user ? data.id_user : 'Pengguna'
 } </span></h1>
   </div>
 `;
+
 const createJadwalTemplate = (data) => /* html */ `
 <div class="col">
   <div class="card shadow">
@@ -171,7 +146,7 @@ const createProfileUserTemplate = (userProfile) => /* html */ `
   <div class="d-flex flex-column align-items-center text-center">
     <img class="rounded-circle" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" />
     <ul class="list-group list-group-flush">
-      <li class="list-group-item"></li>
+      <li class="list-group-item">${userProfile.nama}</li>
       <li class="list-group-item">Alamat: ${userProfile.alamat}</li>
       <li class="list-group-item">Jenis Kelamin: ${userProfile.jenis_kelamin}</li>
       <li class="list-group-item pb-5">Tanggal Lahir: ${userProfile.tanggal_lahir}</li>
@@ -198,7 +173,7 @@ const createUpdateProfileTemplate = (userProfile) => /* html */ `
             <div class="form-group">
                 <label class="col-lg-12 control-label">No. Telp:</label>
                 <div class="col-lg-8">
-                    <input id="no-telp-input" class="form-control" type="text" value="${
+                    <input id="no-telp-input" class="form-control" type="number" value="${
   userProfile.no_hp
 }">
 

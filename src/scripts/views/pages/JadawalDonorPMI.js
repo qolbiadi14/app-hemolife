@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import 'leaflet.control.layers.tree';
 import 'leaflet.awesome-markers';
 import Swal from 'sweetalert2';
@@ -10,6 +11,7 @@ import {
 
 const JadwalDaftarDonorPMI = {
   jadwals: [],
+  users: [],
 
   async render() {
     return `
@@ -21,28 +23,18 @@ const JadwalDaftarDonorPMI = {
     `;
   },
 
-  // async afterRender() {
-  //   this.jadwals = await TheHemoLifeDbSource.jadwalDonorHemoLife();
-  //   console.log('Jadwal Data:', this.jadwals);
-  //   const jadwalsContainer = document.querySelector('#jadwals');
-
-  //   jadwalsContainer.innerHTML = '';
-  //   this.jadwals.forEach((jadwal) => {
-  //     console.log('Current Jadwal:', jadwal);
-  //     jadwalsContainer.innerHTML += createJadwalTemplate(jadwal);
-  //   });
-  //   initializeLeafletMaps(this.jadwals);
-  //   jadwalsContainer.removeEventListener('click', this.handleButtonClick);
-  //   jadwalsContainer.addEventListener(
-  //     'click',
-  //     this.handleButtonClick.bind(this),
-  //   );
-  // },
-
   async afterRender() {
     try {
       this.jadwals = await TheHemoLifeDbSource.jadwalDonorHemoLife();
+      // this.users = await TheHemoLifeDbSource.profileUser();
+
+      const userProfileResponse = await TheHemoLifeDbSource.profileUser();
+      console.log('User Profile Response:', userProfileResponse); // Tambahkan baris ini
+
+      this.users = userProfileResponse ? [userProfileResponse.user] : [];
+
       console.log('Jadwal Data:', this.jadwals); // Check if it's defined and contains data
+      console.log('User Data:', userProfileResponse); // Tambahkan log untuk menampilkan data pengguna
 
       const jadwalsContainer = document.querySelector('#jadwals');
 
@@ -74,22 +66,28 @@ const JadwalDaftarDonorPMI = {
     const targetButton = event.target.closest('.btn-outline-danger');
     if (targetButton) {
       const idLokPmi = targetButton.dataset.id;
+      const idUser = targetButton.dataset.id;
+
       console.log('Clicked Button ID:', idLokPmi);
+
       const selectedJadwal = this.jadwals.find(
         (jadwal) => jadwal.id_lok_pmi === idLokPmi,
       );
+
+      const selectedUser = await TheHemoLifeDbSource.profileUser();
+      console.log('Selected User:', selectedUser);
+
       console.log('Selected Jadwal:', selectedJadwal);
+      console.log('Users:', selectedUser);
 
-      if (selectedJadwal) {
-        const userIdOrOtherIdentifier = selectedJadwal.id_lok_pmi;
-
+      if (selectedJadwal && selectedUser) {
         const postData = {
-          id_user: userIdOrOtherIdentifier,
-          gol_darah: 'A+',
-          nama_lok_pmi: selectedJadwal.nama_lok_pmi,
+          id_user: selectedUser.id_user,
+          id_gol_darah: selectedUser.id_gol_darah,
+          id_lokasi_pmi: selectedJadwal.id_lok_pmi,
           jadwal_jam_selesai: selectedJadwal.jadwal_jam_selesai,
           jadwal_jam_mulai: selectedJadwal.jadwal_jam_mulai,
-          tanggal_donor: '2023-12-10',
+          tgl_donor: new Date(),
           alamat_pmi: selectedJadwal.alamat_pmi,
           no_telpon_pmi: selectedJadwal.no_telpon_pmi,
           email: selectedJadwal.email,
@@ -102,15 +100,16 @@ const JadwalDaftarDonorPMI = {
         try {
           const response = await TheHemoLifeDbSource.daftarJadwalDonorHemoLife(postData);
           console.log('Full Response:', response);
-          const success = response && response.pendonor && response.pendonor.length > 0;
+          const success = response;
           const message = success
             ? 'Berhasil mendaftar!'
             : 'Gagal mendaftar. Silakan coba lagi.';
           const type = success ? 'success' : 'danger';
+
           Swal.fire({
             title: message,
             icon: type,
-            showConfirmButton: 'cool',
+            confirmButtonText: 'Cool',
           });
         } catch (error) {
           console.error('Error during data submission:', error);

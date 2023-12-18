@@ -11,7 +11,7 @@ class TheHemoLifeDbSource {
 
   static setGlobalAdminToken(token) {
     globalAdminToken = token;
-    localStorage.setItem('adminToken', token || 'TokenAdmin');
+    localStorage.setItem('adminToken', token);
   }
 
   // TODO login Fect
@@ -23,6 +23,7 @@ class TheHemoLifeDbSource {
 
     try {
       const response = await fetch(API_ENDPOINT.LOGIN, {
+        mode: 'cors',
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -74,65 +75,6 @@ class TheHemoLifeDbSource {
       throw error;
     }
   }
-  // TODO login Fect
-  static async login(email, password) {
-    const requestBody = {
-      email,
-      password,
-    };
-
-    try {
-      const response = await fetch(API_ENDPOINT.LOGIN, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(requestBody),
-      });
-
-      if (response.ok) {
-        const responseJson = await response.json();
-        console.log('API Response POST Login:', responseJson);
-        return responseJson;
-      } else {
-        // Handle unsuccessful login
-        console.error('Login failed:', response.status);
-        throw new Error('Login failed');
-      }
-    } catch (error) {
-      console.error('Error during login:', error);
-      throw error;
-    }
-  } 
-  static async register(user) {
-    try {
-      const response = await fetch(API_ENDPOINT.REGISTER, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(user),
-      });
-
-      if (response.status === 201) {
-        const responseJson = await response.json();
-        console.log('API Response POST Register:', responseJson);
-        return responseJson;
-      } else if (response.status === 409) {
-        const responseJson = await response.json();
-        console.error('Registration failed:', responseJson.message);
-        throw new Error('Registration failed');
-      } else {
-        console.error('Unexpected error during registration:', response.status);
-        throw new Error('Unexpected error during registration');
-      }
-    } catch (error) {
-      console.error('Error during registration:', error);
-      throw error;
-    }
-  } 
 
   static async updateProfileUser(updatedData) {
     const response = await fetch(API_ENDPOINT.UPDATE_PROFILE, {
@@ -140,7 +82,6 @@ class TheHemoLifeDbSource {
       headers: {
         Authorization: `${globalUserToken}`,
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify(updatedData),
     });
@@ -150,7 +91,6 @@ class TheHemoLifeDbSource {
 
   static async profileUser() {
     const response = await fetch(API_ENDPOINT.USER_PROFILE, {
-      mode: 'cors',
       headers: {
         Authorization: `${globalUserToken}`,
         'Content-Type': 'application/json',
@@ -165,7 +105,7 @@ class TheHemoLifeDbSource {
       const response = await fetch(API_ENDPOINT.ADMIN_PROFILE, {
         method: 'GET',
         headers: {
-          Authorization: `Bearer ${globalAdminToken}`,
+          Authorization: `${globalAdminToken}`,
           'Content-Type': 'application/json',
         },
       });
@@ -190,7 +130,7 @@ class TheHemoLifeDbSource {
     const response = await fetch(API_ENDPOINT.UPDATE_PROFILE_ADMIN, {
       method: 'PUT',
       headers: {
-        Authorization: `Bearer ${globalAdminToken}`,
+        Authorization: `${globalAdminToken}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(updatedData),
@@ -216,7 +156,7 @@ class TheHemoLifeDbSource {
     const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${userToken}`,
+        Authorization: `${userToken}`,
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
@@ -235,16 +175,18 @@ class TheHemoLifeDbSource {
   static async dasboardUser() {
     const response = await fetch(API_ENDPOINT.DASHBOARD_USER, {
       headers: {
-        Authorization: `Bearer ${globalUserToken}`,
+        Authorization: `${globalUserToken}`,
         'Content-Type': 'application/json',
       },
     });
     const responseJson = await response.json();
+    // console.log('GET dashboard User Rensponse:', responseJson);
     return responseJson;
   }
 
   static async jadwalDonorHemoLife() {
     const response = await fetch(API_ENDPOINT.JADWAL, {
+      mode: 'cors',
       headers: {
         Authorization: `${globalUserToken}`,
         'Content-Type': 'application/json',
@@ -257,7 +199,7 @@ class TheHemoLifeDbSource {
     const response = await fetch(API_ENDPOINT.DAFTAR_JADWAL, {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${globalUserToken}`,
+        Authorization: `${globalUserToken}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
@@ -278,115 +220,109 @@ class TheHemoLifeDbSource {
     return response.ok ? (await response.json()).data : [];
   }
 
-
   static async CariSukarelawan(golonganDarah, lokasi) {
     try {
       const response = await fetch(API_ENDPOINT.CARI_SUKARELAWAN, {
         method: 'POST',
         headers: {
-          'Authorization': `${globalUserToken}`, // Sesuaikan dengan token yang diperlukan
+          Authorization: `${globalUserToken}`, // Sesuaikan dengan token yang diperlukan
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           gol_darah: golonganDarah,
-          lokasi: lokasi,
+          lokasi,
         }),
       });
-  
+
       if (response.ok) {
         const responseData = await response.json();
         if (responseData.message === 'Volunteer berhasil ditemukan') {
           return responseData.volunteer; // Sesuaikan dengan struktur data yang diharapkan
-        } else {
-          return []; // Tidak ada sukarelawan yang ditemukan
         }
-      } else {
-        console.error('Failed to fetch volunteers:', response.status);
-        throw new Error('Failed to fetch volunteers');
+        return []; // Tidak ada sukarelawan yang ditemukan
       }
+      console.error('Failed to fetch volunteers:', response.status);
+      throw new Error('Failed to fetch volunteers');
     } catch (error) {
       console.error('Error during volunteer search:', error);
       throw error;
     }
   }
+
   static async dasboardAdmin() {
-  try {
-    const response = await fetch(API_ENDPOINT.DASHBOARD_ADMIN, {
-      headers: {
-        'Authorization': `${globalAdminToken}`,
-        'Content-Type': 'application/json',
-      },
-    });
+    try {
+      const response = await fetch(API_ENDPOINT.DASHBOARD_ADMIN, {
+        headers: {
+          Authorization: `${globalAdminToken}`,
+          'Content-Type': 'application/json',
+        },
+      });
 
-    if (!response.ok) {
-      throw new Error('Failed to fetch admin dashboard data');
+      if (!response.ok) {
+        throw new Error('Failed to fetch admin dashboard data');
+      }
+
+      const responseData = await response.json();
+
+      // Adjust the data structure based on the actual response
+      const formattedData = responseData.data.map((item) => ({
+        nama_kota: item.nama_kota, // Adjust to match the actual property in your response
+        jumlah_kantong_darah: item.jumlah_kantong_darah,
+      }));
+
+      return formattedData;
+    } catch (error) {
+      console.error('Error fetching admin dashboard data:', error);
+      throw error;
     }
-
-    const responseData = await response.json();
-
-    // Adjust the data structure based on the actual response
-    const formattedData = responseData.data.map(item => ({
-      nama_kota: item.nama_kota, // Adjust to match the actual property in your response
-      jumlah_kantong_darah: item.jumlah_kantong_darah,
-    }));
-
-    return formattedData;
-  } catch (error) {
-    console.error('Error fetching admin dashboard data:', error);
-    throw error;
   }
-}
 
-static async kelolaDonorDarah() {
-  try {
-    const response = await fetch(API_ENDPOINT.KELOLA_PENDONOR_DARAH, {
-      headers: {
-        'Authorization': `${globalAdminToken}`,
-        'Content-Type': 'application/json',
-      },
-    });
+  static async kelolaDonorDarah() {
+    try {
+      const response = await fetch(API_ENDPOINT.KELOLA_PENDONOR_DARAH, {
+        headers: {
+          Authorization: `${globalAdminToken}`,
+          'Content-Type': 'application/json',
+        },
+      });
 
-    if (!response.ok) {
-      throw new Error('Failed to fetch blood donor data');
+      if (!response.ok) {
+        throw new Error('Failed to fetch blood donor data');
+      }
+
+      const responseData = await response.json();
+
+      const formattedData = responseData.pendonor.map((item) => ({
+        id_tra_donor: item.id_tra_donor,
+        id_user: item.id_user,
+        id_gol_darah: item.id_gol_darah,
+        id_lokasi_pmi: item.id_lokasi_pmi,
+        tgl_donor: item.tgl_donor,
+        status: item.status,
+        user: {
+          id_user: item.User.id_user,
+          nama: item.User.nama,
+          email: item.User.email,
+          no_hp: item.User.no_hp,
+          jenis_kelamin: item.User.jenis_kelamin,
+          tanggal_lahir: item.User.tanggal_lahir,
+          alamat: item.User.alamat,
+        },
+        golDarah: {
+          gol_darah: item.GolDarah.gol_darah,
+        },
+        lokasiPmi: {
+          id_lokasi_pmi: item.LokasiPmi.id_lokasi_pmi,
+
+        },
+      }));
+
+      return formattedData;
+    } catch (error) {
+      console.error('Error fetching blood donor data:', error);
+      throw error;
     }
-
-    const responseData = await response.json();
-
-   
-    const formattedData = responseData.pendonor.map(item => ({
-      id_tra_donor: item.id_tra_donor,
-      id_user: item.id_user,
-      id_gol_darah: item.id_gol_darah,
-      id_lokasi_pmi: item.id_lokasi_pmi,
-      tgl_donor: item.tgl_donor,
-      status: item.status,
-      user: {
-        id_user: item.User.id_user,
-        nama: item.User.nama,
-        email: item.User.email,
-        no_hp: item.User.no_hp,
-        jenis_kelamin: item.User.jenis_kelamin,
-        tanggal_lahir: item.User.tanggal_lahir,
-        alamat: item.User.alamat,
-      },
-      golDarah: {
-        gol_darah: item.GolDarah.gol_darah,
-      },
-      lokasiPmi: {
-        id_lokasi_pmi: item.LokasiPmi.id_lokasi_pmi,
-       
-      },
-    }));
-
-    return formattedData;
-  } catch (error) {
-    console.error('Error fetching blood donor data:', error);
-    throw error;
   }
-}
-
-  
-
 }
 
 export default TheHemoLifeDbSource;
