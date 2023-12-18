@@ -41,6 +41,8 @@ const API_ENDPOINT = {
   // keloladonor darah
   // GET
   KELOLA_PENDONOR_DARAH: `${CONFIG.HEMO_LIFE_URL}/v1/admin/pendonorDarah`,
+  // GET
+  KELOLA_BANK_DARAH: `${CONFIG.HEMO_LIFE_URL}/v1/admin/kelolaBankDarah`,
 
 };
 

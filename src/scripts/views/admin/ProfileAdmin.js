@@ -92,7 +92,8 @@ const ProfileAdmin = {
     };
 
     try {
-      const updateResult = await TheHemoLifeDbSource.updateProfileAdmin(updatedData);
+      const updateResult =
+        await TheHemoLifeDbSource.updateProfileAdmin(updatedData);
       console.log('Update Response:', updateResult);
       if (
         updateResult

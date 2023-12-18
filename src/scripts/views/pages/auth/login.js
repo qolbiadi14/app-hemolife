@@ -54,6 +54,7 @@ const login = {
       const formData = new FormData(loginForm);
       const email = formData.get('email');
       const password = formData.get('password');
+
       try {
         const loginResponse = await TheHemoLifeDbSource.login(email, password);
 
@@ -80,14 +81,6 @@ const login = {
           title: 'Login Gagal',
           text: 'Terjadi kesalahan saat login. Silakan coba lagi.',
         });
-
-        // Jika username dan password adalah "admin", arahkan ke halaman profil admin
-        // if (email === 'admin@gmail.com' && password === 'admin') {
-        //   TheHemoLifeDbSource.setGlobalAdminToken();
-        //   window.location.hash = '/adminProfile';
-        //   window.location.reload();
-        //   return;
-        // }
       }
     });
   },

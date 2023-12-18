@@ -33,7 +33,7 @@ const DashboardAdmin = {
 
       // Create the chart
       canvas.chart = new Chart(ctx, {
-        type: 'bar',
+        type: 'line',
         data: {
           labels: chartData.map((item) => item.label),
           datasets: [{
