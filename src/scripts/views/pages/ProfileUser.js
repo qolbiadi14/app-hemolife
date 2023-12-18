@@ -1,4 +1,3 @@
-import Swal from 'sweetalert2';
 import TheHemoLifeDbSource from '../../data/thehemo-lifedb-source';
 import UrlParser from '../../routes/url-parser';
 import {
@@ -74,6 +73,7 @@ const ProfileUser = {
             }
           });
         });
+
         document.getElementById('logout-btn').addEventListener('click', () => {
           // Tampilkan alert konfirmasi
           Swal.fire({

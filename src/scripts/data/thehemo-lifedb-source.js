@@ -219,6 +219,110 @@ class TheHemoLifeDbSource {
     });
     return response.ok ? (await response.json()).data : [];
   }
+
+  static async CariSukarelawan(golonganDarah, lokasi) {
+    try {
+      const response = await fetch(API_ENDPOINT.CARI_SUKARELAWAN, {
+        method: 'POST',
+        headers: {
+          Authorization: `${globalUserToken}`, // Sesuaikan dengan token yang diperlukan
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          gol_darah: golonganDarah,
+          lokasi,
+        }),
+      });
+
+      if (response.ok) {
+        const responseData = await response.json();
+        if (responseData.message === 'Volunteer berhasil ditemukan') {
+          return responseData.volunteer; // Sesuaikan dengan struktur data yang diharapkan
+        }
+        return []; // Tidak ada sukarelawan yang ditemukan
+      }
+      console.error('Failed to fetch volunteers:', response.status);
+      throw new Error('Failed to fetch volunteers');
+    } catch (error) {
+      console.error('Error during volunteer search:', error);
+      throw error;
+    }
+  }
+
+  static async dasboardAdmin() {
+    try {
+      const response = await fetch(API_ENDPOINT.DASHBOARD_ADMIN, {
+        headers: {
+          Authorization: `${globalAdminToken}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch admin dashboard data');
+      }
+
+      const responseData = await response.json();
+
+      // Adjust the data structure based on the actual response
+      const formattedData = responseData.data.map((item) => ({
+        nama_kota: item.nama_kota, // Adjust to match the actual property in your response
+        jumlah_kantong_darah: item.jumlah_kantong_darah,
+      }));
+
+      return formattedData;
+    } catch (error) {
+      console.error('Error fetching admin dashboard data:', error);
+      throw error;
+    }
+  }
+
+  static async kelolaDonorDarah() {
+    try {
+      const response = await fetch(API_ENDPOINT.KELOLA_PENDONOR_DARAH, {
+        headers: {
+          Authorization: `${globalAdminToken}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch blood donor data');
+      }
+
+      const responseData = await response.json();
+
+      const formattedData = responseData.pendonor.map((item) => ({
+        id_tra_donor: item.id_tra_donor,
+        id_user: item.id_user,
+        id_gol_darah: item.id_gol_darah,
+        id_lokasi_pmi: item.id_lokasi_pmi,
+        tgl_donor: item.tgl_donor,
+        status: item.status,
+        user: {
+          id_user: item.User.id_user,
+          nama: item.User.nama,
+          email: item.User.email,
+          no_hp: item.User.no_hp,
+          jenis_kelamin: item.User.jenis_kelamin,
+          tanggal_lahir: item.User.tanggal_lahir,
+          alamat: item.User.alamat,
+        },
+        golDarah: {
+          gol_darah: item.GolDarah.gol_darah,
+        },
+        lokasiPmi: {
+          id_lokasi_pmi: item.LokasiPmi.id_lokasi_pmi,
+
+        },
+      }));
+
+      return formattedData;
+    } catch (error) {
+      console.error('Error fetching blood donor data:', error);
+      throw error;
+    }
+  }
 }
 
 export default TheHemoLifeDbSource;

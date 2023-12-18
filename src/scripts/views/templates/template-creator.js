@@ -34,8 +34,10 @@ const createSukarelawanTemplate = (sukarelawan_menerima) => /* html */ `
       <p class="card-text">Alamat : ${sukarelawan_menerima.alamat_volunteer}</p>
       <p class="card-text">Darah : ${sukarelawan_menerima.gol_darah}</p>
       <a href="https://wa.me/${getFormattedWhatsAppNumber(
-    sukarelawan_menerima.no_hp,
-  )}" target="_blank" class="btn btn-success w-100">Hubungi Via WhatsApp</a>
+
+  sukarelawan_menerima.no_hp,
+)}" target="_blank" class="btn btn-success w-100">Hubungi Via WhatsApp</a>
+
      </div>
   </div>
 `;
@@ -120,7 +122,6 @@ const createJadwalDetailPMITemplate = (data) => /* html */ `
     </div>
   </div>
 `;
-
 const initializeLeafletMaps = (jadwals) => {
   jadwals.forEach(({
     id_lok_pmi, latitude, longitude, nama_lok_pmi,
@@ -163,6 +164,7 @@ const createUpdateProfileTemplate = (userProfile) => /* html */ `
             <div class="form-group">
                 <label class="col-lg-12 control-label">Nama Lengkap:</label>
                 <div class="col-lg-8">
+
                     <input id="nama-lengkap-input" class="form-control" type="text" value="${
   userProfile.nama
 }">
@@ -174,28 +176,20 @@ const createUpdateProfileTemplate = (userProfile) => /* html */ `
                     <input id="no-telp-input" class="form-control" type="number" value="${
   userProfile.no_hp
 }">
+
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-12 control-label">Alamat:</label>
                 <div class="col-lg-8">
-                    <input id="alamat-input" class="form-control" type="text" value="${
-  userProfile.alamat
-}">
+                    <input id="alamat-input" class="form-control" type="text" value="${userProfile.alamat}">
                 </div>
             </div>
-              <div class="form-group">
-              <label class="col-lg-12 control-label">Jenis Kelamin:</label>
-              <div class="col-lg-8">
-                <select id="jenis-kelamin-input" class="form-control">
-                  <option value="Laki - laki" ${
-  userProfile.jenis_kelamin === 'Laki - laki' ? 'selected' : ''
-}>Laki - laki</option>
-                  <option value="Perempuan" ${
-  userProfile.jenis_kelamin === 'Perempuan' ? 'selected' : ''
-}>Perempuan</option>
-                </select>
-              </div>
+            <div class="form-group">
+                <label class="col-lg-12 control-label">Jenis Kelamin:</label>
+                <div class="col-lg-8">
+                    <input id="jenis-kelamin-input" class="form-control" type="text" value="${userProfile.jenis_kelamin}">
+                </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-12 control-label">Tanggal Lahir:</label>
@@ -214,9 +208,7 @@ const createUpdateProfileTemplate = (userProfile) => /* html */ `
             <!-- <div class="form-group">
                 <label class="col-lg-3 control-label">Email:</label>
                 <div class="col-lg-8">
-                    <input id="email-input" class="form-control" type="text" value="${
-  userProfile.email
-}">
+                    <input id="email-input" class="form-control" type="text" value="${userProfile.email}">
                 </div>
             </div>
             <div class="form-group">
@@ -224,21 +216,9 @@ const createUpdateProfileTemplate = (userProfile) => /* html */ `
                 <div class="col-lg-8">
                     <div class="ui-select">
                         <select id="jenis-kelamin-input" class="form-control">
-                            <option value="Laki-Laki" ${
-  userProfile.jenis_kelamin === 'Laki-Laki'
-    ? 'selected'
-    : ''
-}>Laki-Laki</option>
-                            <option value="Perempuan" ${
-  userProfile.jenis_kelamin === 'Perempuan'
-    ? 'selected'
-    : ''
-}>Perempuan</option>
-                            <option value="LGBT" ${
-  userProfile.jenis_kelamin === 'LGBT'
-    ? 'selected'
-    : ''
-}>LGBT</option>
+                            <option value="Laki-Laki" ${userProfile.jenis_kelamin === 'Laki-Laki'? 'selected': ''}>Laki-Laki</option>
+                            <option value="Perempuan" ${userProfile.jenis_kelamin === 'Perempuan'? 'selected': ''}>Perempuan</option>
+                            <option value="LGBT" ${userProfile.jenis_kelamin === 'LGBT'? 'selected': ''}>LGBT</option>
                         </select>
                     </div>
                 </div>
@@ -294,6 +274,192 @@ const createUpdateProfileAdminTemplate = (adminProfile) => /* html */ `
   </form>
 `;
 
+const createKelolaDonorDarah = (adminProfile) => /* html */ `
+<div class="col py-3">
+            <div class="container py-3">
+				<h2>Kelola Donor Darah</h2>
+				<form class="form-inline mb-4">
+					<label class="sr-only" for="searchInput">Cari Pendonor:</label>
+					<input type="text" class="form-control mb-2 mr-sm-2" id="searchInput"
+						   placeholder="Masukkan Nama Pendonor">
+					<button type="submit" class="btn btn-primary mb-2">Cari</button>
+				</form>
+				<div class="table-responsive">
+					<table class="table table-striped table-sm">
+						<thead>
+						<tr>
+							<th class="col">No</th>
+							<th class="col-6">Nama Pendonor</th>
+							<th class="col">Jadwal</th>
+              <th class="col">Golongan Darah</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td class="col">ini nomer</td>
+							<td class="col-6"> ini nama</td>
+							<td class="col"> ini tanggal donor</td>
+              <td class="col"> ini darah</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+</div>
+`;
+const createKelolaBankDarah = (adminProfile) => /* html */ `
+<div class="col py-3">
+				<div class="container py-3">
+					<h2>Kelola Donor Darah</h2>
+					<div class="col-md-6">
+						<div class="card h-100">
+							<div class="card-body">
+								<div class="row g-3">
+									<div class="col-md-6">
+										<div
+											class="bg-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+											<p class="mb-0">A (+)</p>
+											<p class="mb-0">50</p>
+											<button type="button" class="btn btn-secondary ms-2">Edit</button>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="bg-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+											<p class="mb-0">A (-)</p>
+											<p class="mb-0">50</p>
+											<button type="button" class="btn btn-secondary ms-2">Edit</button>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="bg-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+											<p class="mb-0">B (+)</p>
+											<p class="mb-0">50</p>
+											<button type="button" class="btn btn-secondary ms-2">Edit</button>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="bg-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+											<p class="mb-0">B (+)</p>
+											<p class="mb-0">50</p>
+											<button type="button" class="btn btn-secondary ms-2">Edit</button>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="bg-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+											<p class="mb-0">AB (-)</p>
+											<p class="mb-0">50</p>
+											<button type="button" class="btn btn-secondary ms-2">Edit</button>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="bg-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+											<p class="mb-0">AB (+)</p>
+											<p class="mb-0">50</p>
+											<button type="button" class="btn btn-secondary ms-2">Edit</button>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="bg-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+											<p class="mb-0">0 (-)</p>
+											<p class="mb-0">50</p>
+											<button type="button" class="btn btn-secondary ms-2">Edit</button>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="bg-light rounded-3 p-3 d-flex justify-content-between align-items-center">
+											<p class="mb-0">0 (+)</p>
+											<p class="mb-0">50</p>
+											<button type="button" class="btn btn-secondary ms-2">Edit</button>
+										</div>
+									</div>
+									<div class="mt-auto p-3 d-flex justify-content-end">
+										<button type="button" class="btn btn-secondary">Edit</button>
+										<button type="button" class="btn btn-primary ms-2">Simpan</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+`;
+const createDashboardAdmin = (adminProfile) => /* html */ `
+<div class="col py-3">
+    <div class="container py-3">
+        <h2 class="mb-4">Dashboard Admin</h2>
+        <div class="row">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <!-- Kolom untuk Chart -->
+                        <div class="col-md-6 mb-2">
+                            <h3>Stok Darah</h3>
+                            <!-- Elemen canvas untuk chart -->
+                            <canvas id="bloodStockChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+`;
+const createCariSukarelawanTemplate = () => /* html */ `
+  <div class="container mt-5">
+    <div class="row">
+      <!-- Box Pertama: Form Pencarian -->
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Form Pencarian</h5>
+            <form>
+              <div class="mb-3">
+                <label for="golonganDarah" class="form-label">Golongan Darah</label>
+                <select class="form-select" id="golonganDarah">
+                  <option value="A+">A+</option>
+                  <option value="A-">A-</option>
+                  <option value="B+">B+</option>
+                  <option value="B-">B-</option>
+                  <option value="AB+">AB+</option>
+                  <option value="AB-">AB-</option>
+                  <option value="O+">O+</option>
+                  <option value="O-">O-</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="lokasi" class="form-label">Lokasi</label>
+                <select class="form-select" id="lokasi">
+                  <option value="Jakarta">Jakarta</option>
+                  <option value="Bandung">Bandung</option>
+                  <option value="Jogja">Jogja</option>
+                  <option value="Serang">Serang</option>
+                </select>
+              </div>
+              <button type="button" id="buttonCari" class="btn btn-primary">Cari</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- Box Kedua: Hasil Pencarian -->
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Hasil Pencarian</h5>
+            <div id="hasilPencarian">
+              <!-- Hasil pencarian akan ditampilkan di sini -->
+              <div id="hasilPencarianContainer"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+`;
 export {
   createProfileAdminTemplate,
   createUpdateProfileAdminTemplate,
@@ -306,4 +472,8 @@ export {
   createUpdateProfileTemplate,
   createPendonoremplate,
   initializeLeafletMaps,
+  createKelolaDonorDarah,
+  createKelolaBankDarah,
+  createDashboardAdmin,
+  createCariSukarelawanTemplate,
 };

@@ -5,7 +5,9 @@ import JadwalDaftarDetail from '../views/pages/JadwalDaftarDetail';
 import NotFoundPage from '../views/pages/NotFoundPage';
 import ProfileUser from '../views/pages/ProfileUser';
 import CariSukarelawan from '../views/pages/CariSukarelawan';
-
+import KelolaBankDarah from '../views/admin/KelolaBankDarah';
+import KelolaDonorDarah from '../views/admin/KelolaDonorDarah';
+import DasboardAdmin from '../views/admin/DashboardAdmin';
 import landing from '../views/pages/landingpage';
 import login from '../views/pages/auth/login';
 import register from '../views/pages/auth/register';
@@ -29,6 +31,9 @@ const routes = {
   '/detail-jadwal-daftar/:id': isLoggedIn() ? (isAdminLoggedIn() ? ProfileAdmin : JadwalDaftarDetail) : landing,
   '/cari-sukarelawan': isLoggedIn() ? (isAdminLoggedIn() ? ProfileAdmin : CariSukarelawan) : landing,
   '/adminprofile': isLoggedIn() && isAdminLoggedIn() ? ProfileAdmin : landing,
+  '/kelola-bank-darah': KelolaBankDarah,
+  '/kelola-donor-darah': KelolaDonorDarah,
+  '/dashboard-admin': DasboardAdmin,
   '*': NotFoundPage,
 };
 export default routes;

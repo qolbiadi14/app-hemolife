@@ -1,4 +1,4 @@
-class NavbarComponent extends HTMLElement {
+class NavbarAdmin extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
         <header>
@@ -6,19 +6,15 @@ class NavbarComponent extends HTMLElement {
                 <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item">
-                                <a class="nav-link active fw-bolder" aria-current="page" href="#/dashboard-user"><i
+                                <a class="nav-link active fw-bolder" aria-current="page" href="#/dashboard-admin"><i
                                         class="bi bi-home"></i>Dashboard</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link fw-bolder" href="#/jadwal">Jadwal</a>
+                                <a class="nav-link fw-bolder" href="#/kelola-bank-darah">Bank Darah</a>
                             </li>
                             <li class="nav-item">
-                            <a class="nav-link fw-bolder" href="#/cari-sukarelawan" style="white-space: nowrap;">Cari Sukarelawan</a>
-                        </li>
-                        
-                            <li class="nav-item">
-                                <a class="nav-link" href="#/profile" title="Profile"><i
-                                        class="fa-solid fa-circle-user fa-xl" style="color: #e02424;"></i></a>
+                             <li class="nav-item">
+                                <a class="nav-link fw-bolder" href="#/kelola-donor-darah">Pendonor</a>
                             </li>
                             
                         <notifikasi-modal-component></notifikasi-modal-component>
@@ -32,4 +28,4 @@ class NavbarComponent extends HTMLElement {
     }
 }
 
-customElements.define('navbar-component', NavbarComponent);
+customElements.define('navbar-admin', NavbarAdmin);
