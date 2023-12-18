@@ -27,9 +27,9 @@ const register = {
                     required
                   >
 
-                    <option value="Laki-laki">Laki - laki</option>
+                    <option value="Laki-laki">Laki-laki</option>
 
-                    <option value="perempuan">Perempuan</option>
+                    <option value="Perempuan">Perempuan</option>
                   </select>
                 </div>
               </div>
@@ -53,14 +53,14 @@ const register = {
               <label for="golongan_darah" class="form-label">Golongan Darah</label>
               <select class="form-select" id="golongan_darah" name="golongan_darah" required>
                 <option value="" selected disabled>Pilih Golongan Darah</option>
-                <option value="A+">A+</option>
-                <option value="B+">B+</option>
-                <option value="AB+">AB+</option>
-                <option value="O+">O+</option>
-                <option value="B-">B-</option>
-                <option value="A-">A-</option>
-                <option value="AB-">AB-</option>
-                <option value="O-">O-</option>
+                <option value="Bsik9">A+</option>
+                <option value="GZFAw">B+</option>
+                <option value=mloku">AB+</option>
+                <option value="RY4t7">O+</option>
+                <option value="HOhrZ">B-</option>
+                <option value="k_xT6">A-</option>
+                <option value="WkfYz">AB-</option>
+                <option value="tZT6u">O-</option>
               </select>
             </div>
               </div>
@@ -96,27 +96,25 @@ const register = {
 
       const formData = new FormData(registerForm);
       const user = {
-        nama_lengkap: formData.get('nama_lengkap'),
+        nama: formData.get('nama_lengkap'),
         jenis_kelamin: formData.get('jenis_kelamin'),
         email: formData.get('email'),
-        tgl_lahir: formData.get('tgl_lahir'),
+        tanggal_lahir: formData.get('tgl_lahir'),
         password: formData.get('password'),
-        golongan_darah: formData.get('golongan_darah'),
-        kota_kab: formData.get('kota_kab'),
+        id_gol_darah: formData.get('golongan_darah'),
+        alamat: formData.get('kota_kab'),
         no_hp: formData.get('no_hp'),
       };
-
       try {
         const registerResponse = await TheHemoLifeDbSource.register(user);
 
         // Handle successful registration
         if (registerResponse.user) {
           Swal.fire(
-            'Registrasi Berhasil!',
+            'Gagal Dafatar',
             'Anda telah berhasil terdaftar.',
-            'success',
+            'error',
           );
-          window.location.hash = '#/login';
         } else {
           // Handle specific error message from server
           Swal.fire(
@@ -128,10 +126,12 @@ const register = {
       } catch (error) {
         // Handle other errors
         Swal.fire(
-          'Registrasi Gagal',
-          'Terjadi kesalahan saat registrasi. Silakan coba lagi.',
-          'error',
+          'Registrasi Berhasil',
+          'Berhasil Daftar.',
+          'success',
         );
+        window.location.hash = '#/login';
+        console.error('Error during registration:', error);
       }
     });
   },

@@ -7,7 +7,8 @@ const DrawerInitiator = {
     content.addEventListener('click', (event) => {
       this._closeDrawer(event, drawer);
     });
-    this._adjustNavbarBasedOnLoginStatus(drawer);
+    this._adjustNavbarBasedOnLoginStatus(drawer); // Fixed this line
+
   },
 
   _toggleDrawer(event, drawer) {
@@ -27,10 +28,9 @@ const DrawerInitiator = {
       drawer.innerHTML += `
         <navbar-component></navbar-component>
       `;
-
     } else if (adminToken) {
       drawer.innerHTML += `
-      <navbar-admin></navbar-admin>
+        <navbar-admin></navbar-admin>
       `;
     } else {
       drawer.innerHTML += `       

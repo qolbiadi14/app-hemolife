@@ -77,8 +77,7 @@ const ProfileAdmin = {
         console.log(
           'Admin tidak ditemukan atau terjadi kesalahan saat mengambil data profil.',
         );
-        profileContainer.innerHTML =
-          'Terjadi kesalahan saat mengambil data profil.';
+        profileContainer.innerHTML = 'Terjadi kesalahan saat mengambil data profil.';
       }
     } catch (error) {
       console.error('Error rendering profile Admin:', error);
@@ -97,8 +96,8 @@ const ProfileAdmin = {
         await TheHemoLifeDbSource.updateProfileAdmin(updatedData);
       console.log('Update Response:', updateResult);
       if (
-        updateResult &&
-        updateResult.message === 'Admin profile updated successfully'
+        updateResult
+        && updateResult.message === 'Admin profile updated successfully'
       ) {
         console.log('Profil Admin berhasil diperbarui:', updateResult.admin[0]);
         this.showBootstrapAlert('success-alert');

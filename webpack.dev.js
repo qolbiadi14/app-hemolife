@@ -10,6 +10,7 @@ module.exports = merge(common, {
     static: path.resolve(__dirname, 'dist'),
     port: 5000,
     open: true,
+    allowedHosts: 'all',
     compress: true,
     client: {
       overlay: {

@@ -100,12 +100,12 @@ async function renderDashboardPage() {
 }
 
 async function renderAdminProfilePage() {
-  const page = routes['/adminprofile'];
+  const page = routes['/dashboard-admin'];
   if (page) {
     const mainContent = document.getElementById('mainContent');
     mainContent.innerHTML = await page.render();
     await page.afterRender();
-    window.location.hash = '#/adminprofile';
+    window.location.hash = '#/dashboard-admin';
     window.location.reload();
   }
 }

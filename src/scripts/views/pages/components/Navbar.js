@@ -1,6 +1,6 @@
 class NavbarComponent extends HTMLElement {
-    connectedCallback() {
-        this.innerHTML = `
+  connectedCallback() {
+    this.innerHTML = `
         <header>
             <nav class="navbar navbar-expand-lg" id="menuDrawer">
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -28,8 +28,7 @@ class NavbarComponent extends HTMLElement {
             </nav>
     </header>
         `;
-
-    }
+  }
 }
 
 customElements.define('navbar-component', NavbarComponent);
